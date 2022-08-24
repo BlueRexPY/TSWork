@@ -7,7 +7,7 @@ Job search market for the IT segment
 
    1. ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
    1. ![Next JS](https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white)
-   1. ![Redux](https://img.shields.io/badge/redux-toolkit%23593d88.svg?style=for-the-badge&logo=redux&logoColor=white)
+   1. ![Redux](https://img.shields.io/badge/redux-%23593d88.svg?style=for-the-badge&logo=redux&logoColor=white)
    1. ![RTKQuery](https://img.shields.io/badge/RTKQuery-233233.svg?style=for-the-badge&logo=RTKQuery&logoColor=white)
 
 </details>
