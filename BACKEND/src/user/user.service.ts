@@ -1,3 +1,5 @@
+import { UpdateUserDto } from './dto/update-user.dto';
+import { AddRoleUserDto } from './dto/addRole-user.dto';
 import { LoginUserDto } from './dto/login-user.dto';
 import { Injectable } from '@nestjs/common';
 import { User, UserDocument } from './schemas/user.schema';
@@ -20,6 +22,19 @@ export class UserService {
         const user = await this.userModel.create({...dto, password: hashPassword, cv:cvPath, roles: ["USER"] })
         return user
     }
+    
+    async update(dto: UpdateUserDto,cv): Promise<User> {
+        const cvPath = this.fileService.createFile(FileType.PDF, cv)
+        const user = await this.userModel.findOneAndUpdate({email:dto.email},{name:dto.name, github:dto.github, surename:dto.surename ,cv:cvPath})
+        return user
+    }
+
+    async active(email:string): Promise<boolean> {
+        await this.userModel.findOneAndUpdate({email:email},{active:true})
+        return true
+    }
+
+
     async getOneByName(userName: string): Promise<User> {
         const user = await this.userModel.findOne({ name: userName })
         return user
@@ -37,6 +52,16 @@ export class UserService {
     async getOneById(id: ObjectId): Promise<User> {
         const user = await this.userModel.findById(id)
         return user
+    }
+
+    async addRole(dto: AddRoleUserDto): Promise<boolean> {
+        let user = await this.userModel.findById(dto.id);
+
+        if(![...user.roles].includes(dto.role)){
+            await this.userModel.findByIdAndUpdate(dto.id,  {roles:[...user.roles, dto.role]});
+            return true
+        }
+        return false
     }
 
     async delete(id: ObjectId): Promise<ObjectId> {

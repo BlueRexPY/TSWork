@@ -1,3 +1,5 @@
+import { UpdateUserDto } from './dto/update-user.dto';
+import { AddRoleUserDto } from './dto/addRole-user.dto';
 import { LoginUserDto } from './dto/login-user.dto';
 import { Bind, Body, Controller, Delete, Get, Param, Post, Query, UploadedFiles, UseInterceptors } from "@nestjs/common";
 import { UserService } from './user.service';
@@ -19,6 +21,15 @@ export class UserController {
         return this.userService.create(dto, files.cv[0])
     } 
 
+    @Post("update")
+    @Bind(UploadedFiles())
+    @UseInterceptors(FileFieldsInterceptor([
+        { name: 'cv', maxCount: 1 }
+    ]))
+    update(@UploadedFiles() files , @Body() dto: UpdateUserDto){
+        return this.userService.update(dto, files.cv[0])
+    } 
+
     @Get(":name")
     getOneByName(@Param("name") userName: string) {
         return this.userService.getOneByName(userName)
@@ -37,6 +48,16 @@ export class UserController {
     @Post("/login")
     login(@Body() dto: LoginUserDto) {
         return this.userService.login(dto)
+    }
+
+    @Post("/addRole/")
+    addRole(@Body() dto: AddRoleUserDto) {
+        return this.userService.addRole(dto)
+    }
+
+    @Post("/active/")
+    active(@Body() email: string) {
+        return this.userService.active(email)
     }
 
     @Delete(":id")
