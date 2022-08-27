@@ -10,8 +10,9 @@ async function bootstrap() {
     credentials: true,
     optionSuccessStatus: 200,
   }
-
+  
   app.use(cors(corsOptions))
   await app.listen(process.env.PORT || 5000);
+  console.log(`start server`)
 }
 bootstrap();

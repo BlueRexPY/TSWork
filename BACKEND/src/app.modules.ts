@@ -1,19 +1,23 @@
-import { UserModule } from './user/user.module';
+import { EmailModule } from './email/email.module';
 import { Module } from "@nestjs/common";
-import { TrackModule } from './track/track.module';
-import { AlbumModule } from './album/album.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { FileModule } from "./file/file.module";
+import { UserModule } from "./user/user.module";
 import { ServeStaticModule } from '@nestjs/serve-static';
 import * as path from 'path'
-
+import { VacancyModule } from "./vacancy/vacancy.module";
+import { TokenModule } from "./token/token.module";
 @Module({
     imports: [
-        MongooseModule.forRoot("mongodb+srv://Blex:Blex@cluster0.ikchbxg.mongodb.net/TSMusic?retryWrites=true&w=majority"),
-        UserModule,
-        AlbumModule,
-        TrackModule,
+        MongooseModule.forRoot("", {
+            useCreateIndex: true,
+            autoIndex: true,
+          }),
         FileModule,
+        UserModule,
+        VacancyModule,
+        TokenModule,
+        EmailModule,
         ServeStaticModule.forRoot({ rootPath: path.resolve(__dirname, 'static'), }),
     ]
 })

@@ -5,7 +5,7 @@ import * as uuid from 'uuid'
 const { Storage } = require("@google-cloud/storage");
 
 export enum FileType {
-    AUDIO = 'audio',
+    PDF = 'pdf',
     IMAGE = "image"
 }
 
@@ -20,8 +20,8 @@ export class FileService {
             const filePath = path.resolve(__dirname, '..', 'static', type)
             if (!fs.existsSync(filePath)) { fs.mkdirSync(filePath, { recursive: true }) }
             fs.writeFileSync(path.resolve(filePath, fileName), file.buffer)
-            gc.bucket("tsmusic-files").upload(filePath + "/" + fileName, { destination: fileName, })
-            return `https://storage.cloud.google.com/tsmusic-files/${fileName}`
+            gc.bucket("tswork-files").upload(filePath + "/" + fileName, { destination: fileName, })
+            return `https://storage.cloud.google.com/tswork-files/${fileName}`
         } catch (e) {
             throw new HttpException(e.message, HttpStatus.INTERNAL_SERVER_ERROR)
         }
