@@ -1,13 +1,16 @@
+
 import { EmailService } from './../email/email.service';
+import { AuthService } from './../auth/auth.service';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { AddRoleUserDto } from './dto/addRole-user.dto';
 import { LoginUserDto } from './dto/login-user.dto';
-import { Injectable } from '@nestjs/common';
+import { forwardRef, Inject, Injectable, Redirect } from '@nestjs/common';
 import { User, UserDocument } from './schemas/user.schema';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, ObjectId } from 'mongoose';
 import { CreateUserDto } from './dto/create-user.dto';
 import { FileService, FileType } from '../file/file.service';
+
 import * as uuid from 'uuid'
 
 const bcrypt = require('bcryptjs');
@@ -15,21 +18,28 @@ const bcrypt = require('bcryptjs');
 @Injectable()
 export class UserService {
     constructor(@InjectModel(User.name) private userModel: Model<UserDocument>,
-    private fileService: FileService, 
+    private fileService: FileService,
+    private authService: AuthService,
     private emailService: EmailService
+
 ) { }
 
-    async create(dto: CreateUserDto,cv): Promise<User> {
+    async create(dto: CreateUserDto,cv): Promise<object> {
         const checkUSer = await this.userModel.findOne({email: dto.email})
         if(checkUSer){
             throw new Error("a user with this email has already been created")
         }
         const cvPath = this.fileService.createFile(FileType.PDF, cv)
         const hashPassword = bcrypt.hashSync(dto.password, 5);
-        const activetionLink = uuid.v4
-        await this.emailService.sendActiveMail(activetionLink,dto.email)
-        const user = await this.userModel.create({...dto, password: hashPassword, cv:cvPath, roles: ["USER"], active:false })
-        return user
+        const activetionLink = uuid.v4()
+
+        const tokens = await this.authService.generateTokens({...dto});
+        await this.authService.saveToken(dto.email, tokens.refreshToken);
+    
+        await this.emailService.sendActiveMail(dto.email, activetionLink);
+
+        const user = await this.userModel.create({...dto, password: hashPassword, cv:cvPath, roles: ["USER"], active:false, activetionLink: activetionLink })
+        return {...tokens, user:user}
     }
     
     async update(dto: UpdateUserDto,cv): Promise<User> {
@@ -38,9 +48,13 @@ export class UserService {
         return user
     }
 
-    async active(email:string): Promise<boolean> {
-        await this.userModel.findOneAndUpdate({email:email},{active:true})
-        return true
+    async active(email:string, activetionLink:string): Promise<boolean> {
+
+        if(await this.userModel.findOne({email: email,activetionLin:activetionLink})){
+            await this.userModel.findOneAndUpdate({email:email},{active:true})           
+            return true
+        }
+        return false
     }
 
 
@@ -73,7 +87,7 @@ export class UserService {
         return false
     }
 
-    async response(email: string, id:string): Promise<boolean> {
+    async response(email: string, id:ObjectId): Promise<boolean> {
         let user = await this.userModel.findOne({email:email});
 
         if(![...user.responses].includes(id)){

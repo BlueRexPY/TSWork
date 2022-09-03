@@ -1,7 +1,7 @@
 import { UpdateUserDto } from './dto/update-user.dto';
 import { AddRoleUserDto } from './dto/addRole-user.dto';
 import { LoginUserDto } from './dto/login-user.dto';
-import { Bind, Body, Controller, Delete, Get, Param, Post, Query, UploadedFiles, UseInterceptors } from "@nestjs/common";
+import { Bind, Body, Controller, Delete, Get, Param, Post, Query, Redirect, Res, UploadedFiles, UseInterceptors } from "@nestjs/common";
 import { UserService } from './user.service';
 import { ObjectId } from 'mongoose';
 import { CreateUserDto } from "./dto/create-user.dto";
@@ -55,13 +55,15 @@ export class UserController {
         return this.userService.addRole(dto)
     }
 
-    @Post("/active/")
-    active(@Body() email: string) {
-        return this.userService.active(email)
+    @Get("/active/:email/:activetionLink")
+    @Redirect('http://localhost:3000',302)
+    active(@Param("email") email: string, @Param("activetionLink") activetionLink: string) {
+        return this.userService.active(email,activetionLink) 
     }
     
+    
     @Post("/response/")
-    response(@Body() email: string, id:string) {
+    response(@Body() email: string, id:ObjectId) {
         return this.userService.response(email,id)
     }
 

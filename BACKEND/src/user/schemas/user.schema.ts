@@ -8,7 +8,7 @@ export class User {
   @Prop()
   cv: string;
 
-  @Prop({unique: true})
+  @Prop()
   email: string;
 
   @Prop()
@@ -27,13 +27,16 @@ export class User {
   roles: string[];
 
   @Prop()
-  vacancies: string[];
+  vacancies: ObjectId[];
 
   @Prop()
-  responses: string[];
+  responses: ObjectId[];
 
   @Prop()
   active: boolean;
+
+  @Prop()
+  activetionLink: string;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

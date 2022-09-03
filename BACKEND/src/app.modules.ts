@@ -1,3 +1,4 @@
+import { AuthModule } from './auth/auth.module';
 import { EmailModule } from './email/email.module';
 import { Module } from "@nestjs/common";
 import { MongooseModule } from '@nestjs/mongoose';
@@ -6,18 +7,17 @@ import { UserModule } from "./user/user.module";
 import { ServeStaticModule } from '@nestjs/serve-static';
 import * as path from 'path'
 import { VacancyModule } from "./vacancy/vacancy.module";
-import { TokenModule } from "./token/token.module";
+import { ConfigModule } from '@nestjs/config';
+
 @Module({
     imports: [
-        MongooseModule.forRoot("", {
-            useCreateIndex: true,
-            autoIndex: true,
-          }),
-        FileModule,
+        ConfigModule.forRoot(),
+        MongooseModule.forRoot(process.env.DB_URL),
         UserModule,
         VacancyModule,
-        TokenModule,
+        FileModule,
         EmailModule,
+        AuthModule,
         ServeStaticModule.forRoot({ rootPath: path.resolve(__dirname, 'static'), }),
     ]
 })
