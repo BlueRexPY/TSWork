@@ -1,3 +1,4 @@
+import { LoginUserDto } from './../user/dto/login-user.dto';
 import { tokensDbType } from './types/tokens-db';
 
 import { Auth, AuthDocument } from './schemas/auth.schema';
@@ -16,7 +17,7 @@ export class AuthService {
 ) { }
 
 
-    generateTokens(payload: CreateUserDto): tokensType{
+    generateTokens(payload: LoginUserDto): tokensType{
         const accessToken:string = jwt.sign(payload, process.env.JWT_ACCESS_SECRET, {expiresIn: '15s'})
         const refreshToken:string = jwt.sign(payload, process.env.JWT_REFRESH_SECRET, {expiresIn: '30d'})
         const tokens = {
@@ -58,12 +59,13 @@ export class AuthService {
     }
 
     removeToken(refreshToken:string){
-        const tokenData = this.authModel.deleteOne({refreshToken})
+        console.log(refreshToken)
+        const tokenData = this.authModel.deleteOne({refreshToken:refreshToken})
         return tokenData;
     }
 
     findToken(refreshToken:string){
-        const tokenData = this.authModel.findOne({refreshToken})
+        const tokenData = this.authModel.findOne({refreshToken:refreshToken})
         return tokenData;
     }
 }

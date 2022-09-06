@@ -24,7 +24,6 @@ export class EmailService {
                 </p>
             `
         });
-        console.log("send")
     }
 }
 

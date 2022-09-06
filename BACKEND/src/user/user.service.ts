@@ -12,6 +12,7 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { FileService, FileType } from '../file/file.service';
 
 import * as uuid from 'uuid'
+import { FinaleUser } from './dto/final-user';
 
 const bcrypt = require('bcryptjs');
 
@@ -102,13 +103,23 @@ export class UserService {
         return user._id
     }
 
-    async login(dto: LoginUserDto): Promise<User> {
-        const user = await this.userModel.findOne({ email: dto.email })
-        if (user) {
-            const validPassword = bcrypt.compareSync(dto.password, user.password)
-            if (validPassword) {
-                return user
-            }
+    async logout(refresh: string): Promise<boolean> {
+        const tokenData = await this.authService.removeToken(refresh);
+        if(tokenData){
+            return true
         }
+        return false
+    }
+
+
+    async login(dto:LoginUserDto): Promise<FinaleUser>{
+        const user = await this.userModel.findOne({email: dto.email})
+        const validPassword = await bcrypt.compare(dto.password, user.password);
+        if(validPassword){
+            const tokens = await this.authService.generateTokens({...dto});
+            await this.authService.saveToken(dto.email, tokens.refreshToken);
+            return {...tokens, user:user}
+        }
+        throw new Error("Invalid password")
     }
 }
