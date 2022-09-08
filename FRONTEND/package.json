@@ -1,0 +1,47 @@
+{
+  "name": "ts-work",
+  "version": "0.1.0",
+  "author": "Ruslan - github.com/BlueRexPY",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@craco/craco": "^6.4.4",
+    "@emotion/react": "^11.10.4",
+    "@emotion/styled": "^11.10.4",
+    "@headlessui/react": "^1.6.5",
+    "@heroicons/react": "^1.0.6",
+    "@mui/material": "^5.10.4",
+    "@reduxjs/toolkit": "^1.8.5",
+    "@types/react-redux": "^7.1.24",
+    "antd": "^4.21.4",
+    "autoprefixer": "^10.4.7",
+    "axios": "^0.27.2",
+    "cors": "^2.8.5",
+    "less": "^4.1.3",
+    "less-loader": "^7.3.0",
+    "next": "12.2.0",
+    "next-plugin-antd-less": "^1.8.0",
+    "react": "18.2.0",
+    "react-cookie": "^4.1.1",
+    "react-dom": "18.2.0",
+    "react-redux": "^8.0.2",
+    "sass": "^1.53.0",
+    "styled-jsx": "^5.0.2"
+  },
+  "devDependencies": {
+    "@types/node": "^18.0.0",
+    "@types/react": "^18.0.14",
+    "@types/react-dom": "18.0.5",
+    "babel-plugin-import": "^1.13.5",
+    "babel-plugin-inline-react-svg": "^2.0.1",
+    "eslint": "8.18.0",
+    "eslint-config-next": "12.2.0",
+    "postcss": "^8.4.5",
+    "typescript": "^4.7.4"
+  }
+}
