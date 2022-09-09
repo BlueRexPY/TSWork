@@ -40,7 +40,7 @@ const NavBar = (props: Props) => {
           <Select
             showSearch
             style={{ width: "60%", padding: "3px 0px 3px 15px" }}
-            placeholder="Please select Skill"
+            placeholder="Select Skill"
           >
             {TECH_LIST.map((i) => (
               <Option key={i}>{i}</Option>

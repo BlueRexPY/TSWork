@@ -29,11 +29,9 @@ body{
   align-content: flex-start;
 
   background: #141414;
-  min-height: 100vh;
-  height: auto;
-  width: 100vw;
-
-  padding: 70px;
+  height: 100vh;
+  width: 100%;
+  padding: 70px 20px 70px 20px;
 }
 
 .columnLayout2{
@@ -45,11 +43,10 @@ body{
   align-content: flex-start;
 
   background: #141414;
-  min-height: 100vh;
-  height: auto;
-  width: 100vw;
+  height: 100vh;
+  width: 100%;
 
-  padding: 70px;
+  padding: 70px 20px 70px 20px;
 }
 
 .navBar{
@@ -139,4 +136,41 @@ body{
 
 .link:hover{
   cursor:pointer;
+}
+
+.indexToGetStart{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  text-align: center;
+  width: 50vw;
+  height: 100%;
+  padding-top: 10vh;
+}
+@media (max-width: 600px) {
+  .indexToGetStart{
+    display:none;
+  }
+}
+.vacancyList{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  align-content: flex-start;
+  width: 50vw;
+  height: 100%;
+}
+
+.SkeltonItem{
+  background-color:#212121;
+  width: 100%;
+  height: 100px;
+  margin-top: 10px;
+  padding: 20px;
+  border-radius: 10px;
 }
