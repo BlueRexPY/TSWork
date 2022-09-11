@@ -3,12 +3,13 @@ import Layout from 'layouts/MainLayout';
 
 type Props = {}
 
-function register({}: Props) {
+function myProfile({}: Props) {
   return (
-    <Layout col={1}>
+    <Layout col={1} title="My Profile">
+
 
     </Layout>
   )
 }
 
-export default register
+export default myProfile

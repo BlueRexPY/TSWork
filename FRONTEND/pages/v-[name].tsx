@@ -3,12 +3,12 @@ import Layout from 'layouts/MainLayout';
 
 type Props = {}
 
-function register({}: Props) {
+const vacanciesList = (props: Props) => {
   return (
-    <Layout col={1}>
-
+    <Layout col={2} full={true}>
+      
     </Layout>
   )
 }
 
-export default register
+export default vacanciesList
