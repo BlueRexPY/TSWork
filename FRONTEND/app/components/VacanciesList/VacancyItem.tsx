@@ -18,14 +18,14 @@ const VacancyItem = ({vacancy}: Props) => {
             alt="logo"
             draggable={false}
           />
-          <div className='col vacancyItemSide'>
+          <div className='col vacancyItemSideLeft'>
             <h2 className='VacancyTitle'>{vacancy.postionName}</h2>
             <h3 className='VacancyUtils'>{vacancy.companyName} - {vacancy.experienceLevel}</h3>
           </div>
         </div>
 
-          <div className='col vacancyItemSide'>
-            <h2 className='VacancyTitle'>{vacancy.maxSalary===vacancy.minSalary?`${vacancy.minSalary}-${vacancy.maxSalary}`:`${vacancy.maxSalary}`}$</h2>
+          <div className='col vacancyItemSideRight'>
+            <h2 className='VacancyTitleLvl'>{vacancy.maxSalary===vacancy.minSalary?`${vacancy.minSalary}-${vacancy.maxSalary}`:`${vacancy.maxSalary}`}$</h2>
             <h3 className='VacancyUtils'>{vacancy.mainTechnology}</h3>
           </div>
     </div>

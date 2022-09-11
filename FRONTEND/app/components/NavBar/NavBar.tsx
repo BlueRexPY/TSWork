@@ -5,7 +5,8 @@ import { Button, Select } from "antd";
 import { LVL_LIST, TECH_LIST } from "@/utils/consts";
 import { Option } from "antd/lib/mentions";
 import Link from "next/link";
-import { useAppSelector } from "@/hooks/redux";
+import { useAppDispatch, useAppSelector } from "@/hooks/redux";
+import {navSlice} from "@/store/reducers/navSlice";
 
 type Props = {
   full: boolean;
@@ -13,13 +14,24 @@ type Props = {
 
 const NavBar = ({ full = false }: Props) => {
   const { auth,user } = useAppSelector((state) => state.authReducer);
+  const { skill, lvl } = useAppSelector((state) => state.navReducer);
+  const dispatch = useAppDispatch();
+  const {setSerch} = navSlice.actions
+
+  const changeSerchSkill = (value:string) =>{
+    dispatch(setSerch({skill:value,lvl}))
+  }
+
+  const changeSerchLvl = (value:string) =>{
+    dispatch(setSerch({skill,lvl:value}))
+  }
 
   const getButton = () => {
     if(auth){
       return (
         <Link href="/myprofile">
           <Button type="text" style={{ padding: "5px" }}>
-            Profile - {user.name}
+            Profile
           </Button>
         </Link>
       );
@@ -27,7 +39,7 @@ const NavBar = ({ full = false }: Props) => {
     return (
       <Link href="/auth/login">
         <Button type="text" style={{ padding: "5px" }}>
-          Login - {user.name}
+          Login
         </Button>
       </Link>
     );
@@ -51,9 +63,10 @@ const NavBar = ({ full = false }: Props) => {
             showSearch
             style={{ width: "60%", padding: "3px 0px 3px 15px" }}
             placeholder="Select Skill"
+            onChange={changeSerchSkill}
           >
             {TECH_LIST.map((i) => (
-              <Option key={i}>{i}</Option>
+              <Select.Option key={i}>{i}</Select.Option>
             ))}
           </Select>
           <Select
@@ -61,9 +74,10 @@ const NavBar = ({ full = false }: Props) => {
             defaultValue={"All"}
             style={{ width: "40%", padding: "3px 0px 3px 15px" }}
             placeholder="Lvl"
+            onChange={changeSerchLvl}
           >
             {LVL_LIST.map((i) => (
-              <Option key={i}>{i}</Option>
+              <Select.Option key={i}>{i}</Select.Option>
             ))}
           </Select>
         </div>
