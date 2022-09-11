@@ -5,19 +5,29 @@ import { Button, Select } from "antd";
 import { LVL_LIST, TECH_LIST } from "@/utils/consts";
 import { Option } from "antd/lib/mentions";
 import Link from "next/link";
+import { useAppSelector } from "@/hooks/redux";
 
 type Props = {
   full: boolean;
 };
 
-const NavBar = (props: Props) => {
-  const { full = false } = props;
+const NavBar = ({ full = false }: Props) => {
+  const { auth,user } = useAppSelector((state) => state.authReducer);
 
   const getButton = () => {
+    if(auth){
+      return (
+        <Link href="/myprofile">
+          <Button type="text" style={{ padding: "5px" }}>
+            Profile - {user.name}
+          </Button>
+        </Link>
+      );
+    }
     return (
       <Link href="/auth/login">
         <Button type="text" style={{ padding: "5px" }}>
-          Login
+          Login - {user.name}
         </Button>
       </Link>
     );
@@ -27,7 +37,7 @@ const NavBar = (props: Props) => {
     return (
       <div className="navBar">
         <div className="navBarItem">
-          <Link href="/">
+          <Link href="">
             <Image
               src={logoImg}
               className="link"
