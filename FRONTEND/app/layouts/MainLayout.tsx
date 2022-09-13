@@ -1,9 +1,8 @@
-import React from 'react'
+import React from "react";
 import Head from "next/head";
 import { ReactChild, ReactNode, useEffect, useState } from "react";
-import NavBar from '@/components/NavBar/NavBar';
-import { useAppSelector } from '@/hooks/redux';
-
+import NavBar from "@/components/NavBar/NavBar";
+import { useAppSelector } from "@/hooks/redux";
 
 type Props = {
   children: ReactChild | ReactNode;
@@ -12,7 +11,7 @@ type Props = {
   keywords?: string;
   path?: string;
   col?: number;
-  full?: boolean
+  full?: boolean;
 };
 
 const Layout = (props: Props) => {
@@ -24,7 +23,7 @@ const Layout = (props: Props) => {
     col = 1,
     full = false,
   } = props;
-  
+
   return (
     <div className="layout">
       <Head>

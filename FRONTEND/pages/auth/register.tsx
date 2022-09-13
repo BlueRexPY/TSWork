@@ -1,14 +1,12 @@
-import React from 'react'
-import Layout from 'layouts/MainLayout';
+import React from "react";
+import Layout from "layouts/MainLayout";
 
-type Props = {}
+type Props = {};
 
 function register({}: Props) {
-  return (
-    <Layout col={1}>
-
-    </Layout>
-  )
+  return <Layout col={1}>
+    <p>register</p>
+  </Layout>;
 }
 
-export default register
+export default register;

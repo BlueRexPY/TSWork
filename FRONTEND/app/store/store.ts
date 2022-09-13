@@ -9,7 +9,7 @@ const rootReducer = combineReducers({
     navReducer
 })
 
-export const setupStore = () =>{
+export const setupStore = () => {
     return configureStore({
         reducer: rootReducer
     })

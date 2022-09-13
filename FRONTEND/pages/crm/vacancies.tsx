@@ -1,11 +1,9 @@
-import React from 'react'
+import React from "react";
 
-type Props = {}
+type Props = {};
 
 const vacancies = (props: Props) => {
-  return (
-    <div>vacancies</div>
-  )
-}
+  return <div>vacancies</div>;
+};
 
-export default vacancies
+export default vacancies;

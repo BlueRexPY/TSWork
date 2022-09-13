@@ -6,40 +6,40 @@ import { LVL_LIST, TECH_LIST } from "@/utils/consts";
 import { Option } from "antd/lib/mentions";
 import Link from "next/link";
 import { useAppDispatch, useAppSelector } from "@/hooks/redux";
-import {navSlice} from "@/store/reducers/navSlice";
+import { navSlice } from "@/store/reducers/navSlice";
 
 type Props = {
   full: boolean;
 };
 
 const NavBar = ({ full = false }: Props) => {
-  const { auth,user } = useAppSelector((state) => state.authReducer);
+  const { auth, user } = useAppSelector((state) => state.authReducer);
   const { skill, lvl } = useAppSelector((state) => state.navReducer);
   const dispatch = useAppDispatch();
-  const {setSerch} = navSlice.actions
+  const { setSerch } = navSlice.actions;
 
-  const changeSerchSkill = (value:string) =>{
-    dispatch(setSerch({skill:value,lvl}))
-  }
+  const changeSerchSkill = (value: string) => {
+    dispatch(setSerch({ skill: value, lvl }));
+  };
 
-  const changeSerchLvl = (value:string) =>{
-    dispatch(setSerch({skill,lvl:value}))
-  }
+  const changeSerchLvl = (value: string) => {
+    dispatch(setSerch({ skill, lvl: value }));
+  };
 
   const getButton = () => {
-    if(auth){
+    if (auth) {
       return (
-        <Link href="/myprofile">
+        <Link href="/info/myprofile">
           <Button type="text" style={{ padding: "5px" }}>
-            Profile
+            <a target="_blank">Profile</a>
           </Button>
         </Link>
       );
     }
     return (
-      <Link href="/auth/login">
+      <Link target="_blank" href="/auth/login">
         <Button type="text" style={{ padding: "5px" }}>
-          Login
+          <a target="_blank">Login</a>
         </Button>
       </Link>
     );
@@ -49,7 +49,7 @@ const NavBar = ({ full = false }: Props) => {
     return (
       <div className="navBar">
         <div className="navBarItem">
-          <Link href="">
+          <Link href="/serch">
             <Image
               src={logoImg}
               className="link"
@@ -88,7 +88,7 @@ const NavBar = ({ full = false }: Props) => {
   return (
     <div className="navBar">
       <div className="navBarItem2">
-        <Link href="/">
+        <Link href="/serch">
           <Image
             className="link"
             src={logoImg}

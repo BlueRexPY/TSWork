@@ -1,9 +1,9 @@
 import { IVacancy } from '@/api/models/IVacancy';
 
 export interface VacanciesResponse {
-    vacancies:IVacancy[]
+    vacancies: IVacancy[]
 }
 
 export interface VacancyResponse {
-    vacancy:IVacancy
+    vacancy: IVacancy
 }

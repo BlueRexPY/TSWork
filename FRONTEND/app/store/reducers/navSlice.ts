@@ -1,20 +1,20 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-interface NavState { 
+interface NavState {
     skill: string;
     lvl: string;
 }
 
-const initialState: NavState ={
+const initialState: NavState = {
     skill: "",
     lvl: "All"
 }
 
 export const navSlice = createSlice({
-    name:'nav',
+    name: 'nav',
     initialState,
-    reducers:{
-        setSerch(state,action: PayloadAction<NavState>){
+    reducers: {
+        setSerch(state, action: PayloadAction<NavState>) {
             state.skill = action.payload.skill
             state.lvl = action.payload.lvl
         }

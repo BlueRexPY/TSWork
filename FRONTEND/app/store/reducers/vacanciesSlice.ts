@@ -18,11 +18,11 @@ export const vacanciesSlice = createSlice({
     name: 'vacancies',
     initialState,
     reducers: {
-        setVacancies(state,action: PayloadAction<IVacancy[]>){
+        setVacancies(state, action: PayloadAction<IVacancy[]>) {
             state.vacancies = action.payload
         },
         fetchVacancies(state) {
-            VacaniesService.getVacancies().then((res) => state.vacancies=res.data)
+            VacaniesService.getVacancies().then((res) => state.vacancies = res.data)
         }
     }
 })

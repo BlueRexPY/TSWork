@@ -3,32 +3,43 @@ import Layout from "layouts/MainLayout";
 import { UseInput } from "@/hooks/useInput";
 import { Button, Form, Input, message } from "antd";
 import { isEmailValid, isPasswordVaild } from "@/utils/valid";
-import { useAppSelector, useAppDispatch } from '../../app/hooks/redux';
+import { useAppSelector, useAppDispatch } from "../../app/hooks/redux";
 import Link from "next/link";
-import {authSlice} from "@/store/reducers/authSlice";
+import { authSlice } from "@/store/reducers/authSlice";
 import AuthService from "@/api/services/AuthService";
-import { useState } from 'react';
+import { useState } from "react";
 import { useRouter } from "next/router";
 
 type Props = {};
 
-const login = (props: Props) => {  
+const login = (props: Props) => {
   const router = useRouter();
   const { auth } = useAppSelector((state) => state.authReducer);
-  const {loginAuth} = authSlice.actions
+  const { loginAuth } = authSlice.actions;
   const dispatch = useAppDispatch();
-  
+
   const email = UseInput("");
   const password = UseInput("");
- 
+
   const login = () => {
-    if(isPasswordVaild(password.value) && isEmailValid(email.value)){
-      AuthService.login(email.value,password.value)
-      .then((res) => !res.data.user.active?dispatch(loginAuth(res.data)):message.error('your account is not activated, please check your email'))
-      .then(()=>{message.success('successful login');router.push("/")})
-      .catch(()=>{message.error('incorrect password');})
-    }else{
-      message.error('enter correct email or password');
+    if (isPasswordVaild(password.value) && isEmailValid(email.value)) {
+      AuthService.login(email.value, password.value)
+        .then((res) =>
+          !res.data.user.active
+            ? dispatch(loginAuth(res.data))
+            : message.error(
+                "your account is not activated, please check your email"
+              )
+        )
+        .then(() => {
+          message.success("successful login");
+          router.push("/");
+        })
+        .catch(() => {
+          message.error("incorrect password");
+        });
+    } else {
+      message.error("enter correct email or password");
     }
   };
 

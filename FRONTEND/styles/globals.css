@@ -1,171 +1,173 @@
 html,
 body {
-  padding: 0;
-  margin: 0;
-  font-family: Consolas,monaco,monospace; 
-  background: #141414;
+  padding    : 0;
+  margin     : 0;
+  font-family: Consolas, monaco, monospace;
+  background : #141414;
 }
 
-*{
-  font-family: Consolas,monaco,monospace; 
-  color: #fff;
-  padding: 0;
-  margin: 0;
+* {
+  font-family: Consolas, monaco, monospace;
+  color      : #fff;
+  padding    : 0;
+  margin     : 0;
 }
 
-body{
+body {
   min-height: 100%;
-  height: auto;
+  height    : auto;
   background: #141414;
 }
 
 
-.columnLayout1{
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
+.columnLayout1 {
+  display        : flex;
+  flex-direction : column;
+  flex-wrap      : nowrap;
   justify-content: flex-start;
-  align-items: center;
-  align-content: flex-start;
+  align-items    : center;
+  align-content  : flex-start;
 
   background: #141414;
-  height: 100vh;
-  width: 100%;
-  padding: 70px 20px 70px 20px;
+  height    : 100vh;
+  width     : 100%;
+  padding   : 70px 20px 70px 20px;
 }
 
-.columnLayout2{
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
+.columnLayout2 {
+  display        : flex;
+  flex-direction : row;
+  flex-wrap      : nowrap;
   justify-content: flex-start;
-  align-items: flex-start;
-  align-content: flex-start;
+  align-items    : flex-start;
+  align-content  : flex-start;
 
   background: #141414;
-  height: 100vh;
-  width: 100%;
+  height    : 100vh;
+  width     : 100%;
 
   padding: 70px 20px 20px 20px;
 }
 
-.navBar{
+.navBar {
   position: fixed;
-  left: 0px;
-  top: 0px;
+  left    : 0px;
+  top     : 0px;
 
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
+  display        : flex;
+  flex-direction : row;
+  flex-wrap      : nowrap;
   justify-content: space-between;
-  align-items: flex-start;
-  align-content: flex-start;
+  align-items    : flex-start;
+  align-content  : flex-start;
 
   background: #212121;
-  width: 100%;
-  height: 60px;
-  padding:15px;
+  width     : 100%;
+  height    : 60px;
+  padding   : 15px;
 
   z-index: 100;
 }
 
-.navBar .navBarItem{
-  width: 35%;
-  min-width: 260px;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
+.navBar .navBarItem {
+  width          : 35%;
+  min-width      : 260px;
+  display        : flex;
+  flex-direction : row;
+  flex-wrap      : nowrap;
   justify-content: space-around;
-  align-items: flex-start;
-  align-content: flex-start;
+  align-items    : flex-start;
+  align-content  : flex-start;
 }
 
-.navBar .navBarItem2{
-  min-width: 50px;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
+.navBar .navBarItem2 {
+  min-width      : 50px;
+  display        : flex;
+  flex-direction : row;
+  flex-wrap      : nowrap;
   justify-content: space-around;
-  align-items: flex-end;
-  align-content: flex-end;
+  align-items    : flex-end;
+  align-content  : flex-end;
 }
 
-.notFound{
-  width: 100vw;
-  height: 90vh;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
+.notFound {
+  width          : 100vw;
+  height         : 90vh;
+  display        : flex;
+  flex-direction : column;
+  flex-wrap      : nowrap;
   justify-content: center;
-  align-items: center;
-  align-content: center;
+  align-items    : center;
+  align-content  : center;
 }
 
-.container{
-  min-height: 150px;
-  min-width: 200px;
-  width: 270px;
-  height: auto;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
+.container {
+  min-height     : 150px;
+  min-width      : 200px;
+  width          : 270px;
+  height         : auto;
+  display        : flex;
+  flex-direction : column;
+  flex-wrap      : nowrap;
   justify-content: flex-start;
-  align-items: center;
-  align-content: center;
-  background: #212121;
-  border-radius: 10px;
-  padding: 20px;
-  transform: scale(1.3);
+  align-items    : center;
+  align-content  : center;
+  background     : #212121;
+  border-radius  : 10px;
+  padding        : 20px;
+  transform      : scale(1.3);
 }
 
-#login{
+#login {
   padding: 15px 0px 15px 0px;
 }
-.container .containerItem{
-  margin-top: 5px;
+
+.container .containerItem {
+  margin-top   : 5px;
   margin-bottom: 5px;
-  width: 80%;
+  width        : 80%;
 }
 
-.center{
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
+.center {
+  display        : flex;
+  flex-direction : column;
+  flex-wrap      : nowrap;
   justify-content: center;
-  align-items: center;
-  align-content: center;
+  align-items    : center;
+  align-content  : center;
 
-  width: 100%;
+  width : 100%;
   height: 80vh;
 }
 
-.link:hover{
-  cursor:pointer;
+.link:hover {
+  cursor: pointer;
 }
 
-.indexToGetStart{
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
+.indexToGetStart {
+  display        : flex;
+  flex-direction : column;
+  flex-wrap      : nowrap;
   justify-content: center;
-  align-items: center;
-  align-content: center;
-  text-align: center;
-  width: 50vw;
-  height: 100%;
+  align-items    : center;
+  align-content  : center;
+  text-align     : center;
+  width          : 50vw;
+  height         : 100%;
+  margin-left:10px;
 }
 
-.vacancyList{
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
+.vacancyList {
+  display        : flex;
+  flex-direction : column;
+  flex-wrap      : nowrap;
   justify-content: flex-start;
-  align-items: flex-start;
-  align-content: flex-start;
-  width: 50vw;
-  height: 100%;
-  overflow-x: auto;
-  padding-right: 10px;
+  align-items    : flex-start;
+  align-content  : flex-start;
+  width          : 50vw;
+  height         : 100%;
+  overflow-x     : auto;
+  padding-right  : 10px;
 }
 
 .vacancyList::-webkit-scrollbar {
@@ -204,124 +206,133 @@ body::-webkit-scrollbar-thumb:hover {
   background: #313131;
 }
 
-
-.SkeltonItem{
-  background-color:#212121;
-  width: 100%;
-  height: 90px;
-  margin-top: 10px;
-  padding: 20px;
-  border-radius: 10px;
+.SkeltonItem {
+  background-color: #212121;
+  width           : 100%;
+  height          : 90px;
+  margin-top      : 10px;
+  padding         : 20px;
+  border-radius   : 10px;
 }
 
-.vacancyItem{
-  background-color:#212121;
-  width: 100%;
-  min-height: 90px;
-  margin-top: 10px;
-  padding: 10px;
-  border-radius: 10px;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: space-between;
-  align-items: center;
-  align-content: center;
-  cursor: pointer;
-  white-space: nowrap;
+.vacancyItem {
+  background-color: #212121;
+  width           : 100%;
+  min-height      : 90px;
+  margin-top      : 10px;
+  padding         : 10px;
+  border-radius   : 10px;
+  display         : flex;
+  flex-direction  : row;
+  flex-wrap       : nowrap;
+  justify-content : space-between;
+  align-items     : center;
+  align-content   : center;
+  cursor          : pointer;
+  white-space     : nowrap;
 }
 
-.VacancyTitle{
-  margin: 0;
-  font-size: 16px;
+.VacancyTitle {
+  margin       : 0;
+  font-size    : 16px;
   text-overflow: ellipsis;
-  white-space: nowrap;
-  font-weight: bold;
-  width: 100%;
-  overflow: hidden;
+  white-space  : nowrap;
+  font-weight  : bold;
+  width        : 100%;
+  overflow     : hidden;
 }
 
-.VacancyTitleLvl{
-  margin: 0;
-  font-size: 16px;
+.VacancyTitleLvl {
+  margin       : 0;
+  font-size    : 16px;
   text-overflow: ellipsis;
-  white-space: nowrap;
-  font-weight: bold;
+  white-space  : nowrap;
+  font-weight  : bold;
 }
 
-.VacancyUtils{
-  margin: 0;
+.VacancyUtils {
+  margin   : 0;
   font-size: 14px;
-  color: #979797;
+  color    : #979797;
 }
 
-.row{
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
+.row {
+  display        : flex;
+  flex-direction : row;
+  flex-wrap      : nowrap;
   justify-content: flex-start;
-  align-items: flex-start;
-  align-content: flex-start;
+  align-items    : flex-start;
+  align-content  : flex-start;
 }
 
-.col{
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
+.col {
+  display        : flex;
+  flex-direction : column;
+  flex-wrap      : nowrap;
   justify-content: center;
-  align-items: flex-start;
-  align-content: flex-start;
+  align-items    : flex-start;
+  align-content  : flex-start;
 }
 
-.vacancyItemSideLeft{
-  margin-left: 15px;
+.vacancyItemSideLeft {
+  margin-left : 15px;
   margin-right: 15px;
-  width: 70%;
+  width       : 70%;
 }
-.vacancyItemSideRight{
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
+
+.vacancyItemSideRight {
+  display        : flex;
+  flex-direction : column;
+  flex-wrap      : nowrap;
   justify-content: flex-end;
-  align-items: flex-end;
-  align-content: flex-end;
-  margin-right: 10px;
-  width: 80px;
+  align-items    : flex-end;
+  align-content  : flex-end;
+  margin-right   : 10px;
+  width          : 80px;
 }
 
-
-.vacancyItemLeftSide{
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
+.vacancyItemLeftSide {
+  display        : flex;
+  flex-direction : row;
+  flex-wrap      : nowrap;
   justify-content: center;
-  align-items: flex-start;
-  align-content: flex-start;
+  align-items    : flex-start;
+  align-content  : flex-start;
 }
 
-.margin{
-  background:#212121;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: center;
-  align-items: center;
-  align-content: center;
-  width: 100%;
-  height: 90px;
+.vacancyInfo{
+  width          : 50vw;
+  height         : 100%;
+  background: #212121;
   border-radius: 10px;
-  margin-top: 10px;
+  margin-left: 10px;
 }
+
+.margin {
+  background     : #212121;
+  display        : flex;
+  flex-direction : row;
+  flex-wrap      : nowrap;
+  justify-content: center;
+  align-items    : center;
+  align-content  : center;
+  width          : 100%;
+  height         : 90px;
+  border-radius  : 10px;
+  margin-top     : 10px;
+}
+
 @media (max-width: 700px) {
-  .indexToGetStart{
-    display:none;
+  .indexToGetStart {
+    display: none;
   }
-  .vacancyList{
+
+  .vacancyList {
     width: 100vw;
   }
 
-  .columnLayout2{
-    padding: 70px 10px 10px 10px;
+  .columnLayout2 {
+    padding      : 70px 10px 10px 10px;
     padding-right: 5px;
   }
 }
