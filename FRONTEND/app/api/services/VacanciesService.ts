@@ -9,8 +9,8 @@ export default class VacaniesService {
         return $api.post<VacanciesResponse>('/users/login', { email, password })
     }
 
-    static async getOneById(id: string): Promise<AxiosResponse<VacancyResponse>> {
-        return $api.get<VacancyResponse>(`/vacancies/id/${id}`)
+    static async getOneById(id: string): Promise<AxiosResponse<IVacancy>> {
+        return $api.get<IVacancy>(`/vacancies/id/${id}`)
     }
 
     static async getVacancies(): Promise<AxiosResponse<IVacancy[]>> {
