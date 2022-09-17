@@ -59,6 +59,9 @@ export class Vacancy {
 
   @Prop()
   responses: string[];
+
+  @Prop()
+  createdAt: number;
 }
 
 export const VacancySchema = SchemaFactory.createForClass(Vacancy);

@@ -46,7 +46,7 @@ export class UserController {
     }
 
     @Post("/login")
-    login(@Body() dto: LoginUserDto,@Res() res: Response){
+    login(@Body() dto: LoginUserDto){
         return this.userService.login(dto)
     }
     @Post("/logout")
@@ -60,7 +60,7 @@ export class UserController {
     }
 
     @Get("/active/:email/:activetionLink")
-    @Redirect('http://localhost:3000',302)
+    @Redirect('http://localhost:3000/auth/login',302)
     active(@Param("email") email: string, @Param("activetionLink") activetionLink: string) {
         return this.userService.active(email,activetionLink) 
     }

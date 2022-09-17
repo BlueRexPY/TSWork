@@ -19,8 +19,13 @@ export class VacancyController {
     } 
 
     @Get("/id/:id")
-    getOneById(@Param("id") userName: ObjectId) {
-        return this.vacancyService.getOneById(userName)
+    getOneById(@Param("id") id: string) {
+        return this.vacancyService.getOneById(id)
+    }
+
+    @Get()
+    getVacancies() {
+        return this.vacancyService.getVacancies()
     }
     
     @Post("/response/")
@@ -28,8 +33,8 @@ export class VacancyController {
         return this.vacancyService.response(email,id)
     }
 
-    @Delete(":id")
-    delete(@Param("id") id: ObjectId) {
+    @Delete("/id/:id")
+    delete(@Param("id") id: string) {
         return this.vacancyService.delete(id)
     }
 }
