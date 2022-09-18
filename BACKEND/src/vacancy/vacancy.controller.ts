@@ -29,8 +29,8 @@ export class VacancyController {
     }
     
     @Post("/response/")
-    response(@Body() email: string, id:string) {
-        return this.vacancyService.response(email,id)
+    response(@Body() data: {email: string, id:string}) {
+        return this.vacancyService.response(data)
     }
 
     @Delete("/id/:id")

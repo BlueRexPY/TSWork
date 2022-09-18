@@ -28,11 +28,10 @@ export class VacancyService {
         return vacancy
     }
     
-    async response(email: string, id:string): Promise<boolean> {
-        let vacancy = await this.vacancyModel.findById(id);
-
-        if(![...vacancy.responses].includes(email)){
-            await this.vacancyModel.findByIdAndUpdate(id, {responses:[...vacancy.responses, email]});
+    async response(data:{email: string, id:string}): Promise<boolean> {
+        let vacancy = await this.vacancyModel.findById(data.id);
+        if(![...vacancy.responses].includes(data.email)){
+            await this.vacancyModel.findByIdAndUpdate(data.id, {responses:[...vacancy.responses, data.email]});
             return true
         }
         return false
