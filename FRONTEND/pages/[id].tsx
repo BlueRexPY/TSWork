@@ -61,7 +61,7 @@ const vacancySelected = (SerchVacancy: vacancy) => {
         setFliterVacancies(filterList(res.data));
       });
     } else {
-      setFliterVacancies(filterList(vacancies));
+      setFliterVacancies(filterList(vacancies))
     }
   }, [lvl, skill]);
 

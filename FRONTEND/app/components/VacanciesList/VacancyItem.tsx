@@ -31,8 +31,8 @@ const VacancyItem = ({ vacancy }: Props) => {
       <div className="col vacancyItemSideRight">
         <h2 className="VacancyTitleLvl">
           {vacancy.maxSalary === vacancy.minSalary
-            ? `${vacancy.minSalary}-${vacancy.maxSalary}`
-            : `${vacancy.maxSalary}`}
+            ? `${vacancy.maxSalary}`
+            : `${vacancy.minSalary}-${vacancy.maxSalary}`}
           $
         </h2>
         <h3 className="VacancyUtils">{vacancy.mainTechnology}</h3>

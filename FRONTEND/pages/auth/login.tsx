@@ -7,12 +7,9 @@ import { useAppSelector, useAppDispatch } from "../../app/hooks/redux";
 import Link from "next/link";
 import { authSlice } from "@/store/reducers/authSlice";
 import AuthService from "@/api/services/AuthService";
-import { useState } from "react";
 import { useRouter } from "next/router";
 
-type Props = {};
-
-const login = (props: Props) => {
+const login = () => {
   const router = useRouter();
   const { auth } = useAppSelector((state) => state.authReducer);
   const { loginAuth } = authSlice.actions;

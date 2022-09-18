@@ -151,9 +151,9 @@ body {
   align-items: center;
   align-content: center;
   text-align: center;
-  width: 50vw;
+  width: 50%;
   height: 100%;
-  margin-left: 10px;
+  margin: 5px;
 }
 
 .vacancyList {
@@ -165,7 +165,7 @@ body {
   align-content: flex-start;
   width: 50vw;
   height: 100%;
-  overflow-x: auto;
+  overflow-y: auto;
   padding-right: 10px;
 }
 
@@ -300,11 +300,9 @@ body::-webkit-scrollbar-thumb:hover {
 }
 
 .vacancyInfo {
-  width: 50vw;
-  height: 100%;
+  width: 100%;
   background: #212121;
   border-radius: 10px;
-  margin-left: 10px;
 }
 
 .margin {
@@ -321,21 +319,118 @@ body::-webkit-scrollbar-thumb:hover {
   margin-top: 10px;
 }
 .header{
-  padding: 20px;
-}
-.header div{
   background-image: url("https://cdn.discordapp.com/attachments/736633764930912257/1020769243001798818/back.png");
   background-repeat: no-repeat;
-  background-size: 100%;
+  background-size:100% 100%;
   border-radius: 10px;
+  width: 100%;
+  height: 170px;
+  padding-left: 40px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: center;
+  margin-bottom: 20px;
+}
+
+.headerInfo{
   display: flex;
   flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: flex-start;
+  align-content: flex-start;
+  margin-left: 30px;
+}
+.headerInfo p{
+  font-size: 14px;
+  margin: 0;
+}
+
+.headerInfo h2{
+  font-size: 26px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.vacancyInfo main{
+  padding: 0px 30px 20px 30px;
+}
+
+.techSkillsList{
+  display: flex;
+  flex-direction: row;
   flex-wrap: nowrap;
   justify-content: flex-start;
   align-items: flex-start;
   align-content: flex-start;
+}
+
+.techSkillsList p{
+  padding: 2px 7px 2px 7px;
+  border-radius: 10px;
+  margin-right: 7px;
+  border: 1px solid #fff;
+}
+
+.vacancyPage{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content:space-between;
+  align-items: flex-start;
+  align-content: flex-start;
+  height: 100%;
+  width: 50%;
+  background-color: #212121;
+  overflow-y: auto;
+  border-radius: 10px;
+  margin: 5px;
+}
+
+.vacancyPage::-webkit-scrollbar {
+  width: 10px;
+  height: 15px;
+}
+
+.vacancyPage::-webkit-scrollbar-track {
+  background: none;
+}
+
+.vacancyPage::-webkit-scrollbar-thumb {
+  background: #444444;
+  border-radius: 10px;
+}
+
+.vacancyPage::-webkit-scrollbar-thumb:hover {
+  background: #444444;
+}
+
+.confirm{
+  z-index: 1;
   width: 100%;
-  height: 170px;
+  height: 60px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content:space-between;
+  align-items: flex-start;
+  align-content: flex-start;
+  background-color: #313131;
+  padding: 15px 40px 15px 40px;
+}
+
+.vacancyPage h3{
+  font-size: 16px;
+}
+.vacancyPage p{
+  font-size: 14px;
+}
+
+.confirm p{
+  font-size: 16px;
 }
 
 @media (max-width: 700px) {
