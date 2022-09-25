@@ -56,6 +56,7 @@ const VacancyInfo = ({ id }: Props) => {
   }
   
   useEffect(() => {
+    setLoading(true)
     if (id !== "serch") {
       VacaniesService.getOneById(id)
         .then((res) => onLoad(res.data))

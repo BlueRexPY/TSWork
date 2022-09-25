@@ -3,3 +3,5 @@ export const TECH_LIST = ["React", "JavaScript", "Vue", "Nest.js", "Node.js", "E
 export const LVL_LIST = ["All", "Junior", "Midle", "Senior"]
 
 export const EMAIL_REGEXP = /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/iu;
+
+export const GITHUB_REGEXP = /^(http(s?):\/\/)?(www\.)?github\.([a-z])+\/([A-Za-z0-9]{1,})+\/?$/i

@@ -1,42 +1,60 @@
-import React from "react";
+import React, { useState } from "react";
 import Layout from "layouts/MainLayout";
 import { Button, Form, Input, message } from 'antd';
 import Link from "next/link";
 import AuthService from "@/api/services/AuthService";
-import { isEmailValid, isPasswordVaild } from "@/utils/valid";
+import { isEmailValid, isPasswordVaild, registerValid } from "@/utils/valid";
 import { UseInput } from "@/hooks/useInput";
 import { useAppDispatch, useAppSelector } from "@/hooks/redux";
 import { authSlice } from "@/store/reducers/authSlice";
 import { useRouter } from "next/router";
+import { MaskedInput } from "antd-mask-input";
+import FileUploader from "@/components/utils/FileUploader";
 
 function register() {
   const router = useRouter();
-  const { auth } = useAppSelector((state) => state.authReducer);
-  const { loginAuth } = authSlice.actions;
-  const dispatch = useAppDispatch();
-
+  const name = UseInput("");
+  const surename = UseInput("");
   const email = UseInput("");
+  const number = UseInput("");
   const password = UseInput("");
-
-  const login = () => {
-    if (isPasswordVaild(password.value) && isEmailValid(email.value)) {
-      AuthService.login(email.value, password.value)
-        .then((res) =>
-          !res.data.user.active
-            ? dispatch(loginAuth(res.data))
-            : message.error(
-                "your account is not activated, please check your email"
-              )
+  const passwordRepeat = UseInput("");
+  const [cv, setCv] = useState([{ originFileObj: "" }]);
+  const github = UseInput("");
+ 
+  const register = () => {
+    if(password.value === passwordRepeat.value){
+      if (registerValid(
+        name.value,
+        surename.value,
+        email.value,
+        password.value,
+        github.value
+        )) {
+        AuthService.registration( 
+          name.value,
+          surename.value,
+          email.value,
+          password.value,
+          github.value,
+          cv[0],
         )
-        .then(() => {
-          message.success("successful login");
-          router.push("/");
-        })
-        .catch(() => {
-          message.error("incorrect password");
-        });
-    } else {
-      message.error("enter correct email or password");
+          .then((res) => {
+            if(res.data.user){
+              message.success("confirm email")
+              router.push("/auth/login")
+            }else{
+              message.error("error");
+            }
+          })
+          .catch(() => {
+            message.error("error");
+          });
+      } else {
+        message.error("incorrect data");
+      }
+    }else{
+      message.error("Passwords don't match");
     }
   };
 
@@ -48,9 +66,22 @@ function register() {
           name="login"
           id="login"
           initialValues={{ remember: true }}
-          onFinish={login}
+          onFinish={register}
           autoComplete="off"
         >
+          <Input placeholder="name" className="containerItem" {...name} />
+          <Input placeholder="surename" className="containerItem" {...surename} />
+          <MaskedInput
+            className="containerItem"
+            {...number}
+            mask={'+00(00)0000-0000'}
+            maskOptions={{
+              dispatch: function (appended, dynamicMasked) {
+                const isCellPhone = dynamicMasked.unmaskedValue[2] === '9';
+                return dynamicMasked.compiledMasks[isCellPhone ? 0 : 1];
+              },
+            }}
+          />
           <Input placeholder="email" className="containerItem" {...email} />
           <Input.Password
             placeholder="password"
@@ -59,7 +90,17 @@ function register() {
             minLength={8}
             {...password}
           />
-          <Button type="primary" className="containerItem" onClick={login}>
+          <Input.Password
+            placeholder="confirm password"
+            className="containerItem"
+            maxLength={32}
+            minLength={8}
+            {...passwordRepeat}
+          />
+          <Input placeholder="github" className="containerItem" {...github} />
+          <FileUploader maxCount={1} setFile={setCv} />
+          <br/>
+          <Button type="primary" className="containerItem" onClick={register}>
             Register
           </Button>
 
