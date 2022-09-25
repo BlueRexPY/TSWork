@@ -60,7 +60,7 @@ function register() {
             {...password}
           />
           <Button type="primary" className="containerItem" onClick={login}>
-            Login
+            Register
           </Button>
 
           <Link href="/auth/login">

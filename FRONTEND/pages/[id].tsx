@@ -9,6 +9,7 @@ import { vacanciesSlice } from '@/store/reducers/vacanciesSlice';
 import { GetServerSideProps } from 'next';
 import React, { useEffect, useState } from 'react'
 import Layout from '../app/layouts/MainLayout';
+import { navSlice } from '@/store/reducers/navSlice';
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
     const id = params?.id;
@@ -24,10 +25,14 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   };
 
 const vacancySelected = (SerchVacancy: vacancy) => {
-  const { skill, lvl } = useAppSelector((state) => state.navReducer);
   const dispatch = useAppDispatch();
+
+  const { skill, lvl } = useAppSelector((state) => state.navReducer);
+  const { setActive } = navSlice.actions;
+
   const { vacancies } = useAppSelector((state) => state.vacancyReducer);
   const { setVacancies } = vacanciesSlice.actions;
+
   const [loading, setLoading] = useState(true);
   const [selected, setSelected] = useState(false);
   const [filterVacancies, setFliterVacancies] = useState<IVacancy[]>([]);
@@ -47,6 +52,7 @@ const vacancySelected = (SerchVacancy: vacancy) => {
 
   useEffect(() => {
     if (SerchVacancy.id !== "serch") {
+      dispatch(setActive(true))
       setSelected(true)
     }else{
       setSelected(false)
@@ -69,10 +75,10 @@ const vacancySelected = (SerchVacancy: vacancy) => {
     if (loading) {
       return <SkeletonVacaniesList />;
     }
-    return <VacanciesList vacancies={filterVacancies} />;
+    return <VacanciesList vacancies={filterVacancies}/>;
   };
   return (
-    <Layout col={2} full={true}>
+    <Layout col={2} full={true} title={skill===""?"Serch":skill}>
       {getContent()}
       {selected ?<VacancyInfo id={SerchVacancy.id}/>:<ToGetStart/>}
     </Layout>

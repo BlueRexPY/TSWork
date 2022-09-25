@@ -4,9 +4,8 @@ import Image from "next/image";
 import Img from "@/assets/img/404.png";
 import { Button } from "antd";
 import Link from "next/link";
-type Props = {};
 
-const notFound = (props: Props) => {
+const notFound = () => {
   return (
     <Layout title={"Page not found"}>
       <div className="notFound">

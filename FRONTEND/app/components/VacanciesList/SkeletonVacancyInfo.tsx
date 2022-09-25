@@ -1,9 +1,11 @@
+import { useAppSelector } from '@/hooks/redux';
 import { Skeleton } from 'antd'
 import React from 'react'
 
 const SkeletonVacancyInfo = () => {
+  const { active } = useAppSelector((state) => state.navReducer);
   return (
-    <div className='vacancyPage'>
+    <div className={`vacancyPage ${!active?"mobileVacancy":""}`}>
       <div className='vacancyInfo'>
         <div className='header'>
             <div className='headerInfo'>

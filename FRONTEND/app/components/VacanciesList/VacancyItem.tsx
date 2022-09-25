@@ -2,15 +2,19 @@ import { IVacancy } from "@/api/models/IVacancy";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import { navSlice } from '@/store/reducers/navSlice';
+import { useAppDispatch } from "@/hooks/redux";
 
 type Props = {
   vacancy: IVacancy;
 };
 
 const VacancyItem = ({ vacancy }: Props) => {
+  const { setActive } = navSlice.actions;
+  const dispatch = useAppDispatch();
   return (
     <Link href={`/${vacancy._id}`}>
-      <div className="vacancyItem">
+      <div className="vacancyItem" onClick={()=>dispatch(setActive(true))}>
       <div className="vacancyItemLeftSide">
         <Image
           src={vacancy.logo}

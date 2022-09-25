@@ -433,15 +433,65 @@ body::-webkit-scrollbar-thumb:hover {
   font-size: 16px;
 }
 
-@media (max-width: 700px) {
-  .indexToGetStart {
-    display: none;
-  }
+.backButton{
+  display: none;
+}
 
+.additionalButtons{
+  display: none;
+}
+
+@media (max-width: 700px) {
+
+  .additionalButtons{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content:space-between;
+    align-items: flex-start;
+    align-content: flex-start;
+    position: absolute;
+    width: 90%;
+    height: 40px;
+    padding: 10px 0px 40px 15px;
+    z-index: 100;
+    background-color: rgba(33, 33, 33, 0.756);
+    border-radius: 10px;
+  }
+  .additionalButtons div{
+    margin-right: 20px;
+  }
+  .backButton{
+    display:block;
+  } 
+  
+  .header{
+    padding-left: 10px;
+    padding-top: 20px;
+  }
+  
   .vacancyList {
     width: 100vw;
   }
 
+  .vacancyPage{
+    width:100%;
+  }
+
+  .mobileList{
+    display: none;
+    width: 100vw;
+  }
+
+  .mobileVacancy{
+    display: none;
+    width:100%;
+  }
+
+  .indexToGetStart {
+    display: none;
+  }
+    
   .columnLayout2 {
     padding: 70px 10px 10px 10px;
     padding-right: 5px;

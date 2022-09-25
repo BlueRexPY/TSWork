@@ -13,17 +13,17 @@ type Props = {
 };
 
 const NavBar = ({ full = false }: Props) => {
-  const { auth, user } = useAppSelector((state) => state.authReducer);
+  const { auth } = useAppSelector((state) => state.authReducer);
   const { skill, lvl } = useAppSelector((state) => state.navReducer);
   const dispatch = useAppDispatch();
   const { setSerch } = navSlice.actions;
 
   const changeSerchSkill = (value: string) => {
-    dispatch(setSerch({ skill: value, lvl }));
+    dispatch(setSerch({ skill: value, lvl, active:false }));
   };
 
   const changeSerchLvl = (value: string) => {
-    dispatch(setSerch({ skill, lvl: value }));
+    dispatch(setSerch({ skill, lvl: value, active:false }));
   };
 
   const getButton = () => {

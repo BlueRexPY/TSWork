@@ -1,13 +1,16 @@
 import VacaniesService from "@/api/services/VacanciesService";
+import share from "@/assets/img/share.png";
+import back from "@/assets/img/back.png";
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import { IVacancy } from "@/api/models/IVacancy";
 import SkeletonVacancyInfo from "./SkeletonVacancyInfo";
 import { Button, message } from "antd";
-import { useAppSelector } from "@/hooks/redux";
+import { useAppDispatch, useAppSelector } from "@/hooks/redux";
 import { useRouter } from "next/router";
 import Image from "next/image";
+import { navSlice } from '@/store/reducers/navSlice';
 
 type Props = {
   id: string;
@@ -19,12 +22,15 @@ const VacancyInfo = ({ id }: Props) => {
   const [loadingButton, setLoadingButton] = useState(false);
   const [date, setDate] = useState("");
   const { auth, user } = useAppSelector((state) => state.authReducer);
+  const { active } = useAppSelector((state) => state.navReducer);
+  const { setActive } = navSlice.actions;
+  const dispatch = useAppDispatch();
   const router = useRouter();
 
   const handleApply = () =>{
     if(auth){
       setLoadingButton(true)
-      VacaniesService.response(user.email,id).then((res)=>{message.success("Your resume has been sent"); setLoadingButton(false)})
+      VacaniesService.response(user.email,id).then((res)=>{message.success("Your resume has been sent"); setLoadingButton(false); dispatch(setActive(false))})
     }else{
       router.push("/auth/login")
     }
@@ -43,6 +49,12 @@ const VacancyInfo = ({ id }: Props) => {
     );
   };
 
+  const closeVacancy = () => dispatch(setActive(false));
+  const shareVacancy = () => {
+    navigator.clipboard.writeText(window.location.href)
+    message.success("link in clipboard");
+  }
+  
   useEffect(() => {
     if (id !== "serch") {
       VacaniesService.getOneById(id)
@@ -55,14 +67,34 @@ const VacancyInfo = ({ id }: Props) => {
     return <SkeletonVacancyInfo />;
   }
   return (
-    <div className="vacancyPage">
+    <div className={`vacancyPage ${!active?"mobileVacancy":""}`}>
+      <div className="additionalButtons">
+        <div className="backButton" onClick={()=>closeVacancy()}>
+          <Image
+            src={back}
+            width={30}
+            height={30}
+            alt="back"
+            draggable={false}
+          />
+          </div>
+        <div className="backButton" onClick={()=>shareVacancy()}>
+          <Image
+            src={share}
+            width={30}
+            height={30}
+            alt="back"
+            draggable={false}
+          />
+        </div>
+      </div>
       <div className="vacancyInfo">
         <div className="header">
           <Image
             src={vacancy?vacancy?.logo:""}
             loader={() => vacancy?vacancy?.logo:""}
-            width={100}
-            height={100}
+            width={75}
+            height={75}
             alt="logo"
             draggable={false}
           />
