@@ -3,7 +3,6 @@ import { AddRoleUserDto } from './dto/addRole-user.dto';
 import { LoginUserDto } from './dto/login-user.dto';
 import { Bind, Body, Controller, Delete, Get, Param, Post, Query, Redirect, Req, Res, UploadedFiles, UseInterceptors } from "@nestjs/common";
 import { UserService } from './user.service';
-import { ObjectId } from 'mongoose';
 import { CreateUserDto } from "./dto/create-user.dto";
 import { FileFieldsInterceptor } from "@nestjs/platform-express";
 
@@ -41,7 +40,7 @@ export class UserController {
     }
 
     @Get("/id/:id")
-    getOneById(@Param("id") userName: ObjectId) {
+    getOneById(@Param("id") userName: string) {
         return this.userService.getOneById(userName)
     }
 
@@ -64,15 +63,14 @@ export class UserController {
     active(@Param("email") email: string, @Param("activetionLink") activetionLink: string) {
         return this.userService.active(email,activetionLink) 
     }
-    
-    
+
     @Post("/response/")
-    response(@Body() email: string, id:ObjectId) {
-        return this.userService.response(email,id)
+    response(@Body() data:{email: string, id:string}) {
+        return this.userService.response(data.email,data.id)
     }
 
     @Delete(":id")
-    delete(@Param("id") id: ObjectId) {
+    delete(@Param("id") id: string) {
         return this.userService.delete(id)
     }
 }

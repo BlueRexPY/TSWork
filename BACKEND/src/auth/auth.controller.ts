@@ -1,8 +1,5 @@
 import { AuthService } from 'src/auth/auth.service';
-import { Bind, Body, Controller, Delete, Get, Param, Post, UploadedFiles, UseInterceptors } from "@nestjs/common";
-import { ObjectId } from 'mongoose';
-import { FileFieldsInterceptor } from "@nestjs/platform-express";
-
+import { Controller } from "@nestjs/common";
 @Controller('/auth')
 
 export class AuthController {

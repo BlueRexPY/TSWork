@@ -1,7 +1,7 @@
 
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Model, ObjectId } from 'mongoose';
+import { Model } from 'mongoose';
 import { CreateVacancyDto } from './dto/create-vacancy.dto';
 import { FileService, FileType } from '../file/file.service';
 import { Vacancy, VacancyDocument } from './schemas/vacancy.schema';
@@ -37,7 +37,7 @@ export class VacancyService {
         return false
     }
 
-    async delete(id: string): Promise<ObjectId> {
+    async delete(id: string): Promise<string> {
         const user = await this.vacancyModel.findByIdAndDelete(id)
         return user._id
     }

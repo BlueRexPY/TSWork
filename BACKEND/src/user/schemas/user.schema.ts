@@ -1,5 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document, ObjectId } from 'mongoose';
+import { Document } from 'mongoose';
 
 export type UserDocument = User & Document;
 
@@ -27,10 +27,10 @@ export class User {
   roles: string[];
 
   @Prop()
-  vacancies: ObjectId[];
+  vacancies: string[];
 
   @Prop()
-  responses: ObjectId[];
+  responses: string[];
 
   @Prop()
   active: boolean;

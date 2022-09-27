@@ -22,10 +22,9 @@ export class UserService {
     private fileService: FileService,
     private authService: AuthService,
     private emailService: EmailService
-
 ) { }
 
-    async create(dto: CreateUserDto,cv): Promise<object> {
+    async create(dto: CreateUserDto, cv): Promise<FinaleUser> {
         const checkUSer = await this.userModel.findOne({email: dto.email})
         if(checkUSer){
             throw new Error("a user with this email has already been created")
@@ -58,7 +57,6 @@ export class UserService {
         return false
     }
 
-
     async getOneByEmail(email: string): Promise<User> {
         const user = await this.userModel.findOne({ email: email })
         return user
@@ -73,7 +71,7 @@ export class UserService {
         }
     }
 
-    async getOneById(id: ObjectId): Promise<User> {
+    async getOneById(id: string): Promise<User> {
         const user = await this.userModel.findById(id)
         return user
     }
@@ -88,17 +86,18 @@ export class UserService {
         return false
     }
 
-    async response(email: string, id:ObjectId): Promise<boolean> {
+    async response(email: string, id:string): Promise<boolean> {
+        
         let user = await this.userModel.findOne({email:email});
-
-        if(![...user.responses].includes(id)){
-            await this.userModel.findOneAndUpdate({email:email},  {roles:[...user.responses, id]});
-            return true
+        console.log(user)
+        if([...user.responses].includes(id)){
+            return false
         }
-        return false
+        await this.userModel.findOneAndUpdate({email:email},  {responses:[...user.responses, id]});
+        return true
     }
 
-    async delete(id: ObjectId): Promise<ObjectId> {
+    async delete(id: string): Promise<ObjectId> {
         const user = await this.userModel.findByIdAndDelete(id)
         return user._id
     }

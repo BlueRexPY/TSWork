@@ -1,6 +1,5 @@
 import { CreateVacancyDto } from './dto/create-vacancy.dto';
 import { Bind, Body, Controller, Delete, Get, Param, Post, UploadedFiles, UseInterceptors } from "@nestjs/common";
-import { ObjectId } from 'mongoose';
 import { FileFieldsInterceptor } from "@nestjs/platform-express";
 import { VacancyService } from './vacancy.service';
 
