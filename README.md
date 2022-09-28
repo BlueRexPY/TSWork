@@ -9,7 +9,8 @@ Job search market for the IT segment
    1. ![Next JS](https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white)
    1. ![Redux](https://img.shields.io/badge/redux-%23593d88.svg?style=for-the-badge&logo=redux&logoColor=white)
    1. ![RTKQuery](https://img.shields.io/badge/RTKQuery-233233.svg?style=for-the-badge&logo=RTKQuery&logoColor=white)
-
+   1. ![Jest](https://img.shields.io/badge/-jest-%23C21325?style=for-the-badge&logo=jest&logoColor=white)
+ 
 </details>
 <details><summary>Backend</summary>
 
