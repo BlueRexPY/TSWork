@@ -2,8 +2,8 @@ import React from "react";
 
 type Props = {};
 
-const vacancies = (props: Props) => {
+const Vacancies = (props: Props) => {
   return <div>vacancies</div>;
 };
 
-export default vacancies;
+export default Vacancies;

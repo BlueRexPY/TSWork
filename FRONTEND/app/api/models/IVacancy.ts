@@ -1,5 +1,5 @@
 export interface IVacancy {
-    _id:string;
+    _id: string;
     logo: string;
     author: string;
     companyName: string;

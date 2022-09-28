@@ -1,7 +1,7 @@
 import React from "react";
 import Layout from "layouts/MainLayout";
 import { useAppSelector } from "@/hooks/redux";
-import { useEffect } from 'react';
+import { useEffect } from "react";
 import { useRouter } from "next/router";
 
 function myProfile() {
@@ -9,15 +9,16 @@ function myProfile() {
   const router = useRouter();
 
   useEffect(() => {
-    if(!auth){
+    if (!auth) {
       router.push("/auth/login");
     }
-  }, [])
-  
+  }, []);
 
-  return <Layout col={1} title="My Profile">
-    <p>myProfile</p>
-  </Layout>;
+  return (
+    <Layout col={1} title="My Profile">
+      <p>myProfile</p>
+    </Layout>
+  );
 }
 
 export default myProfile;

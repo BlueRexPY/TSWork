@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Layout from "layouts/MainLayout";
 import { UseInput } from "@/hooks/useInput";
 import { Button, Form, Input, message } from "antd";
@@ -9,20 +9,22 @@ import { authSlice } from "@/store/reducers/authSlice";
 import AuthService from "@/api/services/AuthService";
 import { useRouter } from "next/router";
 
-const login = () => {
+const Login = () => {
   const router = useRouter();
   const { auth } = useAppSelector((state) => state.authReducer);
   const { loginAuth } = authSlice.actions;
   const dispatch = useAppDispatch();
+  const [loading, setLoading] = useState(false);
 
   const email = UseInput("");
   const password = UseInput("");
 
   const login = () => {
+    setLoading(true);
     if (isPasswordVaild(password.value) && isEmailValid(email.value)) {
       AuthService.login(email.value, password.value)
         .then((res) =>
-          !res.data.user.active
+          res.data.user.active
             ? dispatch(loginAuth(res.data))
             : message.error(
                 "your account is not activated, please check your email"
@@ -38,6 +40,7 @@ const login = () => {
     } else {
       message.error("enter correct email or password");
     }
+    setLoading(false);
   };
 
   return (
@@ -64,7 +67,12 @@ const login = () => {
           </Button>
 
           <Link href="/auth/register">
-            <Button type="link" className="containerItem" size="small">
+            <Button
+              type="link"
+              className="containerItem"
+              size="small"
+              loading={loading}
+            >
               or register
             </Button>
           </Link>
@@ -74,4 +82,4 @@ const login = () => {
   );
 };
 
-export default login;
+export default Login;

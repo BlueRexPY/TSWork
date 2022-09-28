@@ -1,4 +1,4 @@
-import VacaniesService from "@/api/services/VacanciesService";
+import {VacaniesService} from "@/api/services/VacanciesService";
 import share from "@/assets/img/share.png";
 import back from "@/assets/img/back.png";
 import React from "react";
@@ -10,7 +10,7 @@ import { Button, message } from "antd";
 import { useAppDispatch, useAppSelector } from "@/hooks/redux";
 import { useRouter } from "next/router";
 import Image from "next/image";
-import { navSlice } from '@/store/reducers/navSlice';
+import { navSlice } from "@/store/reducers/navSlice";
 
 type Props = {
   id: string;
@@ -27,14 +27,19 @@ const VacancyInfo = ({ id }: Props) => {
   const dispatch = useAppDispatch();
   const router = useRouter();
 
-  const handleApply = () =>{
-    if(auth){
-      setLoadingButton(true)
-      VacaniesService.response(user.email,id).then((res)=>{message.success("Your resume has been sent"); setLoadingButton(false); dispatch(setActive(false))})
-    }else{
-      router.push("/auth/login")
+  const handleApply = () => {
+    if (auth) {
+      setLoadingButton(true);
+      VacaniesService.response(user.email, id).then((res) => {
+        message.success("Your resume has been sent");
+        setLoadingButton(false);
+        dispatch(setActive(false));
+      });
+      VacaniesService.responseUser(user.email, id);
+    } else {
+      router.push("/auth/login");
     }
-  }
+  };
 
   const onLoad = (data: IVacancy) => {
     setVacancy(data);
@@ -51,12 +56,12 @@ const VacancyInfo = ({ id }: Props) => {
 
   const closeVacancy = () => dispatch(setActive(false));
   const shareVacancy = () => {
-    navigator.clipboard.writeText(window.location.href)
+    navigator.clipboard.writeText(window.location.href);
     message.success("link in clipboard");
-  }
-  
+  };
+
   useEffect(() => {
-    setLoading(true)
+    setLoading(true);
     if (id !== "serch") {
       VacaniesService.getOneById(id)
         .then((res) => onLoad(res.data))
@@ -68,9 +73,9 @@ const VacancyInfo = ({ id }: Props) => {
     return <SkeletonVacancyInfo />;
   }
   return (
-    <div className={`vacancyPage ${!active?"mobileVacancy":""}`}>
+    <div  id="vacancyPage" className={`vacancyPage ${!active ? "mobileVacancy" : ""}`}>
       <div className="additionalButtons">
-        <div className="backButton" onClick={()=>closeVacancy()}>
+        <div className="backButton" onClick={() => closeVacancy()}>
           <Image
             src={back}
             width={30}
@@ -78,8 +83,8 @@ const VacancyInfo = ({ id }: Props) => {
             alt="back"
             draggable={false}
           />
-          </div>
-        <div className="backButton" onClick={()=>shareVacancy()}>
+        </div>
+        <div className="backButton" onClick={() => shareVacancy()}>
           <Image
             src={share}
             width={30}
@@ -90,10 +95,10 @@ const VacancyInfo = ({ id }: Props) => {
         </div>
       </div>
       <div className="vacancyInfo">
-        <div className="header">
+        <div id="header" className="header">
           <Image
-            src={vacancy?vacancy?.logo:""}
-            loader={() => vacancy?vacancy?.logo:""}
+            src={vacancy ? vacancy?.logo : ""}
+            loader={() => (vacancy ? vacancy?.logo : "")}
             width={75}
             height={75}
             alt="logo"
@@ -118,8 +123,8 @@ const VacancyInfo = ({ id }: Props) => {
               <b>Tech skills:</b>
             </h3>
             <div className="techSkillsList">
-              {vacancy?.techStack?.map((e) => (
-                <p>{e}</p>
+              {vacancy?.techStack?.map((e, i) => (
+                <p id={`item-${i}`} key={i}>{e}</p>
               ))}
             </div>
           </div>
@@ -134,7 +139,7 @@ const VacancyInfo = ({ id }: Props) => {
             </h3>
             <p></p>
           </div>
-          <div>
+          <div id="description">
             <h3>
               <b>Description:</b>
             </h3>
@@ -149,7 +154,14 @@ const VacancyInfo = ({ id }: Props) => {
             : `${vacancy?.minSalary}-${vacancy?.maxSalary}`}
           $/month
         </p>
-        <Button size="large" type="text" loading={loadingButton} onClick={()=>handleApply()}>Apply</Button>
+        <Button
+          size="large"
+          type="text"
+          loading={loadingButton}
+          onClick={() => handleApply()}
+        >
+          Apply
+        </Button>
       </div>
     </div>
   );

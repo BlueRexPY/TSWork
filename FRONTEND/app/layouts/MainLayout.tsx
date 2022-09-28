@@ -5,7 +5,7 @@ import NavBar from "@/components/NavBar/NavBar";
 import { useAppSelector } from "@/hooks/redux";
 
 type Props = {
-  children: ReactChild | ReactNode;
+  children?: ReactChild | ReactNode;
   title?: string;
   description?: string;
   keywords?: string;

@@ -3,7 +3,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 interface NavState {
     skill: string;
     lvl: string;
-    active:boolean;
+    active: boolean;
 }
 
 const initialState: NavState = {
@@ -23,7 +23,7 @@ export const navSlice = createSlice({
             state.lvl = action.payload.lvl
             state.active = false
         },
-        setActive(state, action: PayloadAction<boolean>){
+        setActive(state, action: PayloadAction<boolean>) {
             state.active = action.payload
         }
     }

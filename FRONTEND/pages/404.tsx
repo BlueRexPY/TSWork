@@ -5,7 +5,7 @@ import Img from "@/assets/img/404.png";
 import { Button } from "antd";
 import Link from "next/link";
 
-const notFound = () => {
+const NotFound = () => {
   return (
     <Layout title={"Page not found"}>
       <div className="notFound">
@@ -26,4 +26,4 @@ const notFound = () => {
   );
 };
 
-export default notFound;
+export default NotFound;

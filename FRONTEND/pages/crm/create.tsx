@@ -2,8 +2,8 @@ import React from "react";
 
 type Props = {};
 
-const create = (props: Props) => {
+const Create = (props: Props) => {
   return <div>create</div>;
 };
 
-export default create;
+export default Create;

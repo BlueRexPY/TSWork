@@ -19,11 +19,11 @@ const NavBar = ({ full = false }: Props) => {
   const { setSerch } = navSlice.actions;
 
   const changeSerchSkill = (value: string) => {
-    dispatch(setSerch({ skill: value, lvl, active:false }));
+    dispatch(setSerch({ skill: value, lvl, active: false }));
   };
 
   const changeSerchLvl = (value: string) => {
-    dispatch(setSerch({ skill, lvl: value, active:false }));
+    dispatch(setSerch({ skill, lvl: value, active: false }));
   };
 
   const getButton = () => {

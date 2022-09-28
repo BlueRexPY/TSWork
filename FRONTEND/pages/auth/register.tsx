@@ -1,17 +1,15 @@
 import React, { useState } from "react";
 import Layout from "layouts/MainLayout";
-import { Button, Form, Input, message } from 'antd';
+import { Button, Form, Input, message } from "antd";
 import Link from "next/link";
 import AuthService from "@/api/services/AuthService";
-import { isEmailValid, isPasswordVaild, registerValid } from "@/utils/valid";
+import { registerValid } from "@/utils/valid";
 import { UseInput } from "@/hooks/useInput";
-import { useAppDispatch, useAppSelector } from "@/hooks/redux";
-import { authSlice } from "@/store/reducers/authSlice";
 import { useRouter } from "next/router";
 import { MaskedInput } from "antd-mask-input";
 import FileUploader from "@/components/utils/FileUploader";
 
-function register() {
+function Register() {
   const router = useRouter();
   const name = UseInput("");
   const surename = UseInput("");
@@ -21,29 +19,34 @@ function register() {
   const passwordRepeat = UseInput("");
   const [cv, setCv] = useState([{ originFileObj: "" }]);
   const github = UseInput("");
- 
+
+  const [loading, setLoading] = useState(false);
+
   const register = () => {
-    if(password.value === passwordRepeat.value){
-      if (registerValid(
-        name.value,
-        surename.value,
-        email.value,
-        password.value,
-        github.value
-        )) {
-        AuthService.registration( 
+    setLoading(true);
+    if (password.value === passwordRepeat.value) {
+      if (
+        registerValid(
+          name.value,
+          surename.value,
+          email.value,
+          password.value,
+          github.value
+        )
+      ) {
+        AuthService.registration(
           name.value,
           surename.value,
           email.value,
           password.value,
           github.value,
-          cv[0],
+          cv[0]
         )
           .then((res) => {
-            if(res.data.user){
-              message.success("confirm email")
-              router.push("/auth/login")
-            }else{
+            if (res.data.user) {
+              message.success("confirm email");
+              router.push("/auth/login");
+            } else {
               message.error("error");
             }
           })
@@ -53,13 +56,14 @@ function register() {
       } else {
         message.error("incorrect data");
       }
-    }else{
+    } else {
       message.error("Passwords don't match");
     }
+    setLoading(false);
   };
 
   return (
-    <Layout col={1} title="Login">
+    <Layout col={1} title="Register">
       <div className="center">
         <Form
           className="container"
@@ -70,14 +74,18 @@ function register() {
           autoComplete="off"
         >
           <Input placeholder="name" className="containerItem" {...name} />
-          <Input placeholder="surename" className="containerItem" {...surename} />
+          <Input
+            placeholder="surename"
+            className="containerItem"
+            {...surename}
+          />
           <MaskedInput
             className="containerItem"
             {...number}
-            mask={'+00(00)0000-0000'}
+            mask={"+00(00)0000-0000"}
             maskOptions={{
               dispatch: function (appended, dynamicMasked) {
-                const isCellPhone = dynamicMasked.unmaskedValue[2] === '9';
+                const isCellPhone = dynamicMasked.unmaskedValue[2] === "9";
                 return dynamicMasked.compiledMasks[isCellPhone ? 0 : 1];
               },
             }}
@@ -99,13 +107,18 @@ function register() {
           />
           <Input placeholder="github" className="containerItem" {...github} />
           <FileUploader maxCount={1} setFile={setCv} />
-          <br/>
+          <br />
           <Button type="primary" className="containerItem" onClick={register}>
             Register
           </Button>
 
           <Link href="/auth/login">
-            <Button type="link" className="containerItem" size="small">
+            <Button
+              type="link"
+              className="containerItem"
+              size="small"
+              loading={loading}
+            >
               or login
             </Button>
           </Link>
@@ -115,4 +128,4 @@ function register() {
   );
 }
 
-export default register;
+export default Register;

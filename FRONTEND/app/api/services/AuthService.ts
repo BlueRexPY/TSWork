@@ -4,16 +4,16 @@ import { AuthResponse } from '../models/response/AuthResponse';
 
 export default class AuthService {
     static async login(email: string, password: string): Promise<AxiosResponse<AuthResponse>> {
-        return $api.post<AuthResponse>('/users/login', { email, password })
+        return $api.post<AuthResponse>('/users/login', { email: email, password: password })
     }
 
     static async registration(
-        name: string, 
-        surename:string,
-        email: string, 
-        password:string,
-        github:string,
-        cv:{ originFileObj: string }
+        name: string,
+        surename: string,
+        email: string,
+        password: string,
+        github: string,
+        cv: { originFileObj: string }
     ): Promise<AxiosResponse<AuthResponse>> {
         const formData = new FormData();
         formData.append("name", name);

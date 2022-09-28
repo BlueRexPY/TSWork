@@ -1,16 +1,13 @@
 import Layout from "layouts/MainLayout";
 import type { NextPage } from "next";
 import { useRouter } from "next/router";
-import { useEffect } from 'react';
+import { useEffect } from "react";
 const Home: NextPage = () => {
   const router = useRouter();
-  useEffect(()=>{
+  useEffect(() => {
     router.push("/serch");
-  },[])
-  return (
-    <Layout col={1} full={true}>
-    </Layout>
-  );
+  }, []);
+  return <Layout col={1} full={true}></Layout>;
 };
 
 export default Home;
