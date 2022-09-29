@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Layout from "layouts/MainLayout";
+import Layout from "@/layouts/MainLayout";
 import { UseInput } from "@/hooks/useInput";
 import { Button, Form, Input, message } from "antd";
 import { isEmailValid, isPasswordVaild } from "@/utils/valid";

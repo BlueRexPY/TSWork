@@ -14,17 +14,19 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
-    "baseUrl": "",
+    "baseUrl": "./",
     "paths": {
       "@/components/*":["app/components/*"],
-      "@/layout/*":["app/layout/*"],
+      "@/layouts/*":["app/layouts/*"],
       "@/assets/*":["app/assets/*"],
       "@/store/*":["app/store/*"],
       "@/hooks/*":["app/hooks/*"],
       "@/utils/*":["app/utils/*"],
-      "@/api/*":["app/api/*"]
+      "@/api/*":["app/api/*"],
+      "@/pages/*":["pages/*"],
+      
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx",],
   "exclude": ["node_modules"]
 }

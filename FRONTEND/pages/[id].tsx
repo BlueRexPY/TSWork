@@ -8,7 +8,7 @@ import { useAppDispatch, useAppSelector } from "@/hooks/redux";
 import { vacanciesSlice } from "@/store/reducers/vacanciesSlice";
 import { GetServerSideProps } from "next";
 import React, { useEffect, useState } from "react";
-import Layout from "../app/layouts/MainLayout";
+import Layout from "@/layouts/MainLayout";
 import { navSlice } from "@/store/reducers/navSlice";
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {

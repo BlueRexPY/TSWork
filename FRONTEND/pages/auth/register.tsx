@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Layout from "layouts/MainLayout";
+import Layout from "@/layouts/MainLayout";
 import { Button, Form, Input, message } from "antd";
 import Link from "next/link";
 import AuthService from "@/api/services/AuthService";

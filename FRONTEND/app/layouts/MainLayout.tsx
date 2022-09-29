@@ -1,8 +1,7 @@
 import React from "react";
 import Head from "next/head";
-import { ReactChild, ReactNode, useEffect, useState } from "react";
+import { ReactChild, ReactNode } from "react";
 import NavBar from "@/components/NavBar/NavBar";
-import { useAppSelector } from "@/hooks/redux";
 
 type Props = {
   children?: ReactChild | ReactNode;
@@ -15,7 +14,6 @@ type Props = {
 };
 
 const Layout = (props: Props) => {
-  const { auth } = useAppSelector((state) => state.authReducer);
   const {
     title = "Home",
     description = "Convenient job search in IT",

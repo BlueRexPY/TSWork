@@ -1,5 +1,5 @@
 import React from "react";
-import Layout from "layouts/MainLayout";
+import Layout from "@/layouts/MainLayout";
 import { useAppSelector } from "@/hooks/redux";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
