@@ -9,7 +9,7 @@ type Props = {
   vacancy: IVacancy;
 };
 
-const VacancyItem = ({ vacancy }: Props) => {
+const VacancyItem:React.FC<Props>  = ({ vacancy }: Props) => {
   const { setActive } = navSlice.actions;
   const dispatch = useAppDispatch();
   return (

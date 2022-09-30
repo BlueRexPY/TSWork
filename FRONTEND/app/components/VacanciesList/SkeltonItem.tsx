@@ -1,9 +1,9 @@
 import React from "react";
 import { Skeleton } from "antd";
 
-const SkeltonItem = () => {
+const SkeltonItem:React.FC = () => {
   return (
-    <div className="SkeltonItem">
+    <div className="SkeltonItem" role="skeleton">
       <Skeleton active avatar paragraph={{ rows: 1 }} />
     </div>
   );

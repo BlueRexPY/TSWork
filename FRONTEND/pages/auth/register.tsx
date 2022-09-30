@@ -8,8 +8,9 @@ import { UseInput } from "@/hooks/useInput";
 import { useRouter } from "next/router";
 import { MaskedInput } from "antd-mask-input";
 import FileUploader from "@/components/utils/FileUploader";
+import { NextPage } from 'next';
 
-function Register() {
+const Register:NextPage =()=> {
   const router = useRouter();
   const name = UseInput("");
   const surename = UseInput("");

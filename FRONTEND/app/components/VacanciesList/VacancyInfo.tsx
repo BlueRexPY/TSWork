@@ -16,7 +16,7 @@ type Props = {
   id: string;
 };
 
-const VacancyInfo = ({ id }: Props) => {
+const VacancyInfo:React.FC<Props>  = ({ id }: Props) => {
   const [vacancy, setVacancy] = useState<IVacancy>();
   const [loading, setLoading] = useState(true);
   const [loadingButton, setLoadingButton] = useState(false);

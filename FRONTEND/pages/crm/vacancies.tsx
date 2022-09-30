@@ -1,8 +1,8 @@
 import React from "react";
+import { NextPage } from 'next';
 
-type Props = {};
 
-const Vacancies = (props: Props) => {
+const Vacancies:NextPage = () => {
   return <div>vacancies</div>;
 };
 

@@ -1,8 +1,7 @@
 import React from "react";
+import { NextPage } from 'next';
 
-type Props = {};
-
-const Create = (props: Props) => {
+const Create:NextPage = () => {
   return <div>create</div>;
 };
 

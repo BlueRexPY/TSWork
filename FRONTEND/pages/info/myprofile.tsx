@@ -3,8 +3,9 @@ import Layout from "@/layouts/MainLayout";
 import { useAppSelector } from "@/hooks/redux";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
+import { NextPage } from "next";
 
-function myProfile() {
+const myProfile:NextPage =()=> {
   const { auth } = useAppSelector((state) => state.authReducer);
   const router = useRouter();
 

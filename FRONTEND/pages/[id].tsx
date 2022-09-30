@@ -1,12 +1,12 @@
 import { IVacancy } from "@/api/models/IVacancy";
 import {VacaniesService} from "@/api/services/VacanciesService";
 import ToGetStart from "@/components/utils/ToGetStart";
-import SkeletonVacaniesList from "@/components/VacanciesList/SkeletonVacanciesList";
+import SkeletonVacanciesList from "@/components/VacanciesList/SkeletonVacanciesList";
 import VacanciesList from "@/components/VacanciesList/VacanciesList";
 import VacancyInfo from "@/components/VacanciesList/VacancyInfo";
 import { useAppDispatch, useAppSelector } from "@/hooks/redux";
 import { vacanciesSlice } from "@/store/reducers/vacanciesSlice";
-import { GetServerSideProps } from "next";
+import { GetServerSideProps, NextPage } from "next";
 import React, { useEffect, useState } from "react";
 import Layout from "@/layouts/MainLayout";
 import { navSlice } from "@/store/reducers/navSlice";
@@ -24,7 +24,7 @@ type vacancy = {
   id: string;
 };
 
-const VacancySelected = (SerchVacancy: vacancy) => {
+const VacancySelected:NextPage<vacancy> = (SerchVacancy: vacancy) => {
   const dispatch = useAppDispatch();
 
   const { skill, lvl } = useAppSelector((state) => state.navReducer);
@@ -72,7 +72,7 @@ const VacancySelected = (SerchVacancy: vacancy) => {
 
   const getContent = () => {
     if (loading) {
-      return <SkeletonVacaniesList />;
+      return <SkeletonVacanciesList />;
     }
     return <VacanciesList vacancies={filterVacancies} />;
   };

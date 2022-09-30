@@ -1,8 +1,7 @@
 import React from "react";
+import { NextPage } from 'next';
 
-type Props = {};
-
-const response = (props: Props) => {
+const response:NextPage = () => {
   return <div>[id]</div>;
 };
 

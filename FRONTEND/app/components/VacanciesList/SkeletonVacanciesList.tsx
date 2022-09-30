@@ -2,10 +2,10 @@ import { useAppSelector } from "@/hooks/redux";
 import React from "react";
 import SkeltonItem from "./SkeltonItem";
 
-const SkeletonVacaniesList = () => {
+const SkeletonVacanciesList:React.FC = () => {
   const { active } = useAppSelector((state) => state.navReducer);
   return (
-    <div className={`vacancyList ${!active ? "mobileList" : ""}`}>
+    <div className={`vacancyList ${!active ? "mobileList" : ""}`} role="skeletonList">
       <SkeltonItem />
       <SkeltonItem />
       <SkeltonItem />
@@ -16,4 +16,4 @@ const SkeletonVacaniesList = () => {
   );
 };
 
-export default SkeletonVacaniesList;
+export default SkeletonVacanciesList;

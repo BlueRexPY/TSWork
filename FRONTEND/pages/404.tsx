@@ -4,8 +4,9 @@ import Image from "next/image";
 import Img from "@/assets/img/404.png";
 import { Button } from "antd";
 import Link from "next/link";
+import { NextPage } from "next";
 
-const NotFound: React.FC<{}> = () => {
+const NotFound: NextPage = () => {
   return (
     <Layout title={"Page not found"}>
       <div className="notFound">
@@ -16,7 +17,6 @@ const NotFound: React.FC<{}> = () => {
           alt="Page not found"
           draggable={false}
         ></Image>
-        <p>notFound</p>
         <Link href="/">
           <Button size={"large"} type="link">
             Back to home page

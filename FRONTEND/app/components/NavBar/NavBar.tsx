@@ -3,7 +3,6 @@ import logoImg from "@/assets/img/favicon.svg";
 import Image from "next/image";
 import { Button, Select } from "antd";
 import { LVL_LIST, TECH_LIST } from "@/utils/consts";
-import { Option } from "antd/lib/mentions";
 import Link from "next/link";
 import { useAppDispatch, useAppSelector } from "@/hooks/redux";
 import { navSlice } from "@/store/reducers/navSlice";
@@ -12,7 +11,7 @@ type Props = {
   full: boolean;
 };
 
-const NavBar = ({ full = false }: Props) => {
+const NavBar:React.FC<Props> = ({ full = false }: Props) => {
   const { auth } = useAppSelector((state) => state.authReducer);
   const { skill, lvl } = useAppSelector((state) => state.navReducer);
   const dispatch = useAppDispatch();

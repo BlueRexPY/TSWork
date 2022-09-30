@@ -7,7 +7,7 @@ type Props = {
   vacancies: IVacancy[];
 };
 
-const VacanciesList = ({ vacancies }: Props) => {
+const VacanciesList:React.FC<Props> = ({ vacancies }: Props) => {
   const { active } = useAppSelector((state) => state.navReducer);
   return (
     <div className={`vacancyList ${active ? "mobileList" : ""}`}>

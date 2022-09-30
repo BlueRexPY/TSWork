@@ -2,7 +2,7 @@ import { useAppSelector } from "@/hooks/redux";
 import { Skeleton } from "antd";
 import React from "react";
 
-const SkeletonVacancyInfo = () => {
+const SkeletonVacancyInfo:React.FC = () => {
   const { active } = useAppSelector((state) => state.navReducer);
   return (
     <div className={`vacancyPage ${!active ? "mobileVacancy" : ""}`}>
@@ -12,7 +12,7 @@ const SkeletonVacancyInfo = () => {
             <Skeleton active />
           </div>
         </div>
-        <main>
+        <main role="skeleton">
           <Skeleton active />
           <Skeleton active />
           <Skeleton active />

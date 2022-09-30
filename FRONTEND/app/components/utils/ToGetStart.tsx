@@ -2,7 +2,7 @@ import Image from "next/image";
 import React from "react";
 import serchImg from "@/assets/img/serch.png";
 
-const ToGetStart = () => {
+const ToGetStart:React.FC = () => {
   return (
     <div className="indexToGetStart">
       <Image

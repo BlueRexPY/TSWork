@@ -30,5 +30,4 @@ class VacaniesService {
 
 }
 
-
 export {VacaniesService}

@@ -8,8 +8,9 @@ import Link from "next/link";
 import { authSlice } from "@/store/reducers/authSlice";
 import AuthService from "@/api/services/AuthService";
 import { useRouter } from "next/router";
+import { NextPage } from 'next';
 
-const Login = () => {
+const Login:NextPage = () => {
   const router = useRouter();
   const { auth } = useAppSelector((state) => state.authReducer);
   const { loginAuth } = authSlice.actions;

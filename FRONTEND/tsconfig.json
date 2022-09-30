@@ -1,7 +1,11 @@
 {
   "compilerOptions": {
-    "target": "ESNext",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "target": "es5",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -13,20 +17,43 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "incremental": true,
-    "baseUrl": "./",
+    "baseUrl": ".",
     "paths": {
-      "@/components/*":["app/components/*"],
-      "@/layouts/*":["app/layouts/*"],
-      "@/assets/*":["app/assets/*"],
-      "@/store/*":["app/store/*"],
-      "@/hooks/*":["app/hooks/*"],
-      "@/utils/*":["app/utils/*"],
-      "@/api/*":["app/api/*"],
-      "@/pages/*":["pages/*"],
-      
-    }
+      "@/components/*": [
+        "app/components/*"
+      ],
+      "@/layouts/*": [
+        "app/layouts/*"
+      ],
+      "@/assets/*": [
+        "app/assets/*"
+      ],
+      "@/store/*": [
+        "app/store/*"
+      ],
+      "@/hooks/*": [
+        "app/hooks/*"
+      ],
+      "@/utils/*": [
+        "app/utils/*"
+      ],
+      "@/api/*": [
+        "app/api/*"
+      ],
+      "@/pages/*": [
+        "pages/*"
+      ]
+    },
+    "incremental": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx",],
-  "exclude": ["node_modules"]
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "**/*.js",
+    "**/*.jsx"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }
