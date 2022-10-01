@@ -1,5 +1,6 @@
 import { IVacancy } from "@/api/models/IVacancy";
-import VacaniesService from "@/api/services/VacanciesService";
+import { VacaniesService } from "@/api/services/VacanciesService";
+
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface VacanciesState {
