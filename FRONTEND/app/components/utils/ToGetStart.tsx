@@ -4,7 +4,7 @@ import serchImg from "@/assets/img/serch.png";
 
 const ToGetStart:React.FC = () => {
   return (
-    <div className="indexToGetStart">
+    <div className="indexToGetStart" role="toGetStart">
       <Image
         src={serchImg}
         width={300}

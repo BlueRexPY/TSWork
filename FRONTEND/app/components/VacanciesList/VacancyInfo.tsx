@@ -73,7 +73,7 @@ const VacancyInfo:React.FC<Props>  = ({ id }: Props) => {
     return <SkeletonVacancyInfo />;
   }
   return (
-    <div  id="vacancyPage" className={`vacancyPage ${!active ? "mobileVacancy" : ""}`}>
+    <div  id="vacancyPage" className={`vacancyPage ${!active ? "mobileVacancy" : ""}`} role="vacancyInfo">
       <div className="additionalButtons">
         <div className="backButton" onClick={() => closeVacancy()}>
           <Image

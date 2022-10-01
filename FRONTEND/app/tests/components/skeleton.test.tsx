@@ -17,7 +17,7 @@ const store = setupStore();
 	});
 	it('SkeletonVacanciesList', () => {
 		render(<Provider store={store}><SkeletonVacanciesList /></Provider>);
-		expect(screen.getByRole('skeletonList')).toBeInTheDocument();
+		expect(screen.getAllByRole('skeleton')[0]).toBeInTheDocument();
 	});
 	it('SkeletonVacancyInfo', () => {
 		render( <Provider store={store}><SkeletonVacancyInfo /></Provider>);

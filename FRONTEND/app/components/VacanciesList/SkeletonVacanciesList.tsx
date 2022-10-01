@@ -5,7 +5,7 @@ import SkeltonItem from "./SkeltonItem";
 const SkeletonVacanciesList:React.FC = () => {
   const { active } = useAppSelector((state) => state.navReducer);
   return (
-    <div className={`vacancyList ${!active ? "mobileList" : ""}`} role="skeletonList">
+    <div className={`vacancyList ${!active ? "mobileList" : ""}`} role="skeleton">
       <SkeltonItem />
       <SkeltonItem />
       <SkeltonItem />

@@ -14,7 +14,7 @@ const VacancyItem:React.FC<Props>  = ({ vacancy }: Props) => {
   const dispatch = useAppDispatch();
   return (
     <Link href={`/${vacancy._id}`}>
-      <div className="vacancyItem" onClick={() => dispatch(setActive(true))}>
+      <div className="vacancyItem" onClick={() => dispatch(setActive(true))} role="vacancyItem">
         <div className="vacancyItemLeftSide">
           <Image
             src={vacancy.logo}

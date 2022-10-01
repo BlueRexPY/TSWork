@@ -8,9 +8,9 @@ import Link from "next/link";
 import { authSlice } from "@/store/reducers/authSlice";
 import AuthService from "@/api/services/AuthService";
 import { useRouter } from "next/router";
-import { NextPage } from 'next';
+import { NextPage } from "next";
 
-const Login:NextPage = () => {
+const Login: NextPage = () => {
   const router = useRouter();
   const { auth } = useAppSelector((state) => state.authReducer);
   const { loginAuth } = authSlice.actions;
@@ -24,20 +24,20 @@ const Login:NextPage = () => {
     setLoading(true);
     if (isPasswordVaild(password.value) && isEmailValid(email.value)) {
       AuthService.login(email.value, password.value)
-        .then((res) =>
-          res.data.user.active
-            ? dispatch(loginAuth(res.data))
-            : message.error(
-                "your account is not activated, please check your email"
-              )
-        )
-        .then(() => {
-          message.success("successful login");
-          router.push("/");
+        .then((res) => {
+          if (res.data.user.active) {
+            dispatch(loginAuth(res.data));
+            message.success("successful login");
+            router.push("/");
+          } else {
+            message.error(
+              "your account is not activated, please check your email"
+            );
+          }
         })
-        .catch(() => {
+        .catch((e) => {
           message.error("incorrect password");
-        });
+        })
     } else {
       message.error("enter correct email or password");
     }
@@ -54,6 +54,7 @@ const Login:NextPage = () => {
           initialValues={{ remember: true }}
           onFinish={login}
           autoComplete="off"
+          role="form"
         >
           <Input placeholder="email" className="containerItem" {...email} />
           <Input.Password

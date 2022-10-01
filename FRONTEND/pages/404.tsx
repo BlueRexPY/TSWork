@@ -9,15 +9,16 @@ import { NextPage } from "next";
 const NotFound: NextPage = () => {
   return (
     <Layout title={"Page not found"}>
-      <div className="notFound">
+      <div className="notFound" role="wrapper">
         <Image
           src={Img}
           width={300}
           height={300}
           alt="Page not found"
           draggable={false}
+          role="image"
         ></Image>
-        <Link href="/">
+        <Link href="/" role="button">
           <Button size={"large"} type="link">
             Back to home page
           </Button>

@@ -73,6 +73,7 @@ const Register:NextPage =()=> {
           initialValues={{ remember: true }}
           onFinish={register}
           autoComplete="off"
+          role="form"
         >
           <Input placeholder="name" className="containerItem" {...name} />
           <Input

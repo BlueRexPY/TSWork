@@ -18,6 +18,7 @@ $api.interceptors.response.use((config) => {
     return config;
 }, async (error) => {
     const originalRequest = error.config;
+    /*
     try {
         const response = await axios.get<AuthResponse>(`${API_URl}/users/refresh`, { withCredentials: true })
         localStorage.setItem('token', response.data.accessToken);
@@ -25,7 +26,8 @@ $api.interceptors.response.use((config) => {
     } catch (e) {
         console.log(e)
     }
-
+    */
 })
+
 
 export default $api;
