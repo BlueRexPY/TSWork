@@ -1,4 +1,4 @@
-![Banner](https://cdn.discordapp.com/attachments/736633764930912257/1011798115499655218/TSWORK.png)
+![Banner](https://cdn.discordapp.com/attachments/736633764930912257/1025571428260659350/TSWORK.png)
 # TSWork
 
 Job search market for the IT segment
