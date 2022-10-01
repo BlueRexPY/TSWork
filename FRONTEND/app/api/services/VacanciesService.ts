@@ -30,4 +30,4 @@ class VacaniesService {
 
 }
 
-export {VacaniesService}
+export { VacaniesService }

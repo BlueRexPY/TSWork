@@ -11,7 +11,7 @@ type Props = {
   full: boolean;
 };
 
-const NavBar:React.FC<Props> = ({ full = false }: Props) => {
+const NavBar: React.FC<Props> = ({ full = false }: Props) => {
   const { auth } = useAppSelector((state) => state.authReducer);
   const { skill, lvl } = useAppSelector((state) => state.navReducer);
   const dispatch = useAppDispatch();

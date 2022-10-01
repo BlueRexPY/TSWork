@@ -7,13 +7,16 @@ type Props = {
   vacancies: IVacancy[];
 };
 
-const VacanciesList:React.FC<Props> = ({ vacancies }: Props) => {
+const VacanciesList: React.FC<Props> = ({ vacancies }: Props) => {
   const { active } = useAppSelector((state) => state.navReducer);
   return (
-    <div className={`vacancyList ${active ? "mobileList" : ""}`} role="vacancyList">
+    <div
+      className={`vacancyList ${active ? "mobileList" : ""}`}
+      role="vacancyList"
+    >
       {vacancies.length !== 0 ? (
         vacancies.map((item, index) => {
-          return <VacancyItem key={index} vacancy={item}/>;
+          return <VacancyItem key={index} vacancy={item} />;
         })
       ) : (
         <h2 className="margin">Sorry, there are no job offers</h2>

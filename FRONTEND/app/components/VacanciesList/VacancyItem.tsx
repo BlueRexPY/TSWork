@@ -9,12 +9,16 @@ type Props = {
   vacancy: IVacancy;
 };
 
-const VacancyItem:React.FC<Props>  = ({ vacancy }: Props) => {
+const VacancyItem: React.FC<Props> = ({ vacancy }: Props) => {
   const { setActive } = navSlice.actions;
   const dispatch = useAppDispatch();
   return (
     <Link href={`/${vacancy._id}`}>
-      <div className="vacancyItem" onClick={() => dispatch(setActive(true))} role="vacancyItem">
+      <div
+        className="vacancyItem"
+        onClick={() => dispatch(setActive(true))}
+        role="vacancyItem"
+      >
         <div className="vacancyItemLeftSide">
           <Image
             src={vacancy.logo}

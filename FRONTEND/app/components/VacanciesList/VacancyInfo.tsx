@@ -1,4 +1,4 @@
-import {VacaniesService} from "@/api/services/VacanciesService";
+import { VacaniesService } from "@/api/services/VacanciesService";
 import share from "@/assets/img/share.png";
 import back from "@/assets/img/back.png";
 import React from "react";
@@ -16,7 +16,7 @@ type Props = {
   id: string;
 };
 
-const VacancyInfo:React.FC<Props>  = ({ id }: Props) => {
+const VacancyInfo: React.FC<Props> = ({ id }: Props) => {
   const [vacancy, setVacancy] = useState<IVacancy>();
   const [loading, setLoading] = useState(true);
   const [loadingButton, setLoadingButton] = useState(false);
@@ -73,7 +73,11 @@ const VacancyInfo:React.FC<Props>  = ({ id }: Props) => {
     return <SkeletonVacancyInfo />;
   }
   return (
-    <div  id="vacancyPage" className={`vacancyPage ${!active ? "mobileVacancy" : ""}`} role="vacancyInfo">
+    <div
+      id="vacancyPage"
+      className={`vacancyPage ${!active ? "mobileVacancy" : ""}`}
+      role="vacancyInfo"
+    >
       <div className="additionalButtons">
         <div className="backButton" onClick={() => closeVacancy()}>
           <Image
@@ -124,7 +128,9 @@ const VacancyInfo:React.FC<Props>  = ({ id }: Props) => {
             </h3>
             <div className="techSkillsList">
               {vacancy?.techStack?.map((e, i) => (
-                <p id={`item-${i}`} key={i}>{e}</p>
+                <p id={`item-${i}`} key={i}>
+                  {e}
+                </p>
               ))}
             </div>
           </div>

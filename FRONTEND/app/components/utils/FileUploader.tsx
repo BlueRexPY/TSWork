@@ -8,7 +8,7 @@ type Props = {
   acceptFile?: string;
 };
 
-const FileUploader:React.FC<Props>  = (props: Props) => {
+const FileUploader: React.FC<Props> = (props: Props) => {
   const { maxCount = 1, acceptFile = ".pdf" } = props;
   const handleChange: UploadProps["onChange"] = ({ fileList: newFile }) =>
     props.setFile(newFile);

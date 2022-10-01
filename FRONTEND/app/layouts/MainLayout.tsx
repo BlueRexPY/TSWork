@@ -13,7 +13,7 @@ type Props = {
   full?: boolean;
 };
 
-const Layout:React.FC<Props>  = (props: Props) => {
+const Layout: React.FC<Props> = (props: Props) => {
   const {
     title = "Home",
     description = "Convenient job search in IT",
