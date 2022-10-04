@@ -9,13 +9,13 @@ import { join } from 'path';
     MailerModule.forRootAsync({
       useFactory: () => ({
         transport: {
-          service: 'gmail',
-          host: "smtp.gmail.com",
-          port: 587,
+          service: 'XXXXXXXXXXXXXXXXXXXXx',
+          host: "XXXXXXXXXXXXXXXXXXXXx",
+          port: 999,
           secure: false,
           auth: {
-            user: "tsworknoreply",
-            pass: "astfqhosfmxxpjqz"
+            user: "XXXXXXXXXXXXXXXXXXXXx",
+            pass: "XXXXXXXXXXXXXXXXXXXXx"
           },
           tls: {
             rejectUnauthorized: false
