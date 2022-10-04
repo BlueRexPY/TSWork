@@ -9,29 +9,29 @@ import { Vacancy, VacancyDocument } from './schemas/vacancy.schema';
 @Injectable()
 export class VacancyService {
     constructor(@InjectModel(Vacancy.name) private vacancyModel: Model<VacancyDocument>,
-    private fileService: FileService
-) { }
+        private fileService: FileService
+    ) { }
 
-    async create(dto: CreateVacancyDto,logo): Promise<Vacancy> {
+    async create(dto: CreateVacancyDto, logo): Promise<Vacancy> {
         const logoPath = this.fileService.createFile(FileType.IMAGE, logo)
         const date = new Date();
-        const vacancy = await this.vacancyModel.create({...dto, logo:logoPath, responses: [], createdAt:date,view:0})
+        const vacancy = await this.vacancyModel.create({ ...dto, logo: logoPath, responses: [], createdAt: date, view: 0 })
         return vacancy
     }
 
 
     async getOneById(id: string): Promise<Vacancy> {
         const vacancy = await this.vacancyModel.findById(id)
-        if(vacancy){
-            await this.vacancyModel.findByIdAndUpdate(id, {view:(vacancy.view + 1)});
+        if (vacancy) {
+            await this.vacancyModel.findByIdAndUpdate(id, { view: (vacancy.view + 1) });
         }
         return vacancy
     }
-    
-    async response(data:{email: string, id:string}): Promise<boolean> {
+
+    async response(data: { email: string, id: string }): Promise<boolean> {
         let vacancy = await this.vacancyModel.findById(data.id);
-        if(![...vacancy.responses].includes(data.email)){
-            await this.vacancyModel.findByIdAndUpdate(data.id, {responses:[...vacancy.responses, data.email]});
+        if (![...vacancy.responses].includes(data.email)) {
+            await this.vacancyModel.findByIdAndUpdate(data.id, { responses: [...vacancy.responses, data.email] });
             return true
         }
         return false

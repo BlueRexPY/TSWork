@@ -1,4 +1,4 @@
 export type tokensDbType = {
-    email: string;
-    refreshToken: string;
-  }
+  email: string;
+  refreshToken: string;
+}

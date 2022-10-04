@@ -14,12 +14,12 @@ const jwt = require('jsonwebtoken');
 @Injectable()
 export class AuthService {
     constructor(@InjectModel(Auth.name) private authModel: Model<AuthDocument>,
-) { }
+    ) { }
 
 
-    generateTokens(payload: LoginUserDto): tokensType{
-        const accessToken:string = jwt.sign(payload, process.env.JWT_ACCESS_SECRET, {expiresIn: '15s'})
-        const refreshToken:string = jwt.sign(payload, process.env.JWT_REFRESH_SECRET, {expiresIn: '30d'})
+    generateTokens(payload: LoginUserDto): tokensType {
+        const accessToken: string = jwt.sign(payload, process.env.JWT_ACCESS_SECRET, { expiresIn: '15s' })
+        const refreshToken: string = jwt.sign(payload, process.env.JWT_REFRESH_SECRET, { expiresIn: '30d' })
         const tokens = {
             accessToken: accessToken,
             refreshToken: refreshToken,
@@ -27,7 +27,7 @@ export class AuthService {
         return tokens
     }
 
-    validateAccessToken(token:string): Promise<string> {
+    validateAccessToken(token: string): Promise<string> {
         try {
             const userData = jwt.verify(token, process.env.JWT_ACCESS_SECRET);
             return userData;
@@ -36,7 +36,7 @@ export class AuthService {
         }
     }
 
-    validateRefreshToken(token:string): Promise<string>  {
+    validateRefreshToken(token: string): Promise<string> {
         try {
             const userData = jwt.verify(token, process.env.JWT_REFRESH_SECRET);
             return userData;
@@ -45,27 +45,26 @@ export class AuthService {
         }
     }
 
-    async saveToken(email:string, refreshToken:string): Promise<object> {
-        const tokenData = await this.authModel.findOne({user: email})
+    async saveToken(email: string, refreshToken: string): Promise<object> {
+        const tokenData = await this.authModel.findOne({ user: email })
 
         if (tokenData) {
-            const token = await this.authModel.findOneAndUpdate({user: email},  {refreshToken:refreshToken});
+            const token = await this.authModel.findOneAndUpdate({ user: email }, { refreshToken: refreshToken });
             return token;
-            
+
         }
-        const token = await this.authModel.create({user: email, refreshToken})
-        
+        const token = await this.authModel.create({ user: email, refreshToken })
+
         return token;
     }
 
-    removeToken(refreshToken:string){
-        console.log(refreshToken)
-        const tokenData = this.authModel.deleteOne({refreshToken:refreshToken})
+    removeToken(refreshToken: string) {
+        const tokenData = this.authModel.deleteOne({ refreshToken: refreshToken })
         return tokenData;
     }
 
-    findToken(refreshToken:string){
-        const tokenData = this.authModel.findOne({refreshToken:refreshToken})
+    findToken(refreshToken: string) {
+        const tokenData = this.authModel.findOne({ refreshToken: refreshToken })
         return tokenData;
     }
 }

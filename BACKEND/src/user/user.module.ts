@@ -15,8 +15,8 @@ import { AuthService } from 'src/auth/auth.service';
         EmailModule
     ],
     controllers: [UserController],
-    
-    providers: [ UserService, FileService]
+
+    providers: [UserService, FileService]
 })
 
 export class UserModule { } 

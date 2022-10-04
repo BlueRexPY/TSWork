@@ -13,9 +13,9 @@ export class VacancyController {
     @UseInterceptors(FileFieldsInterceptor([
         { name: 'logo', maxCount: 1 }
     ]))
-    create(@UploadedFiles() files , @Body() dto: CreateVacancyDto){
+    create(@UploadedFiles() files, @Body() dto: CreateVacancyDto) {
         return this.vacancyService.create(dto, files.logo[0])
-    } 
+    }
 
     @Get("/id/:id")
     getOneById(@Param("id") id: string) {
@@ -26,9 +26,9 @@ export class VacancyController {
     getVacancies() {
         return this.vacancyService.getVacancies()
     }
-    
+
     @Post("/response/")
-    response(@Body() data: {email: string, id:string}) {
+    response(@Body() data: { email: string, id: string }) {
         return this.vacancyService.response(data)
     }
 

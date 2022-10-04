@@ -1,8 +1,8 @@
 import { AuthController } from './auth.controller';
-import { Auth,AuthSchema } from './schemas/auth.schema';
+import { Auth, AuthSchema } from './schemas/auth.schema';
 import { MongooseModule } from '@nestjs/mongoose';
-import {Module} from "@nestjs/common";
-import {AuthService} from "./auth.service";
+import { Module } from "@nestjs/common";
+import { AuthService } from "./auth.service";
 
 @Module({
     imports: [
@@ -13,4 +13,4 @@ import {AuthService} from "./auth.service";
     exports: [AuthService],
 })
 
-export class AuthModule {}
+export class AuthModule { }

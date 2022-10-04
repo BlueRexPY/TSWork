@@ -16,18 +16,18 @@ export class UserController {
     @UseInterceptors(FileFieldsInterceptor([
         { name: 'cv', maxCount: 1 }
     ]))
-    create(@UploadedFiles() files , @Body() dto: CreateUserDto){
+    create(@UploadedFiles() files, @Body() dto: CreateUserDto) {
         return this.userService.create(dto, files.cv[0])
-    } 
+    }
 
     @Post("update")
     @Bind(UploadedFiles())
     @UseInterceptors(FileFieldsInterceptor([
         { name: 'cv', maxCount: 1 }
     ]))
-    update(@UploadedFiles() files , @Body() dto: UpdateUserDto){
+    update(@UploadedFiles() files, @Body() dto: UpdateUserDto) {
         return this.userService.update(dto, files.cv[0])
-    } 
+    }
 
     @Get(":email")
     getOneByName(@Param("email") email: string) {
@@ -45,11 +45,11 @@ export class UserController {
     }
 
     @Post("/login")
-    login(@Body() dto: LoginUserDto){
+    login(@Body() dto: LoginUserDto) {
         return this.userService.login(dto)
     }
     @Post("/logout")
-    logout(@Body() dto: {refresh:string}) {
+    logout(@Body() dto: { refresh: string }) {
         return this.userService.logout(dto.refresh)
     }
 
@@ -59,14 +59,14 @@ export class UserController {
     }
 
     @Get("/active/:email/:activetionLink")
-    @Redirect('http://localhost:3000/auth/login',302)
+    @Redirect('https://ts-work.vercel.app/auth/login', 302)
     active(@Param("email") email: string, @Param("activetionLink") activetionLink: string) {
-        return this.userService.active(email,activetionLink) 
+        return this.userService.active(email, activetionLink)
     }
 
     @Post("/response/")
-    response(@Body() data:{email: string, id:string}) {
-        return this.userService.response(data.email,data.id)
+    response(@Body() data: { email: string, id: string }) {
+        return this.userService.response(data.email, data.id)
     }
 
     @Delete(":id")
