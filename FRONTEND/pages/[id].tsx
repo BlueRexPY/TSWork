@@ -70,15 +70,10 @@ const VacancySelected:NextPage<vacancy> = (SerchVacancy: vacancy) => {
     }
   }, [lvl, skill]);
 
-  const getContent = () => {
-    if (loading) {
-      return <SkeletonVacanciesList />;
-    }
-    return <VacanciesList vacancies={filterVacancies} />;
-  };
+  
   return (
     <Layout col={2} full={true} title={skill === "" ? "Serch" : skill}>
-      {getContent()}
+      {loading ? <SkeletonVacanciesList /> : <VacanciesList vacancies={filterVacancies} />}
       {selected ? <VacancyInfo id={SerchVacancy.id} /> : <ToGetStart />}
     </Layout>
   );
