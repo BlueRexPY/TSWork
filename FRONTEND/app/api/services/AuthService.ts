@@ -50,20 +50,17 @@ export default class AuthService {
         surename: string,
         email: string,
         github: string,
-        number: string,
+        number: string
     ): Promise<AxiosResponse<IUser>> {
-        const formData = new FormData();
-        formData.append("name", name);
-        formData.append("surename", surename);
-        formData.append("email", email);
-        formData.append("github", github);
-        formData.append("number", number);
-        return $api.post<IUser>('/users/update', formData)
+        return $api.post<IUser>('/users/update', {name:name,surename:surename,email:email,github:github,number:number})
     }
-
 
     static async logout(): Promise<void> {
         return $api.post('/users/logout')
+    }
+
+    static async getByEmail(email:string): Promise<AxiosResponse<IUser>> {
+        return $api.get(`/users/${email}`)
     }
 
 }

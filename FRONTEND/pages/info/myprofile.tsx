@@ -15,7 +15,8 @@ import FileUploader from "@/components/utils/FileUploader";
 import { isGithub } from "@/utils/valid";
 import AuthService from "@/api/services/AuthService";
 import {authSlice} from "@/store/reducers/authSlice";
-import { isNumber } from '../../app/utils/valid';
+import { isNumber } from '@/utils/valid';
+import response from '../crm/res/[id]';
 
 const MyProfile: NextPage = () => {
   const { auth, user } = useAppSelector((state) => state.authReducer);
@@ -32,10 +33,10 @@ const MyProfile: NextPage = () => {
   const github = UseInput("");
   const [cv, setCv] = useState([{ originFileObj: "" }]);
   
-  useEffect(() => {
-    const fetch = async () => {
+  useEffect(() => {    
+    const fetch = async (responses:string[]) => {
       const newArr = await Promise.all(
-        user.responses.map(async function (item) {
+        responses.map(async function (item) {
           const res = await VacaniesService.getOneById(item);
           return res.data;
         })
@@ -46,8 +47,7 @@ const MyProfile: NextPage = () => {
     if (!auth) {
       router.push("/auth/login");
     } else {
-      fetch();
-      setLoading(false);
+      AuthService.getByEmail(user.email).then((res) => {if(res){dispatch(updateAuth(res.data));fetch(res.data.responses);}setLoading(false);})
     }
   }, []);
 
@@ -61,7 +61,7 @@ const MyProfile: NextPage = () => {
       number: isNumber(number.value)? number.value:user.number
     }
 
-    if(cv[0].originFileObj.length===0){
+    if(cv[0].originFileObj===""){
       AuthService.update(
         newData.name,
         newData.surename,
