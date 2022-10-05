@@ -30,6 +30,7 @@ const Layout: React.FC<Props> = (props: Props) => {
         <meta name="robots" content="index, follow" />
         <meta name="keywords" content={`IT, Work, ${keywords}`} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta property="og:image" content="https://cdn.discordapp.com/attachments/736633764930912257/1027366515126833183/Logo.png"/>
       </Head>
       <NavBar full={full}></NavBar>
       <div className={`columnLayout${col}`}>{props.children}</div>
