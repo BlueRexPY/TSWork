@@ -12,6 +12,7 @@ interface AuthState {
 const initialState: AuthState = {
     user: {
         cv: "",
+        number:"",
         email: "",
         name: "",
         surename: "",
@@ -33,6 +34,11 @@ export const authSlice = createSlice({
         loginAuth(state, action: PayloadAction<AuthResponse>) {
             localStorage.setItem('token', action.payload.accessToken);
             state.user = action.payload.user
+            state.auth = true
+        },
+
+        updateAuth(state, action: PayloadAction<IUser>) {
+            state.user = action.payload
             state.auth = true
         },
 

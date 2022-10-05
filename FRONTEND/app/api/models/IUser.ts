@@ -1,6 +1,7 @@
 export interface IUser {
     cv: string;
     email: string;
+    number: string;
     name: string;
     surename: string;
     github: string;

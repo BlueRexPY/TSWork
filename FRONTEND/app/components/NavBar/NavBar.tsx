@@ -15,14 +15,14 @@ const NavBar: React.FC<Props> = ({ full = false }: Props) => {
   const { auth } = useAppSelector((state) => state.authReducer);
   const { skill, lvl } = useAppSelector((state) => state.navReducer);
   const dispatch = useAppDispatch();
-  const { setSerch } = navSlice.actions;
+  const { setSearch } = navSlice.actions;
 
-  const changeSerchSkill = (value: string) => {
-    dispatch(setSerch({ skill: value, lvl, active: false }));
+  const changeSearchSkill = (value: string) => {
+    dispatch(setSearch({ skill: value, lvl, active: false }));
   };
 
-  const changeSerchLvl = (value: string) => {
-    dispatch(setSerch({ skill, lvl: value, active: false }));
+  const changeSearchLvl = (value: string) => {
+    dispatch(setSearch({ skill, lvl: value, active: false }));
   };
 
   const getButton = () => {
@@ -48,7 +48,7 @@ const NavBar: React.FC<Props> = ({ full = false }: Props) => {
     return (
       <div className="navBar">
         <div className="navBarItem">
-          <Link href="/serch">
+          <Link href="/search">
             <Image
               src={logoImg}
               className="link"
@@ -62,7 +62,7 @@ const NavBar: React.FC<Props> = ({ full = false }: Props) => {
             showSearch
             style={{ width: "60%", padding: "3px 0px 3px 15px" }}
             placeholder="Select Skill"
-            onChange={changeSerchSkill}
+            onChange={changeSearchSkill}
           >
             {TECH_LIST.map((i) => (
               <Select.Option key={i}>{i}</Select.Option>
@@ -73,7 +73,7 @@ const NavBar: React.FC<Props> = ({ full = false }: Props) => {
             defaultValue={"All"}
             style={{ width: "40%", padding: "3px 0px 3px 15px" }}
             placeholder="Lvl"
-            onChange={changeSerchLvl}
+            onChange={changeSearchLvl}
           >
             {LVL_LIST.map((i) => (
               <Select.Option key={i}>{i}</Select.Option>
@@ -87,7 +87,7 @@ const NavBar: React.FC<Props> = ({ full = false }: Props) => {
   return (
     <div className="navBar">
       <div className="navBarItem2">
-        <Link href="/serch">
+        <Link href="/search">
           <Image
             className="link"
             src={logoImg}

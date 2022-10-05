@@ -62,7 +62,7 @@ const VacancyInfo: React.FC<Props> = ({ id }: Props) => {
 
   useEffect(() => {
     setLoading(true);
-    if (id !== "serch") {
+    if (id !== "search") {
       VacaniesService.getOneById(id)
         .then((res) => onLoad(res.data))
         .catch((e) => console.log(e));

@@ -11,10 +11,10 @@ import { Simulate } from "react-dom/test-utils";
 const store = setupStore();
 
 describe("ID - page", () => {
-  it("ID - serch", () => {
+  it("ID - search", () => {
     render(
       <Provider store={store}>
-        <VacancySelected id={"serch"} />
+        <VacancySelected id={"search"} />
       </Provider>
     );
     expect(screen.getAllByRole("skeleton")[0]).toBeInTheDocument();
@@ -41,10 +41,10 @@ describe("ID - page", () => {
     }, 3000);
   });
 
-  it("ID - serch + click", () => {
+  it("ID - search + click", () => {
     render(
       <Provider store={store}>
-        <VacancySelected id={"serch"} />
+        <VacancySelected id={"search"} />
       </Provider>
     );
 

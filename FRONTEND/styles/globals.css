@@ -26,7 +26,6 @@ body {
   justify-content: flex-start;
   align-items: center;
   align-content: flex-start;
-
   background: #141414;
   height: 100vh;
   width: 100%;
@@ -40,11 +39,9 @@ body {
   justify-content: flex-start;
   align-items: flex-start;
   align-content: flex-start;
-
   background: #141414;
   height: 100vh;
   width: 100%;
-
   padding: 70px 20px 20px 20px;
 }
 
@@ -52,19 +49,16 @@ body {
   position: fixed;
   left: 0px;
   top: 0px;
-
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: space-between;
   align-items: flex-start;
   align-content: flex-start;
-
   background: #212121;
   width: 100%;
   height: 60px;
   padding: 15px;
-
   z-index: 100;
 }
 
@@ -127,16 +121,20 @@ body {
   width: 80%;
 }
 
-.fileuploader{
+.fileuploader {
   width: 100%;
   font-size: 12px;
 }
-.fileuploader div{
+
+.fileuploader div {
   font-size: 10px;
   padding: 0px 25px 0px 25px;
-
 }
 
+.margin50{
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
 
 .center {
   display: flex;
@@ -145,9 +143,18 @@ body {
   justify-content: center;
   align-items: center;
   align-content: center;
-
   width: 100%;
   height: 80vh;
+}
+
+.centerLine {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  width: 100%;
 }
 
 .link:hover {
@@ -329,10 +336,11 @@ body::-webkit-scrollbar-thumb:hover {
   border-radius: 10px;
   margin-top: 10px;
 }
-.header{
+
+.header {
   background-image: url("https://cdn.discordapp.com/attachments/736633764930912257/1020769243001798818/back.png");
   background-repeat: no-repeat;
-  background-size:100% 100%;
+  background-size: 100% 100%;
   border-radius: 10px;
   width: 100%;
   height: 170px;
@@ -346,7 +354,7 @@ body::-webkit-scrollbar-thumb:hover {
   margin-bottom: 20px;
 }
 
-.headerInfo{
+.headerInfo {
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
@@ -355,22 +363,23 @@ body::-webkit-scrollbar-thumb:hover {
   align-content: flex-start;
   margin-left: 30px;
 }
-.headerInfo p{
+
+.headerInfo p {
   font-size: 14px;
   margin: 0;
 }
 
-.headerInfo h2{
+.headerInfo h2 {
   font-size: 26px;
   font-weight: bold;
   margin: 0;
 }
 
-.vacancyInfo main{
+.vacancyInfo main {
   padding: 0px 30px 20px 30px;
 }
 
-.techSkillsList{
+.techSkillsList {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -379,18 +388,18 @@ body::-webkit-scrollbar-thumb:hover {
   align-content: flex-start;
 }
 
-.techSkillsList p{
+.techSkillsList p {
   padding: 2px 7px 2px 7px;
   border-radius: 10px;
   margin-right: 7px;
   border: 1px solid #fff;
 }
 
-.vacancyPage{
+.vacancyPage {
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
-  justify-content:space-between;
+  justify-content: space-between;
   align-items: flex-start;
   align-content: flex-start;
   height: 100%;
@@ -419,50 +428,146 @@ body::-webkit-scrollbar-thumb:hover {
   background: #444444;
 }
 
-.confirm{
+.confirm {
   z-index: 1;
   width: 100%;
   height: 60px;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  justify-content:space-between;
+  justify-content: space-between;
   align-items: flex-start;
   align-content: flex-start;
   background-color: #313131;
   padding: 15px 40px 15px 40px;
 }
 
-.vacancyPage h3{
+.vacancyPage h3 {
   font-size: 16px;
 }
-.vacancyPage p{
+
+.vacancyPage p {
   font-size: 14px;
 }
 
-.confirm p{
+.confirm p {
   font-size: 16px;
 }
 
-.backButton{
+.backButton {
   display: none;
 }
 
-.additionalButtons{
+.additionalButtons {
   display: none;
+}
+
+@keyframes AnimatedLogo1 {
+  0% {
+    transform: translate(-200px, -100px);
+    opacity: 0;
+  }
+
+  20% {
+    transform: translate(0px, 0px);
+    opacity: 1;
+  }
+}
+
+@keyframes AnimatedLogo2 {
+  20% {
+    transform: translate(200px, -100px);
+    opacity: 0;
+  }
+
+  40% {
+    transform: translate(0px, 0px);
+    opacity: 1;
+  }
+}
+
+@keyframes AnimatedLogo3 {
+  40% {
+    transform: translateY(-200px);
+    opacity: 0;
+  }
+
+  60% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
+
+@keyframes AnimatedLogo4 {
+  60% {
+    transform: translateY(-200px);
+    opacity: 0;
+  }
+
+  70% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+
+@keyframes AnimatedLogo {
+  20% {
+    transform: scale(0.8);
+  }
+
+  70% {
+    transform: scale(0.8);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+.AnimatedLogo {
+  transform: scale(1);
+  animation: AnimatedLogo 1.5s infinite ease;
+  width: 300px;
+  position: absolute;
+}
+
+.AnimatedLogo1 {
+  animation: AnimatedLogo1 1.5s infinite ease;
+}
+
+.AnimatedLogo2 {
+  animation: AnimatedLogo2 1.5s infinite ease;
+}
+
+.AnimatedLogo3 {
+  animation: AnimatedLogo3 1.5s infinite ease;
+}
+
+.AnimatedLogo4 {
+  animation: AnimatedLogo4 1.5s infinite ease;
+}
+
+#change {
+  padding: 15px 0px 15px 0px;
+}
+.change {
+  transform: scale(1.2)
 }
 
 @media (max-width: 700px) {
 
-  .headerInfo h2{
+  .change {
+    transform: scale(1)
+  }
+  .headerInfo h2 {
     font-size: 18px;
   }
 
-  .additionalButtons{
+  .additionalButtons {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
-    justify-content:space-between;
+    justify-content: space-between;
     align-items: flex-start;
     align-content: flex-start;
     position: absolute;
@@ -474,41 +579,44 @@ body::-webkit-scrollbar-thumb:hover {
     border-radius: 10px;
   }
 
-  .additionalButtons div{
+  .additionalButtons div {
     margin-right: 20px;
   }
-  .backButton{
-    display:block;
-  } 
-  
-  .header{
+
+  .backButton {
+    display: block;
+  }
+
+  .header {
     padding-left: 10px;
     padding-top: 20px;
   }
-  
+
   .vacancyList {
+    padding-right: 10px;
     width: 100vw;
   }
 
-  .vacancyPage{
-    width:100%;
+  .vacancyPage {
+    width: 100%;
   }
 
-  .mobileList{
+  .mobileList {
     display: none;
     width: 100vw;
   }
 
-  .mobileVacancy{
+  .mobileVacancy {
     display: none;
-    width:100%;
+    width: 100%;
   }
 
   .indexToGetStart {
     display: none;
   }
-    
+
   .columnLayout2 {
+    flex-direction: column;
     padding: 70px 10px 10px 10px;
     padding-right: 5px;
   }

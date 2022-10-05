@@ -1,6 +1,5 @@
 import { IVacancy } from "@/api/models/IVacancy";
 import {VacaniesService} from "@/api/services/VacanciesService";
-import ToGetStart from "@/components/utils/ToGetStart";
 import SkeletonVacanciesList from "@/components/VacanciesList/SkeletonVacanciesList";
 import VacanciesList from "@/components/VacanciesList/VacanciesList";
 import VacancyInfo from "@/components/VacanciesList/VacancyInfo";
@@ -10,6 +9,7 @@ import { GetServerSideProps, NextPage } from "next";
 import React, { useEffect, useState } from "react";
 import Layout from "@/layouts/MainLayout";
 import { navSlice } from "@/store/reducers/navSlice";
+import ToGetStart from "@/components/utils/ToGetStart";
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   const id = params?.id;
@@ -24,7 +24,7 @@ type vacancy = {
   id: string;
 };
 
-const VacancySelected:NextPage<vacancy> = (SerchVacancy: vacancy) => {
+const VacancySelected:NextPage<vacancy> = (SearchVacancy: vacancy) => {
   const dispatch = useAppDispatch();
 
   const { skill, lvl } = useAppSelector((state) => state.navReducer);
@@ -51,13 +51,13 @@ const VacancySelected:NextPage<vacancy> = (SerchVacancy: vacancy) => {
   };
 
   useEffect(() => {
-    if (SerchVacancy.id !== "serch") {
+    if (SearchVacancy.id !== "search") {
       dispatch(setActive(true));
       setSelected(true);
     } else {
       setSelected(false);
     }
-  }, [SerchVacancy.id]);
+  }, [SearchVacancy.id]);
 
   useEffect(() => {
     if (vacancies.length === 0) {
@@ -70,11 +70,11 @@ const VacancySelected:NextPage<vacancy> = (SerchVacancy: vacancy) => {
     }
   }, [lvl, skill]);
 
-  
+
   return (
-    <Layout col={2} full={true} title={skill === "" ? "Serch" : skill}>
+    <Layout col={2} full={true} title={skill === "" ? "Search" : skill}>
       {loading ? <SkeletonVacanciesList /> : <VacanciesList vacancies={filterVacancies} />}
-      {selected ? <VacancyInfo id={SerchVacancy.id} /> : <ToGetStart />}
+      {selected ? <VacancyInfo id={SearchVacancy.id} /> : <ToGetStart />}
     </Layout>
   );
 };

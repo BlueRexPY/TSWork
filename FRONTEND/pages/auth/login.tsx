@@ -3,7 +3,7 @@ import Layout from "@/layouts/MainLayout";
 import { UseInput } from "@/hooks/useInput";
 import { Button, Form, Input, message } from "antd";
 import { isEmailValid, isPasswordVaild } from "@/utils/valid";
-import { useAppSelector, useAppDispatch } from "../../app/hooks/redux";
+import { useAppDispatch } from "../../app/hooks/redux";
 import Link from "next/link";
 import { authSlice } from "@/store/reducers/authSlice";
 import AuthService from "@/api/services/AuthService";
@@ -12,7 +12,6 @@ import { NextPage } from "next";
 
 const Login: NextPage = () => {
   const router = useRouter();
-  const { auth } = useAppSelector((state) => state.authReducer);
   const { loginAuth } = authSlice.actions;
   const dispatch = useAppDispatch();
   const [loading, setLoading] = useState(false);
@@ -73,6 +72,7 @@ const Login: NextPage = () => {
               type="link"
               className="containerItem"
               size="small"
+              disabled={loading}
               loading={loading}
             >
               or register

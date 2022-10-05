@@ -18,7 +18,7 @@ export const navSlice = createSlice({
     name: 'nav',
     initialState,
     reducers: {
-        setSerch(state, action: PayloadAction<NavState>) {
+        setSearch(state, action: PayloadAction<NavState>) {
             state.skill = action.payload.skill
             state.lvl = action.payload.lvl
             state.active = false

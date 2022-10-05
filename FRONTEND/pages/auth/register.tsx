@@ -32,7 +32,8 @@ const Register:NextPage =()=> {
           surename.value,
           email.value,
           password.value,
-          github.value
+          github.value,
+          number.value
         )
       ) {
         AuthService.registration(
@@ -41,6 +42,7 @@ const Register:NextPage =()=> {
           email.value,
           password.value,
           github.value,
+          number.value,
           cv[0]
         )
           .then((res) => {
@@ -119,6 +121,7 @@ const Register:NextPage =()=> {
               type="link"
               className="containerItem"
               size="small"
+              disabled={loading}
               loading={loading}
             >
               or login
