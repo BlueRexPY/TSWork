@@ -4,7 +4,7 @@ import AnimatedLogo from "@/components/utils/AnimatedLogo";
 
 const Secret: NextPage = () => {
 
-  return <Layout col={1} full={true}>
+  return <Layout col={1} full={true} title={"SECRET"}>
     <AnimatedLogo/>
   </Layout>;
 };
