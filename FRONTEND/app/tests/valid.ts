@@ -1,4 +1,5 @@
 import { isEmailValid, isGithub, isPasswordVaild, registerValid } from '@/utils/valid';
+import { isNumber } from '../utils/valid';
 
 describe('Valid', () => {
     describe('Email', () => {
@@ -19,6 +20,24 @@ describe('Valid', () => {
         });
         test('@gmail.com@gmail.com', () => {
             expect(isEmailValid("@gmail.com@gmail.com")).toBe(false)
+        });
+    })
+
+    describe('Number', () => {
+        test('123456789', () => {
+            expect(isNumber("123456789")).toBe(true)
+        });
+        test('', () => {
+            expect(isNumber("")).toBe(false)
+        });
+        test('1234', () => {
+            expect(isNumber("1234")).toBe(false)
+        });
+        test('32323222222222222222', () => {
+            expect(isNumber("32323222222222222222")).toBe(false)
+        });
+        test('Number', () => {
+            expect(isNumber("Number")).toBe(false)
         });
     })
 

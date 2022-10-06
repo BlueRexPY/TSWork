@@ -77,9 +77,9 @@ const Register:NextPage =()=> {
           autoComplete="off"
           role="form"
         >
-          <Input placeholder="name" className="containerItem" {...name} />
+          <Input placeholder="name 4-32" className="containerItem" {...name} />
           <Input
-            placeholder="surename"
+            placeholder="surname 4-32"
             className="containerItem"
             {...surename}
           />
@@ -96,7 +96,7 @@ const Register:NextPage =()=> {
           />
           <Input placeholder="email" className="containerItem" {...email} />
           <Input.Password
-            placeholder="password"
+            placeholder="password 8-32"
             className="containerItem"
             maxLength={32}
             minLength={8}
@@ -109,7 +109,7 @@ const Register:NextPage =()=> {
             minLength={8}
             {...passwordRepeat}
           />
-          <Input placeholder="github" className="containerItem" {...github} />
+          <Input placeholder="github link" className="containerItem" {...github} />
           <FileUploader maxCount={1} setFile={setCv} />
           <br />
           <Button type="primary" className="containerItem" onClick={register}>
