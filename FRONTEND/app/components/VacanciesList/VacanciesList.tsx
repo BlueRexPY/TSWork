@@ -15,9 +15,9 @@ const VacanciesList: React.FC<Props> = ({ vacancies }: Props) => {
       role="vacancyList"
     >
       {vacancies.length !== 0 ? (
-        vacancies.map((item, index) => {
+        vacancies?.map((item, index) => {
           return <VacancyItem key={index} vacancy={item} />;
-        })
+        }).reverse()
       ) : (
         <h2 className="margin">Sorry, there are no job offers</h2>
       )}
