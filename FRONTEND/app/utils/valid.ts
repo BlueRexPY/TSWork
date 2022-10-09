@@ -7,7 +7,7 @@ export const isNumber = (number: string) => number.match(NUMBER_REGEXP)?.length=
 
 export const registerValid = (
     name: string,
-    surename: string,
+    surname: string,
     email: string,
     password: string,
     github: string,
@@ -16,7 +16,7 @@ export const registerValid = (
     if (
         number.length === 16 &&
         name.length > 3 &&
-        surename.length > 3 &&
+        surname.length > 3 &&
         isEmailValid(email) &&
         isPasswordVaild(password) &&
         isGithub(github)

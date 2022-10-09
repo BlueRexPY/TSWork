@@ -1,22 +1,14 @@
 /**
  * @jest-environment jsdom
  */
-
 import { render, screen } from "@testing-library/react";
-import { Provider } from "react-redux";
-import { setupStore } from "@/store/store";
 import VacancySelected from "@/pages/[id]";
 import { Simulate } from "react-dom/test-utils";
-
-const store = setupStore();
+import { renderWithState } from '@/tests/helpers/renderWithState';
 
 describe("ID - page", () => {
   it("ID - search", () => {
-    render(
-      <Provider store={store}>
-        <VacancySelected id={"search"} />
-      </Provider>
-    );
+    render(renderWithState(<VacancySelected id={"search"} />));
     expect(screen.getAllByRole("skeleton")[0]).toBeInTheDocument();
     expect(screen.getByRole("toGetStart")).toBeInTheDocument();
 
@@ -28,12 +20,7 @@ describe("ID - page", () => {
   });
 
   it("ID - 631ff10fbe34a93cf285ccae", () => {
-    render(
-      <Provider store={store}>
-        <VacancySelected id={"631ff10fbe34a93cf285ccae"} />
-      </Provider>
-    );
-
+    render(renderWithState(<VacancySelected id={"631ff10fbe34a93cf285ccae"} />));
     setTimeout(() => {
       expect(screen.getByRole("vacancyInfo")).toBeInTheDocument();
       expect(screen.getByRole("vacancyList")).toBeInTheDocument();
@@ -42,12 +29,7 @@ describe("ID - page", () => {
   });
 
   it("ID - search + click", () => {
-    render(
-      <Provider store={store}>
-        <VacancySelected id={"search"} />
-      </Provider>
-    );
-
+    render(renderWithState(<VacancySelected id={"search"} />));
     setTimeout(() => {
       Simulate.click(screen.getAllByRole("vacancyItem")[0]);
     }, 3000);

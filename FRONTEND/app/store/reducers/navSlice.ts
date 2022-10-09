@@ -12,8 +12,6 @@ const initialState: NavState = {
     active: false
 }
 
-
-
 export const navSlice = createSlice({
     name: 'nav',
     initialState,
@@ -28,5 +26,8 @@ export const navSlice = createSlice({
         }
     }
 })
+
+
+export const { setSearch, setActive } = navSlice.actions
 
 export default navSlice.reducer

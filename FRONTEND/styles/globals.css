@@ -161,6 +161,13 @@ body {
   cursor: pointer;
 }
 
+.logoImg{
+  transition: 0.2s;
+}
+.logoImg:hover{
+  transform: scale(1.1);
+}
+
 .indexToGetStart {
   display: flex;
   flex-direction: column;
@@ -247,6 +254,11 @@ body::-webkit-scrollbar-thumb:hover {
   align-content: center;
   cursor: pointer;
   white-space: nowrap;
+  transition: 0.2s;
+}
+
+.vacancyItem:hover {
+  background-color:#313131;
 }
 
 .VacancyTitle {

@@ -10,7 +10,7 @@ export default class AuthService {
 
     static async registration(
         name: string,
-        surename: string,
+        surname: string,
         email: string,
         password: string,
         github: string,
@@ -19,7 +19,7 @@ export default class AuthService {
     ): Promise<AxiosResponse<AuthResponse>> {
         const formData = new FormData();
         formData.append("name", name);
-        formData.append("surename", surename);
+        formData.append("surname", surname);
         formData.append("email", email);
         formData.append("password", password);
         formData.append("github", github);
@@ -30,7 +30,7 @@ export default class AuthService {
 
     static async updateCV(
         name: string,
-        surename: string,
+        surname: string,
         email: string,
         github: string,
         number: string,
@@ -38,7 +38,7 @@ export default class AuthService {
     ): Promise<AxiosResponse<IUser>> {
         const formData = new FormData();
         formData.append("name", name);
-        formData.append("surename", surename);
+        formData.append("surname", surname);
         formData.append("email", email);
         formData.append("github", github);
         formData.append("number", number);
@@ -47,12 +47,12 @@ export default class AuthService {
     }
     static async update(
         name: string,
-        surename: string,
+        surname: string,
         email: string,
         github: string,
         number: string
     ): Promise<AxiosResponse<IUser>> {
-        return $api.post<IUser>('/users/update', {name:name,surename:surename,email:email,github:github,number:number})
+        return $api.post<IUser>('/users/update', {name:name,surname:surname,email:email,github:github,number:number})
     }
 
     static async logout(): Promise<void> {

@@ -78,16 +78,16 @@ describe('Valid', () => {
     })
 
     describe('register', () => {
-        test('name,surename,react@gmail.com,password,https://github.com/BlueRexPY', () => {
-            expect(registerValid("name", "surename", "react@gmail.com", "password", "https://github.com/BlueRexPY","123456789")).toBe(true)
+        test('name,surname,react@gmail.com,password,https://github.com/BlueRexPY', () => {
+            expect(registerValid("name", "surname", "react@gmail.com", "password", "https://github.com/BlueRexPY","123456789")).toBe(true)
         });
-        test('me,surename,react@gmail,paword,https://github.c', () => {
+        test('me,surname,react@gmail,paword,https://github.c', () => {
             expect(registerValid("me", "sureame", "react@gmail", "paword", "https://github.c","123456789")).toBe(false)
         });
-        test('me,surename,react@gmail.com,paword,https://github.c', () => {
+        test('me,surname,react@gmail.com,paword,https://github.c', () => {
             expect(registerValid("me", "sureame", "react@gmail.com", "paword", "https://github.c","123456789")).toBe(false)
         });
-        test('me,surename,react@gmail,paword,https://github.com/BlueRexPY', () => {
+        test('me,surname,react@gmail,paword,https://github.com/BlueRexPY', () => {
             expect(registerValid("me", "sureame", "react@gmail", "paword", "https://github.com/BlueRexPY","123456789")).toBe(false)
         });
     })

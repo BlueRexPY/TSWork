@@ -28,7 +28,7 @@ const MyProfile: NextPage = () => {
   const { updateAuth } = authSlice.actions;
 
   const name = UseInput("");
-  const surename = UseInput("");
+  const surname = UseInput("");
   const number = UseInput("");
   const github = UseInput("");
   const [cv, setCv] = useState([{ originFileObj: "" }]);
@@ -56,7 +56,7 @@ const MyProfile: NextPage = () => {
     let newData = {
       email: user.email,
       name: name.value.length>3?name.value:user.name,
-      surename: surename.value.length>3?surename.value:user.surename,
+      surname: surname.value.length>3?surname.value:user.surname,
       github: isGithub(github.value)?github.value:user.github,
       number: isNumber(number.value)? number.value:user.number
     }
@@ -64,7 +64,7 @@ const MyProfile: NextPage = () => {
     if(cv[0].originFileObj===""){
       AuthService.update(
         newData.name,
-        newData.surename,
+        newData.surname,
         newData.email,
         newData.github,
         newData.number,
@@ -72,7 +72,7 @@ const MyProfile: NextPage = () => {
     }else{
       AuthService.updateCV(
         newData.name,
-        newData.surename,
+        newData.surname,
         newData.email,
         newData.github,
         newData.number,
@@ -95,7 +95,7 @@ const MyProfile: NextPage = () => {
           role="form"
         >
           <Input placeholder={user.name} className="containerItem" {...name} />
-          <Input placeholder={user.surename} className="containerItem" {...surename} />
+          <Input placeholder={user.surname} className="containerItem" {...surname} />
           <Input placeholder={user.github} className="containerItem" {...github} />
           <MaskedInput
             className="containerItem"

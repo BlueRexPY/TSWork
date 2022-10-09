@@ -20,6 +20,7 @@ const VacancyInfo: React.FC<Props> = ({ id }: Props) => {
   const [vacancy, setVacancy] = useState<IVacancy>();
   const [loading, setLoading] = useState(true);
   const [loadingButton, setLoadingButton] = useState(false);
+  const [disabledButton, setDisabledButton] = useState(false);
   const [date, setDate] = useState("");
   const { auth, user } = useAppSelector((state) => state.authReducer);
   const { active } = useAppSelector((state) => state.navReducer);
@@ -29,13 +30,13 @@ const VacancyInfo: React.FC<Props> = ({ id }: Props) => {
 
   const handleApply = () => {
     if (auth) {
+      setDisabledButton(true)
       setLoadingButton(true);
-      VacaniesService.response(user.email, id).then((res) => {
+      VacaniesService.response(user.email, id).then(() => {
         message.success("Your resume has been sent");
-        setLoadingButton(false);
         dispatch(setActive(false));
       });
-      VacaniesService.responseUser(user.email, id);
+      VacaniesService.responseUser(user.email, id).then(()=>setLoadingButton(false))
     } else {
       router.push("/auth/login");
     }
@@ -163,6 +164,7 @@ const VacancyInfo: React.FC<Props> = ({ id }: Props) => {
         <Button
           size="large"
           type="text"
+          disabled={disabledButton}
           loading={loadingButton}
           onClick={() => handleApply()}
         >

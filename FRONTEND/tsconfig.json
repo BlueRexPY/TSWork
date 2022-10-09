@@ -40,6 +40,9 @@
       "@/api/*": [
         "app/api/*"
       ],
+      "@/tests/*": [
+        "app/tests/*"
+      ],
       "@/pages/*": [
         "pages/*"
       ]

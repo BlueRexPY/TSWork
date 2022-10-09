@@ -13,7 +13,7 @@ import { NextPage } from 'next';
 const Register:NextPage =()=> {
   const router = useRouter();
   const name = UseInput("");
-  const surename = UseInput("");
+  const surname = UseInput("");
   const email = UseInput("");
   const number = UseInput("");
   const password = UseInput("");
@@ -29,7 +29,7 @@ const Register:NextPage =()=> {
       if (
         registerValid(
           name.value,
-          surename.value,
+          surname.value,
           email.value,
           password.value,
           github.value,
@@ -38,7 +38,7 @@ const Register:NextPage =()=> {
       ) {
         AuthService.registration(
           name.value,
-          surename.value,
+          surname.value,
           email.value,
           password.value,
           github.value,
@@ -81,7 +81,7 @@ const Register:NextPage =()=> {
           <Input
             placeholder="surname 4-32"
             className="containerItem"
-            {...surename}
+            {...surname}
           />
           <MaskedInput
             className="containerItem"

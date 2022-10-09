@@ -48,6 +48,7 @@ const NavBar: React.FC<Props> = ({ full = false }: Props) => {
     return (
       <div className="navBar">
         <div className="navBarItem">
+          <div className="logoImg">
           <Link href="/search">
             <Image
               src={logoImg}
@@ -58,6 +59,7 @@ const NavBar: React.FC<Props> = ({ full = false }: Props) => {
               draggable={false}
             />
           </Link>
+          </div>
           <Select
             showSearch
             style={{ width: "60%", padding: "3px 0px 3px 15px" }}
