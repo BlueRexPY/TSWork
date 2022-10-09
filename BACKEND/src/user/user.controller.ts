@@ -21,12 +21,18 @@ export class UserController {
     }
 
     @Post("update")
+    update(@Body() dto: UpdateUserDto) {
+        console.log(dto)
+        return this.userService.update(dto)
+    }
+
+    @Post("updateCV")
     @Bind(UploadedFiles())
     @UseInterceptors(FileFieldsInterceptor([
         { name: 'cv', maxCount: 1 }
     ]))
-    update(@UploadedFiles() files, @Body() dto: UpdateUserDto) {
-        return this.userService.update(dto, files.cv[0])
+    updateCV(@UploadedFiles() files, @Body() dto: UpdateUserDto) {
+        return this.userService.updateCV(dto, files.cv[0])
     }
 
     @Get(":email")
@@ -48,6 +54,7 @@ export class UserController {
     login(@Body() dto: LoginUserDto) {
         return this.userService.login(dto)
     }
+
     @Post("/logout")
     logout(@Body() dto: { refresh: string }) {
         return this.userService.logout(dto.refresh)

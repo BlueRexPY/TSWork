@@ -42,14 +42,21 @@ export class UserService {
         return { ...tokens, user: user }
     }
 
-    async update(dto: UpdateUserDto, cv): Promise<User> {
+    async updateCV(dto: UpdateUserDto, cv): Promise<User> {
         const cvPath = this.fileService.createFile(FileType.PDF, cv)
-        const user = await this.userModel.findOneAndUpdate({ email: dto.email }, { name: dto.name, github: dto.github, surename: dto.surename, cv: cvPath })
+        await this.userModel.findOneAndUpdate({ email: dto.email }, {  number: dto.number, name: dto.name, github: dto.github, surname: dto.surname, cv: cvPath })
+        const user = this.userModel.findOne({ email: dto.email})
+        return user
+    }
+
+    async update(dto: UpdateUserDto): Promise<User> {
+        await this.userModel.findOneAndUpdate({ email: dto.email }, {  number: dto.number, name: dto.name, github: dto.github, surname: dto.surname })
+        const user = this.userModel.findOne({ email: dto.email})
+        console.log(dto)
         return user
     }
 
     async active(email: string, activetionLink: string): Promise<boolean> {
-
         if (await this.userModel.findOne({ email: email, activetionLin: activetionLink })) {
             await this.userModel.findOneAndUpdate({ email: email }, { active: true })
             return true
@@ -107,7 +114,6 @@ export class UserService {
         }
         return false
     }
-
 
     async login(dto: LoginUserDto): Promise<FinaleUser> {
         const user = await this.userModel.findOne({ email: dto.email })

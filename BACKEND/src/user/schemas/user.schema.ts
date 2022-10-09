@@ -15,7 +15,10 @@ export class User {
   name: string;
 
   @Prop()
-  surename: string;
+  surname: string;
+  
+  @Prop()
+  number: string;
 
   @Prop()
   github: string;

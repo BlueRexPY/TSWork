@@ -1,36 +1,27 @@
 import { Module } from "@nestjs/common";
 import { EmailService } from "./email.service";
 import { MailerModule } from '@nestjs-modules/mailer';
-import { HandlebarsAdapter } from '@nestjs-modules/mailer/dist/adapters/handlebars.adapter';
-import { join } from 'path';
 
 @Module({
   imports: [
     MailerModule.forRootAsync({
       useFactory: () => ({
         transport: {
-          service: 'XXXXXXXXXXXXXXXXXXXXx',
-          host: "XXXXXXXXXXXXXXXXXXXXx",
-          port: 999,
+          service: 'gmail',
+          host: "smtp.gmail.com",
+          port: 587,
           secure: false,
           auth: {
-            user: "XXXXXXXXXXXXXXXXXXXXx",
-            pass: "XXXXXXXXXXXXXXXXXXXXx"
+            user: process.env.USER_EMAIL,
+            pass: process.env.USER_PASS
           },
           tls: {
             rejectUnauthorized: false
           }
         },
         defaults: {
-          from: `No Reply`,
-        },
-        template: {
-          dir: join(__dirname, './templates'),
-          adapter: new HandlebarsAdapter(),
-          options: {
-            strict: true,
-          },
-        },
+          from: `TSWork - No Reply`,
+        }
       }),
 
     }),
