@@ -6,7 +6,7 @@ import { AuthResponse } from '@/api/models/response/AuthResponse';
 import { API_URl } from '@/api/index';
 import { setupStore } from '@/store/store';
 import authSlice,{loginAuth, updateAuth, logoutAuth} from '@/store/reducers/authSlice';
-import { IUser } from '../../api/models/IUser';
+import { IUser } from '@/api/models/IUser';
 const store = setupStore();
 
 describe('Auth Service', () => {

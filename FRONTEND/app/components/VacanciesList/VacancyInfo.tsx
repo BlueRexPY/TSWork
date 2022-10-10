@@ -37,12 +37,14 @@ const VacancyInfo: React.FC<Props> = ({ id }: Props) => {
         dispatch(setActive(false));
       });
       VacaniesService.responseUser(user.email, id).then(()=>setLoadingButton(false))
+      if(vacancy?.applyLink !== ""){window.open(vacancy?.applyLink);}
     } else {
       router.push("/auth/login");
     }
   };
 
   const onLoad = (data: IVacancy) => {
+    setDisabledButton(false)
     setVacancy(data);
     setLoading(false);
     const vacancyDate = new Date(data.createdAt);
@@ -112,7 +114,7 @@ const VacancyInfo: React.FC<Props> = ({ id }: Props) => {
           <div className="headerInfo">
             <h2>{vacancy?.postionName}</h2>
             <p>
-              {vacancy?.workLocation} - {vacancy?.companyName}
+            {vacancy?.companyName} - {vacancy?.workLocation}
             </p>
             <p>
               {vacancy?.maxSalary === vacancy?.minSalary
@@ -168,7 +170,7 @@ const VacancyInfo: React.FC<Props> = ({ id }: Props) => {
           loading={loadingButton}
           onClick={() => handleApply()}
         >
-          Apply
+          {vacancy?.applyLink===""?"One click Apply":"Apply"}
         </Button>
       </div>
     </div>
