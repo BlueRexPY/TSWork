@@ -1,12 +1,14 @@
 import { NestFactory } from '@nestjs/core';
 import { env } from 'process';
 import { AppModule } from './app.modules';
+import * as cookieParser from "cookie-parser";
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  app.use(cookieParser())
   const cors = require("cors");
   const corsOptions = {
-    origin: "https://ts-work.vercel.app",// http://localhost:5000 https://ts-work.vercel.app
+    origin: "http://localhost:3000",// http://localhost:5000 https://ts-work.vercel.app
     credentials: true,
     optionSuccessStatus: 200,
   }

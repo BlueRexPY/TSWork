@@ -8,14 +8,15 @@ import { Vacancy, VacancyDocument } from './schemas/vacancy.schema';
 
 @Injectable()
 export class VacancyService {
-    constructor(@InjectModel(Vacancy.name) private vacancyModel: Model<VacancyDocument>,
+    constructor(@InjectModel(Vacancy.name) 
+        private vacancyModel: Model<VacancyDocument>,
         private fileService: FileService
     ) { }
 
     async create(dto: CreateVacancyDto, logo): Promise<Vacancy> {
         const logoPath = this.fileService.createFile(FileType.IMAGE, logo)
         const date = new Date();
-        const vacancy = await this.vacancyModel.create({ ...dto, logo: logoPath, responses: [], createdAt: date, view: 0})
+        const vacancy = await this.vacancyModel.create({ ...dto, logo: logoPath, responses: [], createdAt: date, view: 0 })
         return vacancy
     }
 

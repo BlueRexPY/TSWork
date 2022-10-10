@@ -1,10 +1,11 @@
 import { UpdateUserDto } from './dto/update-user.dto';
 import { AddRoleUserDto } from './dto/addRole-user.dto';
 import { LoginUserDto } from './dto/login-user.dto';
-import { Bind, Body, Controller, Delete, Get, Param, Post, Query, Redirect, Req, Res, UploadedFiles, UseInterceptors } from "@nestjs/common";
+import { Bind, Body, Controller, Delete, Get, Param, Post, Query, Redirect, Req, Res, UploadedFiles, UseGuards, UseInterceptors } from "@nestjs/common";
 import { UserService } from './user.service';
 import { CreateUserDto } from "./dto/create-user.dto";
 import { FileFieldsInterceptor } from "@nestjs/platform-express";
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller('/users')
 
@@ -22,7 +23,6 @@ export class UserController {
 
     @Post("update")
     update(@Body() dto: UpdateUserDto) {
-        console.log(dto)
         return this.userService.update(dto)
     }
 
@@ -31,6 +31,7 @@ export class UserController {
     @UseInterceptors(FileFieldsInterceptor([
         { name: 'cv', maxCount: 1 }
     ]))
+
     updateCV(@UploadedFiles() files, @Body() dto: UpdateUserDto) {
         return this.userService.updateCV(dto, files.cv[0])
     }
@@ -50,16 +51,7 @@ export class UserController {
         return this.userService.getOneById(userName)
     }
 
-    @Post("/login")
-    login(@Body() dto: LoginUserDto) {
-        return this.userService.login(dto)
-    }
-
-    @Post("/logout")
-    logout(@Body() dto: { refresh: string }) {
-        return this.userService.logout(dto.refresh)
-    }
-
+    //@UseGuards(AuthGuard('jwt'))
     @Post("/addRole/")
     addRole(@Body() dto: AddRoleUserDto) {
         return this.userService.addRole(dto)
@@ -71,6 +63,7 @@ export class UserController {
         return this.userService.active(email, activetionLink)
     }
 
+    //@UseGuards(AuthGuard('jwt'))
     @Post("/response/")
     response(@Body() data: { email: string, id: string }) {
         return this.userService.response(data.email, data.id)

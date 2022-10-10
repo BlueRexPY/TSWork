@@ -1,48 +1,38 @@
-import { LoginUserDto } from './../user/dto/login-user.dto';
-import { tokensDbType } from './types/tokens-db';
-
-import { Auth, AuthDocument } from './schemas/auth.schema';
-
 import { CreateUserDto } from './../user/dto/create-user.dto';
-import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
+import { UserService } from './../user/user.service';
+import { LoginUserDto } from './../user/dto/login-user.dto';
+import { Auth, AuthDocument } from './schemas/auth.schema';
+import { BadRequestException, Injectable } from "@nestjs/common";
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { tokensType } from './types/tokens-user';
+import { JwtService } from './jwt.service';
+import { FinalUser } from 'src/user/dto/final-user';
 
-const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
 
 @Injectable()
 export class AuthService {
-    constructor(@InjectModel(Auth.name) private authModel: Model<AuthDocument>,
+    constructor(@InjectModel(Auth.name) private authModel: Model<AuthDocument>, private jwtService: JwtService, private userService: UserService
     ) { }
 
+    async refresh(refreshToken: string): Promise<tokensType> {
+        console.log("Refreshing")
+        if (!refreshToken) throw new BadRequestException({ message: "Invalid refresh token: no token" });
 
-    generateTokens(payload: LoginUserDto): tokensType {
-        const accessToken: string = jwt.sign(payload, process.env.JWT_ACCESS_SECRET, { expiresIn: '15s' })
-        const refreshToken: string = jwt.sign(payload, process.env.JWT_REFRESH_SECRET, { expiresIn: '30d' })
-        const tokens = {
-            accessToken: accessToken,
-            refreshToken: refreshToken,
-        }
-        return tokens
-    }
+        const session = await this.authModel.findOne({ refreshToken })
+        if (!session) throw new BadRequestException({ message: "Invalid refresh token: no session" });
 
-    validateAccessToken(token: string): Promise<string> {
-        try {
-            const userData = jwt.verify(token, process.env.JWT_ACCESS_SECRET);
-            return userData;
-        } catch (e) {
-            return null;
-        }
-    }
+        const validTokenData = await this.jwtService.verifyJwt(refreshToken);
+        if (!validTokenData) throw new BadRequestException({ message: "Invalid refresh token: invalid token" });
 
-    validateRefreshToken(token: string): Promise<string> {
-        try {
-            const userData = jwt.verify(token, process.env.JWT_REFRESH_SECRET);
-            return userData;
-        } catch (e) {
-            return null;
-        }
+        const user = await this.userService.getOneByEmail(validTokenData.email)
+
+        const newPairOfTokens = await this.jwtService.generateJwtPair({ email: user.email, password: user.password });
+
+        await this.saveToken(user.email, refreshToken)
+
+        return newPairOfTokens
     }
 
     async saveToken(email: string, refreshToken: string): Promise<object> {
@@ -51,20 +41,41 @@ export class AuthService {
         if (tokenData) {
             const token = await this.authModel.findOneAndUpdate({ user: email }, { refreshToken: refreshToken });
             return token;
-
         }
         const token = await this.authModel.create({ user: email, refreshToken })
 
         return token;
     }
 
-    removeToken(refreshToken: string) {
-        const tokenData = this.authModel.deleteOne({ refreshToken: refreshToken })
-        return tokenData;
-    }
-
     findToken(refreshToken: string) {
         const tokenData = this.authModel.findOne({ refreshToken: refreshToken })
         return tokenData;
+    }
+
+    async logout(refresh: string): Promise<boolean> {
+        const tokenData = this.authModel.deleteOne({ refreshToken: refresh })
+        if (tokenData) {
+            return true
+        }
+        return false
+    }
+
+    async login(dto: LoginUserDto): Promise<FinalUser> {
+        const user = await this.userService.getOneByEmail(dto.email)
+        const validPassword = await bcrypt.compare(dto.password, user.password);
+        if (validPassword) {
+            const tokens = await this.jwtService.generateJwtPair(dto);
+            await this.saveToken(dto.email, tokens.refreshToken);
+            return { ...tokens, user: user }
+        }
+        throw new Error("Invalid password")
+    }
+
+    async registration(dto: CreateUserDto, cv): Promise<FinalUser> {
+        const user = await this.userService.create(dto, cv)
+        const tokens = await this.jwtService.generateJwtPair(dto);
+        await this.saveToken(dto.email, tokens.refreshToken);
+
+        return { user: user, accessToken: tokens.accessToken, refreshToken: tokens.refreshToken }
     }
 }

@@ -1,3 +1,4 @@
+
 import { AuthModule } from './auth/auth.module';
 import { EmailModule } from './email/email.module';
 import { Module } from "@nestjs/common";
@@ -9,17 +10,20 @@ import * as path from 'path'
 import { VacancyModule } from "./vacancy/vacancy.module";
 import { ConfigModule } from '@nestjs/config';
 
+
 @Module({
     imports: [
         ConfigModule.forRoot(),
         MongooseModule.forRoot(process.env.DB_URL),
-        UserModule,
         VacancyModule,
         FileModule,
         EmailModule,
         AuthModule,
+        UserModule,
         ServeStaticModule.forRoot({ rootPath: path.resolve(__dirname, 'static'), }),
-    ]
+    ],
+    controllers: [],
+	providers: [],
 })
 
 export class AppModule { }

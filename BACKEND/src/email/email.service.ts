@@ -6,17 +6,17 @@ import { MailerService } from '@nestjs-modules/mailer';
 @Injectable()
 export class EmailService {
 
-    constructor(private mailerService: MailerService) { }
+  constructor(private mailerService: MailerService) { }
 
-    async sendActiveMail(email: string, activationLink: string) {
-        const url = `${process.env.BACKEND_URL}/users/active/${email}/${activationLink}`;
+  async sendActiveMail(email: string, activationLink: string) {
+    const url = `${process.env.BACKEND_URL}/users/active/${email}/${activationLink}`;
 
-        await this.mailerService.sendMail({
-            to: email,
-            from: process.env.SMTP_USER,
-            subject: 'Confirm your Email',
-            text: "",
-            html: `
+    await this.mailerService.sendMail({
+      to: email,
+      from: process.env.SMTP_USER,
+      subject: 'Confirm your Email',
+      text: "",
+      html: `
             <!DOCTYPE html>
             <html>
                <head>
@@ -60,7 +60,7 @@ export class EmailService {
             </body>
             </html>
             `
-        });
-    }
+    });
+  }
 }
 

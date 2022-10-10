@@ -16,7 +16,7 @@ export class User {
 
   @Prop()
   surname: string;
-  
+
   @Prop()
   number: string;
 
