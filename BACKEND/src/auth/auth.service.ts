@@ -8,13 +8,17 @@ import { Model } from 'mongoose';
 import { tokensType } from './types/tokens-user';
 import { JwtService } from './jwt.service';
 import { FinalUser } from 'src/user/dto/final-user';
+import { User, UserDocument } from 'src/user/schemas/user.schema';
+import { FileService, FileType } from 'src/file/file.service';
+import { EmailService } from 'src/email/email.service';
+import * as uuid from 'uuid'
 
 const bcrypt = require('bcryptjs');
 
 @Injectable()
 export class AuthService {
-    constructor(@InjectModel(Auth.name) private authModel: Model<AuthDocument>, private jwtService: JwtService, private userService: UserService
-    ) { }
+    constructor(@InjectModel(User.name)  private userModel: Model<UserDocument>,@InjectModel(Auth.name) private authModel: Model<AuthDocument>, private jwtService: JwtService,private fileService: FileService,
+    private emailService: EmailService) { }
 
     async refresh(refreshToken: string): Promise<tokensType> {
         console.log("Refreshing")
@@ -26,7 +30,7 @@ export class AuthService {
         const validTokenData = await this.jwtService.verifyJwt(refreshToken);
         if (!validTokenData) throw new BadRequestException({ message: "Invalid refresh token: invalid token" });
 
-        const user = await this.userService.getOneByEmail(validTokenData.email)
+        const user = await this.userModel.findOne({ email: validTokenData.email })
 
         const newPairOfTokens = await this.jwtService.generateJwtPair({ email: user.email, password: user.password });
 
@@ -47,8 +51,8 @@ export class AuthService {
         return token;
     }
 
-    findToken(refreshToken: string) {
-        const tokenData = this.authModel.findOne({ refreshToken: refreshToken })
+    async findToken(refreshToken: string) {
+        const tokenData = await this.authModel.findOne({ refreshToken: refreshToken })
         return tokenData;
     }
 
@@ -61,7 +65,7 @@ export class AuthService {
     }
 
     async login(dto: LoginUserDto): Promise<FinalUser> {
-        const user = await this.userService.getOneByEmail(dto.email)
+        const user = await this.userModel.findOne({ email: dto.email })
         const validPassword = await bcrypt.compare(dto.password, user.password);
         if (validPassword) {
             const tokens = await this.jwtService.generateJwtPair(dto);
@@ -72,7 +76,18 @@ export class AuthService {
     }
 
     async registration(dto: CreateUserDto, cv): Promise<FinalUser> {
-        const user = await this.userService.create(dto, cv)
+        const checkUSer = await this.userModel.findOne({ email: dto.email })
+        if (checkUSer) {
+            throw new Error("a user with this email has already been created")
+        }
+        const cvPath = this.fileService.createFile(FileType.PDF, cv)
+        const hashPassword = bcrypt.hashSync(dto.password, 5);
+        const activetionLink = uuid.v4()
+
+        await this.emailService.sendActiveMail(dto.email, activetionLink);
+
+        const user = await this.userModel.create({ ...dto, password: hashPassword, cv: cvPath, roles: ["USER"], active: false, activetionLink: activetionLink })
+
         const tokens = await this.jwtService.generateJwtPair(dto);
         await this.saveToken(dto.email, tokens.refreshToken);
 

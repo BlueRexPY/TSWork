@@ -13,10 +13,9 @@ const bcrypt = require('bcryptjs');
 
 @Injectable()
 export class UserService {
-    constructor(@InjectModel(User.name) 
-        private emailService: EmailService,
-        private fileService: FileService,
-        private userModel: Model<UserDocument>,
+    constructor(@InjectModel(User.name)  private userModel: Model<UserDocument>,
+    private fileService: FileService,
+    private emailService: EmailService
     ) { }
 
     async create(dto: CreateUserDto, cv): Promise<UserDocument> {

@@ -20,7 +20,6 @@ export class VacancyService {
         return vacancy
     }
 
-
     async getOneById(id: string): Promise<Vacancy> {
         const vacancy = await this.vacancyModel.findById(id)
         if (vacancy) {

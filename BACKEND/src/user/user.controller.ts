@@ -6,6 +6,7 @@ import { UserService } from './user.service';
 import { CreateUserDto } from "./dto/create-user.dto";
 import { FileFieldsInterceptor } from "@nestjs/platform-express";
 import { AuthGuard } from '@nestjs/passport';
+import { JwtAuthGuard } from 'src/auth/guards/jwt.auth.guard';
 
 @Controller('/users')
 
@@ -21,6 +22,7 @@ export class UserController {
         return this.userService.create(dto, files.cv[0])
     }
 
+    @UseGuards(JwtAuthGuard)
     @Post("update")
     update(@Body() dto: UpdateUserDto) {
         return this.userService.update(dto)
@@ -51,7 +53,7 @@ export class UserController {
         return this.userService.getOneById(userName)
     }
 
-    //@UseGuards(AuthGuard('jwt'))
+    @UseGuards(JwtAuthGuard)
     @Post("/addRole/")
     addRole(@Body() dto: AddRoleUserDto) {
         return this.userService.addRole(dto)
@@ -63,7 +65,7 @@ export class UserController {
         return this.userService.active(email, activetionLink)
     }
 
-    //@UseGuards(AuthGuard('jwt'))
+    @UseGuards(JwtAuthGuard)
     @Post("/response/")
     response(@Body() data: { email: string, id: string }) {
         return this.userService.response(data.email, data.id)
