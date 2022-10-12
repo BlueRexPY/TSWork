@@ -16,7 +16,7 @@ import { isGithub } from "@/utils/valid";
 import AuthService from "@/api/services/AuthService";
 import {authSlice} from "@/store/reducers/authSlice";
 import { isNumber } from '@/utils/valid';
-import response from '../crm/res/[id]';
+
 
 const MyProfile: NextPage = () => {
   const { auth, user } = useAppSelector((state) => state.authReducer);
@@ -60,7 +60,6 @@ const MyProfile: NextPage = () => {
       github: isGithub(github.value)?github.value:user.github,
       number: isNumber(number.value)? number.value:user.number
     }
-
     if(cv[0].originFileObj===""){
       AuthService.update(
         newData.name,
@@ -83,7 +82,7 @@ const MyProfile: NextPage = () => {
   }
 
   return (
-    <Layout col={2} title="My Profile">
+    <Layout col={2} title="My Profile" myProfile={user.roles}>
        <div className="center margin50">
         <Form
           className="container change"
@@ -111,7 +110,7 @@ const MyProfile: NextPage = () => {
           <FileUploader maxCount={1} setFile={setCv} />
           <br />
           <Button type="primary" className="containerItem" onClick={change} disabled={loadingButton} loading={loadingButton}>
-            Change
+            Update
           </Button>
         </Form>
       </div>

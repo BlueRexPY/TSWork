@@ -5,7 +5,7 @@ import { IUser } from '../models/IUser';
 
 export default class AuthService {
     static async login(email: string, password: string): Promise<AxiosResponse<AuthResponse>> {
-        return $api.post<AuthResponse>('/users/login', { email: email, password: password })
+        return $api.post<AuthResponse>('/auth/login', { email: email, password: password })
     }
 
     static async registration(
@@ -25,7 +25,7 @@ export default class AuthService {
         formData.append("github", github);
         formData.append("number", number);
         formData.append("cv", cv.originFileObj);
-        return $api.post<AuthResponse>('/users/', formData)
+        return $api.post<AuthResponse>('/auth/', formData)
     }
 
     static async updateCV(
@@ -56,11 +56,19 @@ export default class AuthService {
     }
 
     static async logout(): Promise<void> {
-        return $api.post('/users/logout')
+        return $api.post('/auth/logout')
     }
 
     static async getByEmail(email:string): Promise<AxiosResponse<IUser>> {
         return $api.get(`/users/${email}`)
     }
 
+    static async addRole(email:string,role:string): Promise<AxiosResponse<IUser>> {
+        return $api.post('/users/addRole', { email: email, role: role })
+    }
+    static async refresh(): Promise<AxiosResponse<IUser>> {
+        return $api.post(`/auth/refresh`, { withCredentials: true }, { Authorization: `Bearer ${localStorage.getItem('token')}`})
+    }
+
+    
 }

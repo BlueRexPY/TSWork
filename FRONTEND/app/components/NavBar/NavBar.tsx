@@ -1,21 +1,33 @@
 import React from "react";
 import logoImg from "@/assets/img/favicon.svg";
 import Image from "next/image";
-import { Button, Select } from "antd";
+import { Button, Select, message } from 'antd';
 import { LVL_LIST, TECH_LIST } from "@/utils/consts";
 import Link from "next/link";
 import { useAppDispatch, useAppSelector } from "@/hooks/redux";
 import { navSlice } from "@/store/reducers/navSlice";
+import AuthService from "@/api/services/AuthService";
+import { authSlice } from "@/store/reducers/authSlice";
+import { useRouter } from "next/router";
 
 type Props = {
   full: boolean;
+  myProfile: string[]
 };
 
-const NavBar: React.FC<Props> = ({ full = false }: Props) => {
-  const { auth } = useAppSelector((state) => state.authReducer);
+const NavBar: React.FC<Props> = ({ full = false,myProfile=[""]}: Props) => {
+  const { auth, user } = useAppSelector((state) => state.authReducer);
   const { skill, lvl } = useAppSelector((state) => state.navReducer);
   const dispatch = useAppDispatch();
   const { setSearch } = navSlice.actions;
+  const { updateAuth } = authSlice.actions;
+  const router = useRouter();
+  
+  const handleRole = (role:string,path:string) => {
+    if(!user.roles.includes(role)){
+      AuthService.addRole(user.email, role).then((res)=>{updateAuth(res.data);message.success("You became an employer");router.push(path);}).catch(()=>message.error("error"))
+    }
+  }
 
   const changeSearchSkill = (value: string) => {
     dispatch(setSearch({ skill: value, lvl, active: false }));
@@ -28,11 +40,30 @@ const NavBar: React.FC<Props> = ({ full = false }: Props) => {
   const getButton = () => {
     if (auth) {
       return (
+        <>
+        {myProfile[0]===""?<></>:myProfile.includes("EMPLOYER")?(
+          <>
+            <Link href="/crm/vacancies">
+              <Button type="text" style={{ padding: "5px" }}>
+               <a target="_blank">CRM</a>
+              </Button>
+            </Link>
+            <p>{" | "}</p>
+          </> 
+        ):(
+          <>
+            <Button type="text" style={{ padding: "5px"}} onClick={()=>handleRole("EMPLOYER","/crm/vacancies")} >
+              <a target="_blank">Post a job</a>
+            </Button>
+            <p>{" | "}</p>
+          </> 
+        )}
         <Link href="/info/myprofile">
           <Button type="text" style={{ padding: "5px" }}>
             <a target="_blank">Profile</a>
           </Button>
         </Link>
+        </>
       );
     }
     return (
