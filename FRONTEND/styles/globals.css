@@ -165,7 +165,8 @@ body {
   justify-content: flex-start;
   align-items: center;
   align-content: center;
-  padding: 100px;
+  padding-top: 100px;
+  padding-bottom: 100px;
 }
 
 .centerLine {
