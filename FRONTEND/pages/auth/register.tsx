@@ -18,8 +18,9 @@ const Register:NextPage =()=> {
   const number = UseInput("");
   const password = UseInput("");
   const passwordRepeat = UseInput("");
-  const [cv, setCv] = useState([{ originFileObj: "" }]);
   const github = UseInput("");
+  const [cv, setCv] = useState([{ originFileObj: "" }]);
+  
 
   const [loading, setLoading] = useState(false);
 
@@ -115,7 +116,6 @@ const Register:NextPage =()=> {
           <Button type="primary" className="containerItem" onClick={register}>
             Register
           </Button>
-
           <Link href="/auth/login">
             <Button
               type="link"

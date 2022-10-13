@@ -82,6 +82,10 @@ body {
   align-items: flex-end;
   align-content: flex-end;
 }
+.navBarItem2 p{
+  margin-bottom: 0px;
+  padding: 3px 5px;
+}
 
 .notFound {
   width: 100vw;
@@ -121,6 +125,13 @@ body {
   width: 80%;
 }
 
+.containerItemBigSide{
+  width: 45%;
+}
+.containerItem p{
+  padding:3px 10px;
+}
+
 .fileuploader {
   width: 100%;
   font-size: 12px;
@@ -147,6 +158,16 @@ body {
   height: 80vh;
 }
 
+.centerBigForm{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: center;
+  padding: 100px;
+}
+
 .centerLine {
   display: flex;
   flex-direction: column;
@@ -155,6 +176,10 @@ body {
   align-items: center;
   align-content: center;
   width: 100%;
+}
+
+.jobDescriptionForm{
+  min-height: 120px;
 }
 
 .link:hover {
@@ -463,6 +488,8 @@ body::-webkit-scrollbar-thumb:hover {
 }
 
 .confirm p {
+  margin:0;
+  padding: 3px;
   font-size: 16px;
 }
 
@@ -568,6 +595,14 @@ body::-webkit-scrollbar-thumb:hover {
 
 @media (max-width: 700px) {
 
+  .confirm {
+    padding: 15px;
+  }
+  .confirm p{
+    padding: 3px;
+    font-size: 16px;
+    margin:0;
+  }
   .change {
     transform: scale(1)
   }

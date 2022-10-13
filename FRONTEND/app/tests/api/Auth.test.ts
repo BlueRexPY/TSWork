@@ -11,7 +11,7 @@ const store = setupStore();
 
 describe('Auth Service', () => {
         test('login', async () => {
-                const response = await axios.post<AuthResponse>(API_URl + '/users/login', { email: "ruslanryscovbluerex@gmail.com", password: "password" })
+                const response = await axios.post<AuthResponse>(API_URl + '/auth/login', { email: "ruslanryscovbluerex@gmail.com", password: "password" })
                 expect(response.data.user).toStrictEqual({
                         "_id": "631686e91779a88890fa0ffa",
                         "cv": "https://storage.cloud.google.com/tswork-files/13d82e5b-0991-49e0-94f6-5da0d4872331.pdf",
@@ -33,8 +33,8 @@ describe('Auth Service', () => {
                 expect(authSlice(store.getState().authReducer, loginAuth(response.data)).auth).toBe(true)
         })
         test('logout', async () => {
-                const responseLogin = await axios.post<AuthResponse>(API_URl + '/users/login', { email: "ruslanryscovbluerex@gmail.com", password: "password" })
-                const responseLogout = await axios.post<boolean>(API_URl + '/users/logout', { refresh: responseLogin.data.refreshToken })
+                const responseLogin = await axios.post<AuthResponse>(API_URl + '/auth/login', { email: "ruslanryscovbluerex@gmail.com", password: "password" })
+                const responseLogout = await axios.post<boolean>(API_URl + '/auth/logout', { refresh: responseLogin.data.refreshToken })
                 expect(responseLogout.data).toBe(true);
                 expect(authSlice(store.getState().authReducer, logoutAuth()).auth).toBe(false)
         })

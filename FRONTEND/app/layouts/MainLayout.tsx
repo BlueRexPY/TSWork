@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import Head from "next/head";
 import { ReactChild, ReactNode, useEffect } from 'react';
 import NavBar from "@/components/NavBar/NavBar";
 import { useAppDispatch, useAppSelector } from "@/hooks/redux";
-import { AuthResponse } from "@/api/models/response/AuthResponse";
 import AuthService from "@/api/services/AuthService";
 import { authSlice } from "@/store/reducers/authSlice";
+import Cookies from "js-cookie";
 
 type Props = {
   children?: ReactChild | ReactNode;
@@ -32,12 +32,11 @@ const Layout: React.FC<Props> = (props: Props) => {
   } = props;
 
   useEffect(() => {
-    if(localStorage.getItem('token')&&!auth){
-      AuthService.refresh().then((res)=>{if(res){dispatch(updateAuth(res.data))}}).catch(e => console.log("error "+e))
+    if(Cookies.get("refreshToken")&&!auth){
+      AuthService.refresh().then((res)=>{if(res){dispatch(updateAuth(res.data.user))}}).catch(e => console.log("error "+e))
     }
   })
   
-
   return (
     <div className="layout">
       <Head>

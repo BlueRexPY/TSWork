@@ -66,9 +66,7 @@ export default class AuthService {
     static async addRole(email:string,role:string): Promise<AxiosResponse<IUser>> {
         return $api.post('/users/addRole', { email: email, role: role })
     }
-    static async refresh(): Promise<AxiosResponse<IUser>> {
-        return $api.post(`/auth/refresh`, { withCredentials: true }, { Authorization: `Bearer ${localStorage.getItem('token')}`})
+    static async refresh(): Promise<AxiosResponse<AuthResponse>> {
+        return $api.post(`/auth/refresh`)
     }
-
-    
 }

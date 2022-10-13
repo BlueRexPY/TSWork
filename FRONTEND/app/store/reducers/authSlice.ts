@@ -2,6 +2,7 @@ import { IAuthLogin } from "@/api/models/IAuthLogin";
 import { IUser } from "@/api/models/IUser";
 import { AuthResponse } from "@/api/models/response/AuthResponse";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import Cookies from "js-cookie";
 
 interface AuthState {
     user: IUser;
@@ -31,7 +32,7 @@ export const authSlice = createSlice({
     initialState,
     reducers: {
         loginAuth(state, action: PayloadAction<AuthResponse>) {
-            localStorage.setItem('token', action.payload.refreshToken);
+            Cookies.set("refreshToken", action.payload.refreshToken);
             state.user = action.payload.user
             state.auth = true
         },
@@ -42,7 +43,7 @@ export const authSlice = createSlice({
         },
 
         logoutAuth(state) {
-            localStorage.removeItem('token');
+            Cookies.remove("refreshToken")
             state.auth = false
         }
     }
