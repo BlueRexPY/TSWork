@@ -57,12 +57,14 @@ const Layout: React.FC<Props> = (props: Props) => {
   });
 
   useEffect(() => {
-    checkAuth.then((res) => {
-      serLoading(false);
-      if (needAuth && auth === false) {
-        router.push("/auth/login");
-      }
-    });
+    checkAuth
+      .then((res) => {
+        serLoading(false);
+        if (needAuth && auth === false) {
+          router.push("/auth/login");
+        }
+      })
+      .catch((e) => console.log(e));
   });
 
   const getContent = () => {

@@ -153,7 +153,7 @@ const VacancyInfo: React.FC<Props> = ({ id }: Props) => {
           </div>
           <div>
             <h3>
-              <b>company address</b> {vacancy?.companyAddress}
+              <b>company address:</b> {vacancy?.companyAddress}
             </h3>
           </div>
           <div>

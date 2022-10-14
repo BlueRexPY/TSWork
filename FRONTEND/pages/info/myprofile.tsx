@@ -1,20 +1,20 @@
 import React, { useLayoutEffect, useState } from "react";
-import Layout from "@/layouts/MainLayout";
-import { useAppDispatch, useAppSelector } from "@/hooks/redux";
-import { useRouter } from "next/router";
 import { NextPage } from "next";
-import SkeletonVacanciesList from "@/components/VacanciesList/SkeletonVacanciesList";
-import VacanciesList from "@/components/VacanciesList/VacanciesList";
+import { useRouter } from "next/router";
+import { useAppDispatch, useAppSelector } from "@/hooks/redux";
+import AuthService from "@/api/services/AuthService";
 import { IVacancy } from "@/api/models/IVacancy";
 import { VacanciesService } from "@/api/services/VacanciesService";
 import { Button, Form, Input, message } from "antd";
-import { UseInput } from "@/hooks/useInput";
 import { MaskedInput } from "antd-mask-input";
-import fileUploader from "@/components/utils/fileUploader";
 import { isGithub } from "@/utils/valid";
-import AuthService from "@/api/services/AuthService";
-import { authSlice } from "@/store/reducers/authSlice";
 import { isNumber } from "@/utils/valid";
+import { authSlice } from "@/store/reducers/authSlice";
+import { UseInput } from "@/hooks/useInput";
+import Layout from "@/layouts/MainLayout";
+import SkeletonVacanciesList from "@/components/VacanciesList/SkeletonVacanciesList";
+import VacanciesList from "@/components/VacanciesList/VacanciesList";
+import FileUploader from "@/components/utils/FileUploader";
 
 const MyProfile: NextPage = () => {
   const { auth, user } = useAppSelector((state) => state.authReducer);
@@ -123,7 +123,7 @@ const MyProfile: NextPage = () => {
               },
             }}
           />
-          <fileUploader maxCount={1} setFile={setCv} />
+          <FileUploader maxCount={1} setFile={setCv} />
           <br />
           <Button
             type="primary"
