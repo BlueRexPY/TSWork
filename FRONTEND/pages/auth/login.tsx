@@ -2,13 +2,14 @@ import React, { useState } from "react";
 import Layout from "@/layouts/MainLayout";
 import { UseInput } from "@/hooks/useInput";
 import { Button, Form, Input, message } from "antd";
-import { isEmailValid, isPasswordVaild } from "@/utils/valid";
+import { isEmailValid, isPasswordValid } from "@/utils/valid";
 import { useAppDispatch } from "../../app/hooks/redux";
 import Link from "next/link";
 import { authSlice } from "@/store/reducers/authSlice";
 import AuthService from "@/api/services/AuthService";
 import { useRouter } from "next/router";
 import { NextPage } from "next";
+import Logo from "@/components/utils/Logo";
 
 const Login: NextPage = () => {
   const router = useRouter();
@@ -21,7 +22,7 @@ const Login: NextPage = () => {
 
   const login = () => {
     setLoading(true);
-    if (isPasswordVaild(password.value) && isEmailValid(email.value)) {
+    if (isPasswordValid(password.value) && isEmailValid(email.value)) {
       AuthService.login(email.value, password.value)
         .then((res) => {
           if (res.data.user.active) {
@@ -36,7 +37,7 @@ const Login: NextPage = () => {
         })
         .catch((e) => {
           message.error("incorrect password");
-        })
+        });
     } else {
       message.error("enter correct email or password");
     }
@@ -55,6 +56,7 @@ const Login: NextPage = () => {
           autoComplete="off"
           role="form"
         >
+          <Logo />
           <Input placeholder="email" className="containerItem" {...email} />
           <Input.Password
             placeholder="password"

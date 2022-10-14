@@ -3,7 +3,7 @@
  */
 import { render, screen } from "@testing-library/react";
 import NotFound from "@/pages/404";
-import { renderWithState } from '@/tests/helpers/renderWithState';
+import { renderWithState } from "@/tests/helpers/renderWithState";
 
 it("NotFound - page", () => {
   render(renderWithState(<NotFound />));

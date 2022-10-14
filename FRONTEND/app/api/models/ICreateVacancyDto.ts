@@ -1,12 +1,10 @@
-export interface IVacancy {
-    _id: string;
-    logo: string;
+export interface ICreateVacancyDto {
     author: string;
     companyName: string;
     companyAddress: string;
     companySize: string;
     companyType: string;
-    experienceLevel: string;
+    experienceLevel: string
     positionName: string;
     employmentType: string;
     minSalary: number;
@@ -16,7 +14,4 @@ export interface IVacancy {
     jobDescription: string;
     applyLink: string;
     workLocation: string;
-    view: number;
-    responses: string[];
-    createdAt: number;
 }

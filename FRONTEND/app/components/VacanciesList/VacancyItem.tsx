@@ -29,7 +29,7 @@ const VacancyItem: React.FC<Props> = ({ vacancy }: Props) => {
             draggable={false}
           />
           <div className="col vacancyItemSideLeft">
-            <h2 className="VacancyTitle">{vacancy.postionName}</h2>
+            <h2 className="VacancyTitle">{vacancy.positionName}</h2>
             <h3 className="VacancyUtils">
               {vacancy.companyName} - {vacancy.experienceLevel}
             </h3>

@@ -1,5 +1,5 @@
 import { IVacancy } from "@/api/models/IVacancy";
-import { VacaniesService } from "@/api/services/VacanciesService";
+import { VacanciesService } from "@/api/services/VacanciesService";
 
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
@@ -23,7 +23,7 @@ export const vacanciesSlice = createSlice({
             state.vacancies = action.payload
         },
         fetchVacancies(state) {
-            VacaniesService.getVacancies().then((res) => state.vacancies = res.data)
+            VacanciesService.getVacancies().then((res) => state.vacancies = res.data)
         }
     }
 })

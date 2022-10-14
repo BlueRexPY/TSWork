@@ -52,18 +52,18 @@ export default class AuthService {
         github: string,
         number: string
     ): Promise<AxiosResponse<IUser>> {
-        return $api.post<IUser>('/users/update', {name:name,surname:surname,email:email,github:github,number:number})
+        return $api.post<IUser>('/users/update', { name: name, surname: surname, email: email, github: github, number: number })
     }
 
     static async logout(): Promise<void> {
         return $api.post('/auth/logout')
     }
 
-    static async getByEmail(email:string): Promise<AxiosResponse<IUser>> {
+    static async getByEmail(email: string): Promise<AxiosResponse<IUser>> {
         return $api.get(`/users/${email}`)
     }
 
-    static async addRole(email:string,role:string): Promise<AxiosResponse<IUser>> {
+    static async addRole(email: string, role: string): Promise<AxiosResponse<IUser>> {
         return $api.post('/users/addRole', { email: email, role: role })
     }
     static async refresh(): Promise<AxiosResponse<AuthResponse>> {

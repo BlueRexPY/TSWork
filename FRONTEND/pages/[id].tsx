@@ -1,5 +1,5 @@
 import { IVacancy } from "@/api/models/IVacancy";
-import {VacaniesService} from "@/api/services/VacanciesService";
+import { VacanciesService } from "@/api/services/VacanciesService";
 import SkeletonVacanciesList from "@/components/VacanciesList/SkeletonVacanciesList";
 import VacanciesList from "@/components/VacanciesList/VacanciesList";
 import VacancyInfo from "@/components/VacanciesList/VacancyInfo";
@@ -24,7 +24,7 @@ type vacancy = {
   id: string;
 };
 
-const VacancySelected:NextPage<vacancy> = (SearchVacancy: vacancy) => {
+const VacancySelected: NextPage<vacancy> = (SearchVacancy: vacancy) => {
   const dispatch = useAppDispatch();
 
   const { skill, lvl } = useAppSelector((state) => state.navReducer);
@@ -35,7 +35,7 @@ const VacancySelected:NextPage<vacancy> = (SearchVacancy: vacancy) => {
 
   const [loading, setLoading] = useState(true);
   const [selected, setSelected] = useState(false);
-  const [filterVacancies, setFliterVacancies] = useState<IVacancy[]>([]);
+  const [filterVacancies, setFilterVacancies] = useState<IVacancy[]>([]);
 
   const filterList = (list: IVacancy[]) => {
     if (skill !== "") {
@@ -61,22 +61,25 @@ const VacancySelected:NextPage<vacancy> = (SearchVacancy: vacancy) => {
 
   useEffect(() => {
     if (vacancies.length === 0) {
-      VacaniesService.getVacancies().then((res) => {
+      VacanciesService.getVacancies().then((res) => {
         dispatch(setVacancies(res.data));
-        setFliterVacancies(filterList(res.data));
+        setFilterVacancies(filterList(res.data));
       });
     } else {
-      setFliterVacancies(filterList(vacancies));
+      setFilterVacancies(filterList(vacancies));
     }
   }, [lvl, skill]);
 
-
   return (
     <Layout col={2} full={true} title={skill === "" ? "Search" : skill}>
-      {loading ? <SkeletonVacanciesList /> : <VacanciesList vacancies={filterVacancies} />}
+      {loading ? (
+        <SkeletonVacanciesList />
+      ) : (
+        <VacanciesList vacancies={filterVacancies} />
+      )}
       {selected ? <VacancyInfo id={SearchVacancy.id} /> : <ToGetStart />}
     </Layout>
   );
 };
 
-export default VacancySelected
+export default VacancySelected;

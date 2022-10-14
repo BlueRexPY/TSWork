@@ -9,9 +9,11 @@ const Home: NextPage = () => {
   useEffect(() => {
     router.push("/search");
   }, []);
-  return <Layout col={1} full={true}>
-    <AnimatedLogo/>
-  </Layout>;
+  return (
+    <Layout col={1} full={true}>
+      <AnimatedLogo />
+    </Layout>
+  );
 };
 
 export default Home;

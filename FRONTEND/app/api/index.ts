@@ -1,17 +1,16 @@
 import axios from "axios";
 import Cookies from "js-cookie";
-import { AuthResponse } from './models/response/AuthResponse';
 import AuthService from "./services/AuthService";
 
 export const API_URl = "https://tswork-back.herokuapp.com"//https://tswork-back.herokuapp.com  http://localhost:5000
 const $api = axios.create({
-    withCredentials: true,
-    baseURL: API_URl
+	withCredentials: true,
+	baseURL: API_URl
 })
 
-$api.interceptors.request.use((reqConfig) =>{
+$api.interceptors.request.use((reqConfig) => {
 	const token = Cookies.get("refreshToken");
-	if(token) reqConfig.headers = {...reqConfig.headers, authorization:`Bearer ${token}`};
+	if (token) reqConfig.headers = { ...reqConfig.headers, authorization: `Bearer ${token}` };
 	return reqConfig;
 }, error => error)
 
@@ -20,15 +19,15 @@ $api.interceptors.response.use(
 	(error) => {
 		const reqConfig = Object.assign({}, error.config);
 		if (error?.response?.status === 401 && !reqConfig?.retried) {
-			return new Promise((resolve, reject) =>{
+			return new Promise((resolve, reject) => {
 				reqConfig.retried = true;
-				AuthService.refresh().then((result)=>{
+				AuthService.refresh().then((result) => {
 					Cookies.set("refreshToken", result?.data.refreshToken);
-				    resolve($api.request(reqConfig));
+					resolve($api.request(reqConfig));
 				});
 			});
 		}
 		return Promise.reject(error)
 	});
-    
+
 export default $api;

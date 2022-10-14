@@ -6,7 +6,7 @@ import { render, screen } from "@testing-library/react";
 import SkeltonItem from "@/components/VacanciesList/SkeltonItem";
 import SkeletonVacanciesList from "@/components/VacanciesList/SkeletonVacanciesList";
 import SkeletonVacancyInfo from "@/components/VacanciesList/SkeletonVacancyInfo";
-import { renderWithState } from '@/tests/helpers/renderWithState';
+import { renderWithState } from "@/tests/helpers/renderWithState";
 
 describe("Skelton Items", () => {
   it("SkeltonItem", () => {

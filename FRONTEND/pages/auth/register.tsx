@@ -7,10 +7,11 @@ import { registerValid } from "@/utils/valid";
 import { UseInput } from "@/hooks/useInput";
 import { useRouter } from "next/router";
 import { MaskedInput } from "antd-mask-input";
-import FileUploader from "@/components/utils/FileUploader";
-import { NextPage } from 'next';
+import fileUploader from "@/components/utils/fileUploader";
+import { NextPage } from "next";
+import Logo from "@/components/utils/Logo";
 
-const Register:NextPage =()=> {
+const Register: NextPage = () => {
   const router = useRouter();
   const name = UseInput("");
   const surname = UseInput("");
@@ -20,7 +21,6 @@ const Register:NextPage =()=> {
   const passwordRepeat = UseInput("");
   const github = UseInput("");
   const [cv, setCv] = useState([{ originFileObj: "" }]);
-  
 
   const [loading, setLoading] = useState(false);
 
@@ -68,7 +68,7 @@ const Register:NextPage =()=> {
 
   return (
     <Layout col={1} title="Register">
-      <div className="center">
+      <div className="centerBigForm">
         <Form
           className="container"
           name="login"
@@ -78,6 +78,7 @@ const Register:NextPage =()=> {
           autoComplete="off"
           role="form"
         >
+          <Logo />
           <Input placeholder="name 4-32" className="containerItem" {...name} />
           <Input
             placeholder="surname 4-32"
@@ -110,8 +111,12 @@ const Register:NextPage =()=> {
             minLength={8}
             {...passwordRepeat}
           />
-          <Input placeholder="github link" className="containerItem" {...github} />
-          <FileUploader maxCount={1} setFile={setCv} />
+          <Input
+            placeholder="github link"
+            className="containerItem"
+            {...github}
+          />
+          <fileUploader maxCount={1} setFile={setCv} />
           <br />
           <Button type="primary" className="containerItem" onClick={register}>
             Register
@@ -131,6 +136,6 @@ const Register:NextPage =()=> {
       </div>
     </Layout>
   );
-}
+};
 
 export default Register;

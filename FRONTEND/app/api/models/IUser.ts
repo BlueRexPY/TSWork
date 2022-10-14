@@ -10,7 +10,7 @@ export interface IUser {
     vacancies: string[];
     responses: string[];
     active: boolean;
-    activetionLink: string;
+    activationLink: string;
 }
 
 

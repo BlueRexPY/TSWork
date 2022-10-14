@@ -8,7 +8,7 @@ type Props = {
   acceptFile?: string;
 };
 
-const FileUploaderPhoto: React.FC<Props> = (props: Props) => {
+const fileUploaderPhoto: React.FC<Props> = (props: Props) => {
   const { maxCount = 1, acceptFile = "image/*" } = props;
   const handleChange: UploadProps["onChange"] = ({ fileList: newFile }) =>
     props.setFile(newFile);
@@ -18,7 +18,7 @@ const FileUploaderPhoto: React.FC<Props> = (props: Props) => {
       maxCount={maxCount}
       accept={acceptFile}
       onChange={handleChange}
-      className={`fileuploader`}
+      className={`fileUploaderPhoto`}
     >
       <div>
         <p>Click or drag logo</p>
@@ -27,4 +27,4 @@ const FileUploaderPhoto: React.FC<Props> = (props: Props) => {
   );
 };
 
-export default FileUploaderPhoto;
+export default fileUploaderPhoto;

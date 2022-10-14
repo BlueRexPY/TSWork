@@ -12,7 +12,7 @@ interface AuthState {
 const initialState: AuthState = {
     user: {
         cv: "",
-        number:"",
+        number: "",
         email: "",
         name: "",
         surname: "",
@@ -22,7 +22,7 @@ const initialState: AuthState = {
         vacancies: [],
         responses: [],
         active: false,
-        activetionLink: ""
+        activationLink: ""
     },
     auth: false,
 }

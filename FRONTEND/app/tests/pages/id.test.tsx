@@ -4,7 +4,7 @@
 import { render, screen } from "@testing-library/react";
 import VacancySelected from "@/pages/[id]";
 import { Simulate } from "react-dom/test-utils";
-import { renderWithState } from '@/tests/helpers/renderWithState';
+import { renderWithState } from "@/tests/helpers/renderWithState";
 
 describe("ID - page", () => {
   it("ID - search", () => {
@@ -20,7 +20,9 @@ describe("ID - page", () => {
   });
 
   it("ID - 631ff10fbe34a93cf285ccae", () => {
-    render(renderWithState(<VacancySelected id={"631ff10fbe34a93cf285ccae"} />));
+    render(
+      renderWithState(<VacancySelected id={"631ff10fbe34a93cf285ccae"} />)
+    );
     setTimeout(() => {
       expect(screen.getByRole("vacancyInfo")).toBeInTheDocument();
       expect(screen.getByRole("vacancyList")).toBeInTheDocument();

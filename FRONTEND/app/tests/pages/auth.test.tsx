@@ -4,7 +4,7 @@
 
 import { render, screen } from "@testing-library/react";
 import { setupStore } from "@/store/store";
-import { renderWithState } from '@/tests/helpers/renderWithState';
+import { renderWithState } from "@/tests/helpers/renderWithState";
 import Register from "@/pages/auth/register";
 
 const store = setupStore();

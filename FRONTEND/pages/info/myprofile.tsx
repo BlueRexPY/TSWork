@@ -1,22 +1,20 @@
-import React, { useState } from "react";
+import React, { useLayoutEffect, useState } from "react";
 import Layout from "@/layouts/MainLayout";
 import { useAppDispatch, useAppSelector } from "@/hooks/redux";
-import { useEffect } from "react";
 import { useRouter } from "next/router";
 import { NextPage } from "next";
 import SkeletonVacanciesList from "@/components/VacanciesList/SkeletonVacanciesList";
 import VacanciesList from "@/components/VacanciesList/VacanciesList";
 import { IVacancy } from "@/api/models/IVacancy";
-import { VacaniesService } from "@/api/services/VacanciesService";
+import { VacanciesService } from "@/api/services/VacanciesService";
 import { Button, Form, Input, message } from "antd";
 import { UseInput } from "@/hooks/useInput";
 import { MaskedInput } from "antd-mask-input";
-import FileUploader from "@/components/utils/FileUploader";
+import fileUploader from "@/components/utils/fileUploader";
 import { isGithub } from "@/utils/valid";
 import AuthService from "@/api/services/AuthService";
-import {authSlice} from "@/store/reducers/authSlice";
-import { isNumber } from '@/utils/valid';
-
+import { authSlice } from "@/store/reducers/authSlice";
+import { isNumber } from "@/utils/valid";
 
 const MyProfile: NextPage = () => {
   const { auth, user } = useAppSelector((state) => state.authReducer);
@@ -32,43 +30,49 @@ const MyProfile: NextPage = () => {
   const number = UseInput("");
   const github = UseInput("");
   const [cv, setCv] = useState([{ originFileObj: "" }]);
-  
-  useEffect(() => {    
-    const fetch = async (responses:string[]) => {
-      const newArr = await Promise.all(
-        responses.map(async function (item) {
-          const res = await VacaniesService.getOneById(item);
-          return res.data;
-        })
-      );
-      setVacancies(newArr);
-    };
 
-    if (!auth) {
-      router.push("/auth/login");
-    } else {
-      AuthService.getByEmail(user.email).then((res) => {if(res){dispatch(updateAuth(res.data));fetch(res.data.responses);}setLoading(false);})
-    }
-  }, []);
+  const fetch = async (responses: string[]) => {
+    const newArr = await Promise.all(
+      responses.map(async function (item) {
+        const res = await VacanciesService.getOneById(item);
+        return res.data;
+      })
+    );
+    setVacancies(newArr);
+  };
 
-  const change = () =>{
-    setLoadingButton(true)
+  useLayoutEffect(() => {
+    AuthService.getByEmail(user.email).then((res) => {
+      if (res) {
+        dispatch(updateAuth(res.data));
+        fetch(res.data.responses);
+      }
+      setLoading(false);
+    });
+  }, [auth]);
+
+  const change = () => {
+    setLoadingButton(true);
     let newData = {
       email: user.email,
-      name: name.value.length>3?name.value:user.name,
-      surname: surname.value.length>3?surname.value:user.surname,
-      github: isGithub(github.value)?github.value:user.github,
-      number: isNumber(number.value)? number.value:user.number
-    }
-    if(cv[0].originFileObj===""){
+      name: name.value.length > 3 ? name.value : user.name,
+      surname: surname.value.length > 3 ? surname.value : user.surname,
+      github: isGithub(github.value) ? github.value : user.github,
+      number: isNumber(number.value) ? number.value : user.number,
+    };
+    if (cv[0].originFileObj === "") {
       AuthService.update(
         newData.name,
         newData.surname,
         newData.email,
         newData.github,
-        newData.number,
-      ).then((res)=>{dispatch(updateAuth(res.data));message.success("successful update");router.push("/");})
-    }else{
+        newData.number
+      ).then((res) => {
+        dispatch(updateAuth(res.data));
+        message.success("successful update");
+        router.push("/");
+      });
+    } else {
       AuthService.updateCV(
         newData.name,
         newData.surname,
@@ -76,14 +80,18 @@ const MyProfile: NextPage = () => {
         newData.github,
         newData.number,
         cv[0]
-      ).then((res)=>{dispatch(updateAuth(res.data));message.success("successful update");router.push("/");})
+      ).then((res) => {
+        dispatch(updateAuth(res.data));
+        message.success("successful update");
+        router.push("/");
+      });
     }
-    setLoadingButton(false)
-  }
+    setLoadingButton(false);
+  };
 
   return (
-    <Layout col={2} title="My Profile" myProfile={user.roles}>
-       <div className="center margin50">
+    <Layout col={2} title="My Profile" myProfile={user.roles} needAuth={true}>
+      <div className="center margin50">
         <Form
           className="container change"
           name="change"
@@ -94,8 +102,16 @@ const MyProfile: NextPage = () => {
           role="form"
         >
           <Input placeholder={user.name} className="containerItem" {...name} />
-          <Input placeholder={user.surname} className="containerItem" {...surname} />
-          <Input placeholder={user.github} className="containerItem" {...github} />
+          <Input
+            placeholder={user.surname}
+            className="containerItem"
+            {...surname}
+          />
+          <Input
+            placeholder={user.github}
+            className="containerItem"
+            {...github}
+          />
           <MaskedInput
             className="containerItem"
             {...number}
@@ -107,16 +123,28 @@ const MyProfile: NextPage = () => {
               },
             }}
           />
-          <FileUploader maxCount={1} setFile={setCv} />
+          <fileUploader maxCount={1} setFile={setCv} />
           <br />
-          <Button type="primary" className="containerItem" onClick={change} disabled={loadingButton} loading={loadingButton}>
+          <Button
+            type="primary"
+            className="containerItem"
+            onClick={change}
+            disabled={loadingButton}
+            loading={loadingButton}
+          >
             Update
           </Button>
         </Form>
       </div>
       <div>
-        <h3 className="centerLine">my response{loading?``:` - ${vacancies.length}`}</h3>
-        {loading?<SkeletonVacanciesList />:<VacanciesList vacancies={vacancies}/>}
+        <h3 className="centerLine">
+          my response{loading ? `` : ` - ${vacancies.length}`}
+        </h3>
+        {loading ? (
+          <SkeletonVacanciesList />
+        ) : (
+          <VacanciesList vacancies={vacancies} />
+        )}
       </div>
     </Layout>
   );

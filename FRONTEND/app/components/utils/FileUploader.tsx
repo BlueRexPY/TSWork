@@ -8,7 +8,7 @@ type Props = {
   acceptFile?: string;
 };
 
-const FileUploader: React.FC<Props> = (props: Props) => {
+const fileUploader: React.FC<Props> = (props: Props) => {
   const { maxCount = 1, acceptFile = ".pdf" } = props;
   const handleChange: UploadProps["onChange"] = ({ fileList: newFile }) =>
     props.setFile(newFile);
@@ -18,7 +18,7 @@ const FileUploader: React.FC<Props> = (props: Props) => {
       maxCount={maxCount}
       accept={acceptFile}
       onChange={handleChange}
-      className={`fileuploader`}
+      className={`fileUploader`}
     >
       <div>
         <p>Click or drag PDF CV</p>
@@ -27,4 +27,4 @@ const FileUploader: React.FC<Props> = (props: Props) => {
   );
 };
 
-export default FileUploader;
+export default fileUploader;

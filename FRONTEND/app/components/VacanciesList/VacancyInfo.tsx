@@ -1,4 +1,4 @@
-import { VacaniesService } from "@/api/services/VacanciesService";
+import { VacanciesService } from "@/api/services/VacanciesService";
 import share from "@/assets/img/share.png";
 import back from "@/assets/img/back.png";
 import React from "react";
@@ -30,21 +30,25 @@ const VacancyInfo: React.FC<Props> = ({ id }: Props) => {
 
   const handleApply = () => {
     if (auth) {
-      setDisabledButton(true)
+      setDisabledButton(true);
       setLoadingButton(true);
-      VacaniesService.response(user.email, id).then(() => {
+      VacanciesService.response(user.email, id).then(() => {
         message.success("Your resume has been sent");
         dispatch(setActive(false));
       });
-      VacaniesService.responseUser(user.email, id).then(()=>setLoadingButton(false))
-      if(vacancy?.applyLink !== ""){window.open(vacancy?.applyLink);}
+      VacanciesService.responseUser(user.email, id).then(() =>
+        setLoadingButton(false)
+      );
+      if (vacancy?.applyLink !== "") {
+        window.open(vacancy?.applyLink);
+      }
     } else {
       router.push("/auth/login");
     }
   };
 
   const onLoad = (data: IVacancy) => {
-    setDisabledButton(false)
+    setDisabledButton(false);
     setVacancy(data);
     setLoading(false);
     const vacancyDate = new Date(data.createdAt);
@@ -66,7 +70,7 @@ const VacancyInfo: React.FC<Props> = ({ id }: Props) => {
   useEffect(() => {
     setLoading(true);
     if (id !== "search") {
-      VacaniesService.getOneById(id)
+      VacanciesService.getOneById(id)
         .then((res) => onLoad(res.data))
         .catch((e) => console.log(e));
     }
@@ -112,9 +116,9 @@ const VacancyInfo: React.FC<Props> = ({ id }: Props) => {
             draggable={false}
           />
           <div className="headerInfo">
-            <h2>{vacancy?.postionName}</h2>
+            <h2>{vacancy?.positionName}</h2>
             <p>
-            {vacancy?.companyName} - {vacancy?.workLocation}
+              {vacancy?.companyName} - {vacancy?.workLocation}
             </p>
             <p>
               {vacancy?.maxSalary === vacancy?.minSalary
@@ -144,9 +148,18 @@ const VacancyInfo: React.FC<Props> = ({ id }: Props) => {
           </div>
           <div>
             <h3>
+              <b>Company type:</b> {vacancy?.companyType}
+            </h3>
+          </div>
+          <div>
+            <h3>
+              <b>company address</b> {vacancy?.companyAddress}
+            </h3>
+          </div>
+          <div>
+            <h3>
               <b>Placement date:</b> {date}
             </h3>
-            <p></p>
           </div>
           <div id="description">
             <h3>
@@ -170,7 +183,7 @@ const VacancyInfo: React.FC<Props> = ({ id }: Props) => {
           loading={loadingButton}
           onClick={() => handleApply()}
         >
-          {vacancy?.applyLink===""?"One click Apply":"Apply"}
+          {vacancy?.applyLink === "" ? "One click Apply" : "Apply"}
         </Button>
       </div>
     </div>

@@ -9,7 +9,6 @@ import { navSlice } from "@/store/reducers/navSlice";
 import AuthService from "@/api/services/AuthService";
 import { authSlice } from "@/store/reducers/authSlice";
 import { useRouter } from "next/router";
-import logoutAuth from '@/store/reducers/authSlice';
 
 type Props = {
   full: boolean;
@@ -62,7 +61,14 @@ const NavBar: React.FC<Props> = ({ full = false, myProfile = [""] }: Props) => {
                 </Button>
               </Link>
               <p>{" | "}</p>
-              <Button type="text" style={{ padding: "5px" }}  onClick={() => {dispatch(logoutAuth());router.push("/auth/login")}}>
+              <Button
+                type="text"
+                style={{ padding: "5px" }}
+                onClick={() => {
+                  dispatch(logoutAuth());
+                  router.push("/auth/login");
+                }}
+              >
                 <a target="_blank">Logout</a>
               </Button>
             </>
@@ -76,7 +82,14 @@ const NavBar: React.FC<Props> = ({ full = false, myProfile = [""] }: Props) => {
                 <a target="_blank">Post a job</a>
               </Button>
               <p>{" | "}</p>
-              <Button type="text" style={{ padding: "5px" }}  onClick={() => {dispatch(logoutAuth());router.push("/auth/login")}}>
+              <Button
+                type="text"
+                style={{ padding: "5px" }}
+                onClick={() => {
+                  dispatch(logoutAuth());
+                  router.push("/auth/login");
+                }}
+              >
                 <a target="_blank">Logout</a>
               </Button>
             </>

@@ -1,4 +1,5 @@
-import { isEmailValid, isGithub, isPasswordVaild, registerValid } from '@/utils/valid';
+import { isDefaultValid } from './../utils/valid';
+import { isEmailValid, isGithub, isPasswordValid, registerValid } from '@/utils/valid';
 import { isNumber } from '../utils/valid';
 
 describe('Valid', () => {
@@ -43,22 +44,22 @@ describe('Valid', () => {
 
     describe('Password', () => {
         test('sdffds', () => {
-            expect(isPasswordVaild("sdffds")).toBe(false)
+            expect(isPasswordValid("sdffds")).toBe(false)
         });
         test('', () => {
-            expect(isPasswordVaild("")).toBe(false)
+            expect(isPasswordValid("")).toBe(false)
         });
         test('react@gmail', () => {
-            expect(isPasswordVaild("react@gmsdffdsail")).toBe(true)
+            expect(isPasswordValid("react@gmsdffdsail")).toBe(true)
         });
         test('reacdsfdffdssssssssssssssssssssssssssssssssssssssssssssdsfsdft', () => {
-            expect(isPasswordVaild("reacdsfdffdssssssssssssssssssssssssssssssssssssssssssssdsfsdft")).toBe(false)
+            expect(isPasswordValid("reacdsfdffdssssssssssssssssssssssssssssssssssssssssssssdsfsdft")).toBe(false)
         });
         test('12345678', () => {
-            expect(isPasswordVaild("12345678")).toBe(true)
+            expect(isPasswordValid("12345678")).toBe(true)
         });
         test('@gmail.com@gmail.com', () => {
-            expect(isPasswordVaild("@gmail.com@gmail.com")).toBe(true)
+            expect(isPasswordValid("@gmail.com@gmail.com")).toBe(true)
         });
     })
 
@@ -79,16 +80,31 @@ describe('Valid', () => {
 
     describe('register', () => {
         test('name,surname,react@gmail.com,password,https://github.com/BlueRexPY', () => {
-            expect(registerValid("name", "surname", "react@gmail.com", "password", "https://github.com/BlueRexPY","123456789")).toBe(true)
+            expect(registerValid("name", "surname", "react@gmail.com", "password", "https://github.com/BlueRexPY", "123456789")).toBe(true)
         });
         test('me,surname,react@gmail,paword,https://github.c', () => {
-            expect(registerValid("me", "sureame", "react@gmail", "paword", "https://github.c","123456789")).toBe(false)
+            expect(registerValid("me", "surname", "react@gmail", "paword", "https://github.c", "123456789")).toBe(false)
         });
         test('me,surname,react@gmail.com,paword,https://github.c', () => {
-            expect(registerValid("me", "sureame", "react@gmail.com", "paword", "https://github.c","123456789")).toBe(false)
+            expect(registerValid("me", "surname", "react@gmail.com", "paword", "https://github.c", "123456789")).toBe(false)
         });
         test('me,surname,react@gmail,paword,https://github.com/BlueRexPY', () => {
-            expect(registerValid("me", "sureame", "react@gmail", "paword", "https://github.com/BlueRexPY","123456789")).toBe(false)
+            expect(registerValid("me", "surname", "react@gmail", "paword", "https://github.com/BlueRexPY", "123456789")).toBe(false)
         });
     })
+    describe('default', () => {
+        test('default', () => {
+            expect(isDefaultValid("default")).toBe(true)
+        });
+        test('', () => {
+            expect(isDefaultValid("")).toBe(false)
+        });
+        test('dsdsfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff', () => {
+            expect(isDefaultValid("dsdsfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff")).toBe(false)
+        });
+        test('01', () => {
+            expect(isDefaultValid("01")).toBe(false)
+        });
+    })
+
 });
