@@ -4,7 +4,7 @@ import Layout from "@/layouts/MainLayout";
 import { Button, Form, Input, InputNumber, message, Select } from "antd";
 import { useRouter } from "next/router";
 import { UseInput } from "@/hooks/useInput";
-import fileUploaderPhoto from "@/components/crm/fileUploaderPhoto";
+import FileUploaderPhoto from "@/components/crm/FileUploaderPhoto";
 import { LVL_LIST, TECH_LIST } from "@/utils/consts";
 import Checkbox from "antd/lib/checkbox/Checkbox";
 import TextArea from "antd/lib/input/TextArea";
@@ -91,7 +91,7 @@ const Create: NextPage = () => {
           autoComplete="off"
           role="form"
         >
-          <fileUploaderPhoto maxCount={1} setFile={setLogo} />
+          <FileUploaderPhoto maxCount={1} setFile={setLogo} />
           <br />
           <Input
             placeholder="company name"

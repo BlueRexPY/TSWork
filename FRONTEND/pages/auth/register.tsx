@@ -7,7 +7,7 @@ import { registerValid } from "@/utils/valid";
 import { UseInput } from "@/hooks/useInput";
 import { useRouter } from "next/router";
 import { MaskedInput } from "antd-mask-input";
-import fileUploader from "@/components/utils/fileUploader";
+import FileUploader from "@/components/utils/FileUploader";
 import { NextPage } from "next";
 import Logo from "@/components/utils/Logo";
 
@@ -116,7 +116,7 @@ const Register: NextPage = () => {
             className="containerItem"
             {...github}
           />
-          <fileUploader maxCount={1} setFile={setCv} />
+          <FileUploader maxCount={1} setFile={setCv} />
           <br />
           <Button type="primary" className="containerItem" onClick={register}>
             Register
