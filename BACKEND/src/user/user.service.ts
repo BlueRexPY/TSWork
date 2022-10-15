@@ -13,9 +13,9 @@ const bcrypt = require('bcryptjs');
 
 @Injectable()
 export class UserService {
-    constructor(@InjectModel(User.name)  private userModel: Model<UserDocument>,
-    private fileService: FileService,
-    private emailService: EmailService
+    constructor(@InjectModel(User.name) private userModel: Model<UserDocument>,
+        private fileService: FileService,
+        private emailService: EmailService
     ) { }
 
     async create(dto: CreateUserDto, cv): Promise<UserDocument> {
@@ -25,11 +25,11 @@ export class UserService {
         }
         const cvPath = this.fileService.createFile(FileType.PDF, cv)
         const hashPassword = bcrypt.hashSync(dto.password, 5);
-        const activetionLink = uuid.v4()
+        const activationLink = uuid.v4()
 
-        await this.emailService.sendActiveMail(dto.email, activetionLink);
+        await this.emailService.sendActiveMail(dto.email, activationLink);
 
-        const user = await this.userModel.create({ ...dto, password: hashPassword, cv: cvPath, roles: ["USER"], active: false, activetionLink: activetionLink })
+        const user = await this.userModel.create({ ...dto, password: hashPassword, cv: cvPath, roles: ["USER"], active: false, activationLink: activationLink })
         return user;
     }
 
@@ -46,8 +46,8 @@ export class UserService {
         return user
     }
 
-    async active(email: string, activetionLink: string): Promise<boolean> {
-        if (await this.userModel.findOne({ email: email, activetionLin: activetionLink })) {
+    async active(email: string, activationLink: string): Promise<boolean> {
+        if (await this.userModel.findOne({ email: email, activationLin: activationLink })) {
             await this.userModel.findOneAndUpdate({ email: email }, { active: true })
             return true
         }
@@ -73,14 +73,14 @@ export class UserService {
         return user
     }
 
-    async addRole(dto: AddRoleUserDto): Promise<boolean> {
-        let user = await this.userModel.findById(dto.id);
+    async addRole(dto: AddRoleUserDto): Promise<User> {
+        let user = await this.userModel.findOne({ email: dto.email });
 
         if (![...user.roles].includes(dto.role)) {
-            await this.userModel.findByIdAndUpdate(dto.id, { roles: [...user.roles, dto.role] });
-            return true
+            await this.userModel.findOneAndUpdate({ email: dto.email }, { roles: [...user.roles, dto.role] });
+            return user
         }
-        return false
+        return user
     }
 
     async response(email: string, id: string): Promise<boolean> {
@@ -96,6 +96,4 @@ export class UserService {
         const user = await this.userModel.findByIdAndDelete(id)
         return user._id
     }
-
-
 }

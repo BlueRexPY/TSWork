@@ -4,11 +4,13 @@ import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { VacancyService } from './vacancy.service';
 import { Vacancy, VacancySchema } from './schemas/vacancy.schema';
+import { AuthModule } from 'src/auth/auth.module';
 
 
 @Module({
     imports: [
-        MongooseModule.forFeature([{ name: Vacancy.name, schema: VacancySchema }])
+        MongooseModule.forFeature([{ name: Vacancy.name, schema: VacancySchema }]),
+        AuthModule
     ],
     controllers: [VacancyController],
     providers: [VacancyService, FileService]

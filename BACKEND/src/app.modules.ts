@@ -23,7 +23,7 @@ import { ConfigModule } from '@nestjs/config';
         ServeStaticModule.forRoot({ rootPath: path.resolve(__dirname, 'static'), }),
     ],
     controllers: [],
-	providers: [],
+    providers: [],
 })
 
 export class AppModule { }

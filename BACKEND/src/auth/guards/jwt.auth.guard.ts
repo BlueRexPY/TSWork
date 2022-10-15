@@ -4,8 +4,8 @@ import { JwtService } from "../jwt.service";
 @Injectable()
 export class JwtAuthGuard implements CanActivate {
 	constructor(
-        private readonly jwtService:JwtService,
-	) {}
+		private readonly jwtService: JwtService,
+	) { }
 
 	async canActivate(context: ExecutionContext): Promise<boolean> {
 		const request = context.switchToHttp().getRequest();
@@ -13,7 +13,7 @@ export class JwtAuthGuard implements CanActivate {
 		if (!token) throw new UnauthorizedException({ message: "Invalid authorization token" });
 
 		const isTokenValid = await this.jwtService.verifyJwt(token);
-		if(!isTokenValid) throw new UnauthorizedException({ message: "Invalid authorization token" });
+		if (!isTokenValid) throw new UnauthorizedException({ message: "Invalid authorization token" });
 
 		return true;
 	}

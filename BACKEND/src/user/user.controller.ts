@@ -1,11 +1,9 @@
 import { UpdateUserDto } from './dto/update-user.dto';
 import { AddRoleUserDto } from './dto/addRole-user.dto';
-import { LoginUserDto } from './dto/login-user.dto';
 import { Bind, Body, Controller, Delete, Get, Param, Post, Query, Redirect, Req, Res, UploadedFiles, UseGuards, UseInterceptors } from "@nestjs/common";
 import { UserService } from './user.service';
 import { CreateUserDto } from "./dto/create-user.dto";
 import { FileFieldsInterceptor } from "@nestjs/platform-express";
-import { AuthGuard } from '@nestjs/passport';
 import { JwtAuthGuard } from 'src/auth/guards/jwt.auth.guard';
 
 @Controller('/users')
@@ -44,8 +42,8 @@ export class UserController {
     }
 
     @Get("/try/:email")
-    getTryByName(@Param("email") serchEmail: string) {
-        return this.userService.getTryByEmail(serchEmail)
+    getTryByName(@Param("email") searchEmail: string) {
+        return this.userService.getTryByEmail(searchEmail)
     }
 
     @Get("/id/:id")
@@ -54,19 +52,19 @@ export class UserController {
     }
 
     @UseGuards(JwtAuthGuard)
-    @Post("/addRole/")
+    @Post("/addRole")
     addRole(@Body() dto: AddRoleUserDto) {
         return this.userService.addRole(dto)
     }
 
-    @Get("/active/:email/:activetionLink")
+    @Get("/active/:email/:activationLink")
     @Redirect('https://ts-work.vercel.app/auth/login', 302)
-    active(@Param("email") email: string, @Param("activetionLink") activetionLink: string) {
-        return this.userService.active(email, activetionLink)
+    active(@Param("email") email: string, @Param("activationLink") activationLink: string) {
+        return this.userService.active(email, activationLink)
     }
 
     @UseGuards(JwtAuthGuard)
-    @Post("/response/")
+    @Post("/response")
     response(@Body() data: { email: string, id: string }) {
         return this.userService.response(data.email, data.id)
     }

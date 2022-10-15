@@ -17,11 +17,10 @@ const bcrypt = require('bcryptjs');
 
 @Injectable()
 export class AuthService {
-    constructor(@InjectModel(User.name)  private userModel: Model<UserDocument>,@InjectModel(Auth.name) private authModel: Model<AuthDocument>, private jwtService: JwtService,private fileService: FileService,
-    private emailService: EmailService) { }
+    constructor(@InjectModel(User.name) private userModel: Model<UserDocument>, @InjectModel(Auth.name) private authModel: Model<AuthDocument>, private jwtService: JwtService, private fileService: FileService,
+        private emailService: EmailService) { }
 
-    async refresh(refreshToken: string): Promise<tokensType> {
-        console.log("Refreshing")
+    async refresh(refreshToken: string): Promise<FinalUser> {
         if (!refreshToken) throw new BadRequestException({ message: "Invalid refresh token: no token" });
 
         const session = await this.authModel.findOne({ refreshToken })
@@ -36,7 +35,7 @@ export class AuthService {
 
         await this.saveToken(user.email, refreshToken)
 
-        return newPairOfTokens
+        return { accessToken: newPairOfTokens.accessToken, refreshToken: newPairOfTokens.refreshToken, user: user }
     }
 
     async saveToken(email: string, refreshToken: string): Promise<object> {
@@ -82,11 +81,11 @@ export class AuthService {
         }
         const cvPath = this.fileService.createFile(FileType.PDF, cv)
         const hashPassword = bcrypt.hashSync(dto.password, 5);
-        const activetionLink = uuid.v4()
+        const activationLink = uuid.v4()
 
-        await this.emailService.sendActiveMail(dto.email, activetionLink);
+        await this.emailService.sendActiveMail(dto.email, activationLink);
 
-        const user = await this.userModel.create({ ...dto, password: hashPassword, cv: cvPath, roles: ["USER"], active: false, activetionLink: activetionLink })
+        const user = await this.userModel.create({ ...dto, password: hashPassword, cv: cvPath, roles: ["USER"], active: false, activationLink: activationLink })
 
         const tokens = await this.jwtService.generateJwtPair(dto);
         await this.saveToken(dto.email, tokens.refreshToken);

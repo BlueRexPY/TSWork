@@ -33,8 +33,8 @@ export class AuthController {
     @Post("/refresh")
     @HttpCode(HttpStatus.OK)
     refresh(@Req() request: Request) {
-		console.log(request.cookies);
-		return  this.authService.refresh(request.cookies?.refreshToken);
+        console.log(request.cookies?.refreshToken)
+        return this.authService.refresh(request.cookies?.refreshToken);
     }
-     
+
 }

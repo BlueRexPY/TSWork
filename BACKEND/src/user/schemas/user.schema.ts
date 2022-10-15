@@ -39,7 +39,7 @@ export class User {
   active: boolean;
 
   @Prop()
-  activetionLink: string;
+  activationLink: string;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

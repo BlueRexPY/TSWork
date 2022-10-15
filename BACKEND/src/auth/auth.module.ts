@@ -11,15 +11,15 @@ import { FileService } from 'src/file/file.service';
 
 @Module({
     imports: [
-        MongooseModule.forFeature([{ name: Auth.name, schema: AuthSchema },{ name: User.name, schema: UserSchema }]),
+        MongooseModule.forFeature([{ name: Auth.name, schema: AuthSchema }, { name: User.name, schema: UserSchema }]),
         EmailModule,
         JwtModule.register({
-			secret: process.env.JWT_SECRET || "MySuperSecretString",
-		}),
+            secret: process.env.JWT_SECRET || "MySuperSecretString",
+        }),
     ],
     controllers: [AuthController],
-    providers: [AuthService,JwtService,FileService],
-    exports: [AuthService,JwtService],
+    providers: [AuthService, JwtService, FileService],
+    exports: [AuthService, JwtService],
 })
 
 export class AuthModule { }

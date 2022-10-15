@@ -28,7 +28,7 @@ export class Vacancy {
   experienceLevel: string;
 
   @Prop()
-  postionName: string;
+  positionName: string;
 
   @Prop()
   employmentType: string;

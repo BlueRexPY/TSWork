@@ -5,12 +5,12 @@ export class CreateVacancyDto {
     readonly companySize: string;
     readonly companyType: string;
     readonly experienceLevel: string;
-    readonly postionName: string;
+    readonly positionName: string;
     readonly employmentType: string;
-    readonly minSalary: number;
-    readonly maxSalary: number;
+    readonly minSalary: string;
+    readonly maxSalary: string;
     readonly mainTechnology: string;
-    readonly techStack: string[];
+    readonly techStack: string;
     readonly jobDescription: string;
     readonly applyLink: string;
     readonly workLocation: string;
