@@ -156,6 +156,9 @@ body {
   margin-top: 50px;
   margin-bottom: 50px;
 }
+.padding20{
+  padding: 20px;
+}
 
 .center {
   display: flex;
@@ -430,10 +433,11 @@ body::-webkit-scrollbar-thumb:hover {
 .techSkillsList {
   display: flex;
   flex-direction: row;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   justify-content: flex-start;
   align-items: flex-start;
   align-content: flex-start;
+  width: 100%;
 }
 
 .techSkillsList p {

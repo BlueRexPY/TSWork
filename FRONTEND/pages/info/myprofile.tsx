@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
 import { useAppDispatch, useAppSelector } from "@/hooks/redux";
@@ -41,7 +41,7 @@ const MyProfile: NextPage = () => {
     setVacancies(newArr);
   };
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     AuthService.getByEmail(user.email).then((res) => {
       if (res) {
         dispatch(updateAuth(res.data));

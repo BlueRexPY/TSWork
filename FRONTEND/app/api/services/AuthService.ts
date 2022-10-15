@@ -25,7 +25,7 @@ export default class AuthService {
         formData.append("github", github);
         formData.append("number", number);
         formData.append("cv", cv.originFileObj);
-        return $api.post<AuthResponse>('/auth/', formData)
+        return $api.post<AuthResponse>('/auth', formData)
     }
 
     static async updateCV(

@@ -47,10 +47,7 @@ class VacanciesService {
         formData.append("applyLink", dto.applyLink);
         formData.append("workLocation", dto.workLocation);
         formData.append("logo", logo.originFileObj);
-
         return $api.post<IVacancy>(`/vacancies/`, formData)
     }
-
 }
-
 export { VacanciesService }

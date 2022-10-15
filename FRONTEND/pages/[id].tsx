@@ -26,13 +26,10 @@ type vacancy = {
 
 const VacancySelected: NextPage<vacancy> = (SearchVacancy: vacancy) => {
   const dispatch = useAppDispatch();
-
   const { skill, lvl } = useAppSelector((state) => state.navReducer);
   const { setActive } = navSlice.actions;
-
   const { vacancies } = useAppSelector((state) => state.vacancyReducer);
   const { setVacancies } = vacanciesSlice.actions;
-
   const [loading, setLoading] = useState(true);
   const [selected, setSelected] = useState(false);
   const [filterVacancies, setFilterVacancies] = useState<IVacancy[]>([]);

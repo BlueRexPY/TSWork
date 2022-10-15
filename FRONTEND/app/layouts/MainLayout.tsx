@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Head from "next/head";
-import { ReactChild, ReactNode, useEffect, useLayoutEffect } from "react";
+import { ReactChild, ReactNode, useEffect } from "react";
 import NavBar from "@/components/NavBar/NavBar";
 import { useAppDispatch, useAppSelector } from "@/hooks/redux";
 import AuthService from "@/api/services/AuthService";
@@ -23,7 +23,7 @@ type Props = {
 
 const Layout: React.FC<Props> = (props: Props) => {
   const router = useRouter();
-  const [loading, serLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
   const { auth } = useAppSelector((state) => state.authReducer);
   const dispatch = useAppDispatch();
   const { updateAuth } = authSlice.actions;
@@ -39,6 +39,7 @@ const Layout: React.FC<Props> = (props: Props) => {
 
   const checkAuth = new Promise((resolve, reject) => {
     if (Cookies.get("refreshToken") && auth === false) {
+
       AuthService.refresh()
         .then((res) => {
           if (res) {
@@ -59,7 +60,7 @@ const Layout: React.FC<Props> = (props: Props) => {
   useEffect(() => {
     checkAuth
       .then((res) => {
-        serLoading(false);
+        setLoading(false);
         if (needAuth && auth === false) {
           router.push("/auth/login");
         }

@@ -15,6 +15,7 @@ const SkeletonVacanciesList: React.FC = () => {
       <SkeltonItem />
       <SkeltonItem />
       <SkeltonItem />
+      <SkeltonItem />
     </div>
   );
 };

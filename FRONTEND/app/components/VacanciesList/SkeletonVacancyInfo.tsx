@@ -7,12 +7,11 @@ const SkeletonVacancyInfo: React.FC = () => {
   return (
     <div className={`vacancyPage ${!active ? "mobileVacancy" : ""}`}>
       <div className="vacancyInfo">
-        <div className="header">
-          <div className="headerInfo">
-            <Skeleton active />
-          </div>
+        <div className="header padding20">
+          <Skeleton active />
         </div>
         <main role="skeleton">
+          <Skeleton active />
           <Skeleton active />
           <Skeleton active />
           <Skeleton active />

@@ -10,10 +10,13 @@ import Checkbox from "antd/lib/checkbox/Checkbox";
 import TextArea from "antd/lib/input/TextArea";
 import { isDefaultValid } from "@/utils/valid";
 import { VacanciesService } from "@/api/services/VacanciesService";
-import { useAppSelector } from "@/hooks/redux";
+import { useAppDispatch, useAppSelector } from "@/hooks/redux";
+import { vacanciesSlice } from "@/store/reducers/vacanciesSlice";
 
 const Create: NextPage = () => {
-  const [loading, serLoading] = useState(false);
+  const { setVacancies } = vacanciesSlice.actions;
+  const dispatch = useAppDispatch();
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
   const [logo, setLogo] = useState([{ originFileObj: "" }]);
   const companyName = UseInput("");
@@ -34,22 +37,25 @@ const Create: NextPage = () => {
   const { user } = useAppSelector((state) => state.authReducer);
 
   const createVacancy = () => {
-    serLoading(true);
+    setLoading(true);
     if (
-      isDefaultValid(companyName.value) &&
-      isDefaultValid(companyAddress.value) &&
-      isDefaultValid(positionName.value) &&
-      isDefaultValid(workLocation) &&
-      companyType &&
-      TSWCheckBox &&
-      companySize &&
-      minSalary >= 100 &&
-      maxSalary >= 100 &&
-      experienceLevel &&
-      employmentType &&
-      applyLink.value.length > 7 &&
-      jobDescription.length > 3
+      logo[0]?.originFileObj&&
+      isDefaultValid(companyName.value)&&
+      isDefaultValid(companyAddress.value)&&
+      companyType&&
+      companySize&&
+      workLocation&&
+      experienceLevel&&
+      isDefaultValid(positionName.value)&&
+      employmentType&&
+      minSalary>99&&
+      maxSalary>99&&
+      mainTechnology&&
+      techStack.length>0&&
+      jobDescription.length>3&&jobDescription.length<999&&
+      TSWCheckBox
     ) {
+      const clearTech =  [...techStack].filter(i => i !== mainTechnology)
       VacanciesService.postVacancy(
         {
           author: user.email,
@@ -63,20 +69,19 @@ const Create: NextPage = () => {
           minSalary,
           maxSalary,
           mainTechnology,
-          techStack: [
-            ...techStack.filter((i) => i !== mainTechnology),
-            mainTechnology,
-          ],
+          techStack: [mainTechnology,...clearTech],
           jobDescription,
           applyLink: applyLink.value,
           workLocation,
         },
         logo[0]
       )
-        .then((res) => {})
-        .catch((e) => console.log(e));
-    } else {
+        .then((res) => {if(res){message.success("Success post");VacanciesService.getVacancies().then((res) => {dispatch(setVacancies(res.data))});router.push("/crm/vacancies/")}})
+        .finally(()=>setLoading(false))
+        .catch((e) => message.success("error"));
+    }else {
       message.error("Invalid data");
+      setLoading(false)
     }
   };
 
@@ -174,6 +179,7 @@ const Create: NextPage = () => {
               min={100}
               max={100000}
               className="containerItemBigSide"
+              onChange={(e)=>setMinSalary(e)}
             />
             <p>{"-"}</p>
             <InputNumber
@@ -181,6 +187,7 @@ const Create: NextPage = () => {
               placeholder="max"
               min={100}
               max={100000}
+              onChange={(e)=>setMaxSalary(e)}
               className="containerItemBigSide"
             />
           </div>
@@ -197,6 +204,8 @@ const Create: NextPage = () => {
           <Select
             className="containerItem"
             showSearch
+            mode="multiple"
+            maxTagCount={5}
             placeholder="tech stack"
             onChange={(e) => setTechStack(e)}
           >
