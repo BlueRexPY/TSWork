@@ -516,6 +516,10 @@ body::-webkit-scrollbar-thumb:hover {
   display: none;
 }
 
+.h100{
+  height: 95%;
+}
+
 @keyframes AnimatedLogo1 {
   0% {
     transform: translate(-200px, -100px);
@@ -601,14 +605,62 @@ body::-webkit-scrollbar-thumb:hover {
   animation: AnimatedLogo4 1.5s infinite ease;
 }
 
+.VacanciesLegendCrm{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  align-content: flex-start;
+  width: 80%;
+  padding: 10px;
+}
+
+.VacanciesLegendCrm h3{
+  margin: 4px;
+}
+
+.CrmTable{
+  width: 80%;
+}
+
 #change {
   padding: 15px 0px 15px 0px;
 }
 .change {
   transform: scale(1.2)
 }
+.ResponsesInfo{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: flex-start;
+  align-content: center;
+  width: 80%;
+  padding: 10px;
+  width: 80%;
+  padding: 20px;
+}
+
+.ResponsesInfo .ResponsesInfoText{
+  margin-left: 40px;
+}
 
 @media (max-width: 700px) {
+
+  .ResponsesInfo{
+    width: 100%;
+    padding: 10px;
+  }
+
+  .VacanciesLegendCrm{
+    width: 100%;
+  }
+
+  .CrmTable{
+    width: 100%;
+  }
 
   .confirm {
     padding: 15px;

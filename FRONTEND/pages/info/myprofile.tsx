@@ -42,13 +42,14 @@ const MyProfile: NextPage = () => {
   };
 
   useEffect(() => {
-    AuthService.getByEmail(user.email).then((res) => {
-      if (res) {
+    setLoading(true)
+    if(auth){
+      AuthService.getByEmail(user.email).then((res) => {
         dispatch(updateAuth(res.data));
-        fetch(res.data.responses);
-      }
-      setLoading(false);
-    });
+        fetch(res.data.responses)
+        .then(()=>setLoading(false));
+      })
+    }
   }, [auth]);
 
   const change = () => {
@@ -136,15 +137,11 @@ const MyProfile: NextPage = () => {
           </Button>
         </Form>
       </div>
-      <div>
+      <div className="h100">
         <h3 className="centerLine">
           my response{loading ? `` : ` - ${vacancies.length}`}
         </h3>
-        {loading ? (
-          <SkeletonVacanciesList />
-        ) : (
-          <VacanciesList vacancies={vacancies} />
-        )}
+        {loading ? <SkeletonVacanciesList />: <VacanciesList vacancies={vacancies} />}
       </div>
     </Layout>
   );

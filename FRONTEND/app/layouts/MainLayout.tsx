@@ -39,7 +39,6 @@ const Layout: React.FC<Props> = (props: Props) => {
 
   const checkAuth = new Promise((resolve, reject) => {
     if (Cookies.get("refreshToken") && auth === false) {
-
       AuthService.refresh()
         .then((res) => {
           if (res) {
@@ -51,7 +50,7 @@ const Layout: React.FC<Props> = (props: Props) => {
             resolve(true);
           }
         })
-        .catch((e) => console.log("error " + e));
+        .catch((e) => {console.log("error " + e);Cookies.remove("refreshToken");router.push("/auth/login");});
     } else {
       resolve(true);
     }
@@ -67,18 +66,6 @@ const Layout: React.FC<Props> = (props: Props) => {
       })
       .catch((e) => console.log(e));
   });
-
-  const getContent = () => {
-    if (loading) {
-      return (
-        <div className={`columnLayout1`}>
-          <AnimatedLogo />
-        </div>
-      );
-    } else {
-      return <div className={`columnLayout${col}`}>{props.children}</div>;
-    }
-  };
 
   return (
     <div className="layout">
@@ -98,7 +85,7 @@ const Layout: React.FC<Props> = (props: Props) => {
         />
       </Head>
       <NavBar full={full} myProfile={myProfile}></NavBar>
-      {getContent()}
+      {loading?<div className={`columnLayout1`}><AnimatedLogo /></div>:<div className={`columnLayout${col}`}>{props.children}</div>}
     </div>
   );
 };

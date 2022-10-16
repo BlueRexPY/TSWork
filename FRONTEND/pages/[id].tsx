@@ -69,11 +69,7 @@ const VacancySelected: NextPage<vacancy> = (SearchVacancy: vacancy) => {
 
   return (
     <Layout col={2} full={true} title={skill === "" ? "Search" : skill}>
-      {loading ? (
-        <SkeletonVacanciesList />
-      ) : (
-        <VacanciesList vacancies={filterVacancies} />
-      )}
+      {loading ? <SkeletonVacanciesList />:<VacanciesList vacancies={filterVacancies} />}
       {selected ? <VacancyInfo id={SearchVacancy.id} /> : <ToGetStart />}
     </Layout>
   );

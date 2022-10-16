@@ -86,7 +86,7 @@ const Create: NextPage = () => {
   };
 
   return (
-    <Layout col={1} full={true} title="Create Vacancy" needAuth={true}>
+    <Layout col={1} title="Create Vacancy" needAuth={true}>
       <div className="centerBigForm">
         <Form
           className="container"
