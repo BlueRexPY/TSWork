@@ -2,7 +2,7 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import AuthService from "./services/AuthService";
 
-export const API_URl = "http://localhost:5000"//https://tswork-back.herokuapp.com  http://localhost:5000
+export const API_URl = "https://tswork-back.herokuapp.com"//https://tswork-back.herokuapp.com  http://localhost:5000
 const $api = axios.create({
 	withCredentials: true,
 	baseURL: API_URl
