@@ -92,7 +92,6 @@ const Create: NextPage = () => {
           className="container"
           id="login"
           initialValues={{ remember: true }}
-          onFinish={createVacancy}
           autoComplete="off"
           role="form"
         >
@@ -226,7 +225,7 @@ const Create: NextPage = () => {
             {...applyLink}
           />
           <Checkbox
-            onChange={(e) => setTSWCheckBox(e.target.value)}
+            onChange={() => setTSWCheckBox(!TSWCheckBox)}
             className="containerItem"
           >
             tswork take 5% of salary

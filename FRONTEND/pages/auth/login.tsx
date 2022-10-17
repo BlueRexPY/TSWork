@@ -52,7 +52,6 @@ const Login: NextPage = () => {
           name="login"
           id="login"
           initialValues={{ remember: true }}
-          onFinish={login}
           autoComplete="off"
           role="form"
         >

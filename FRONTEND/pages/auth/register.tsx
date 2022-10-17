@@ -21,7 +21,6 @@ const Register: NextPage = () => {
   const passwordRepeat = UseInput("");
   const github = UseInput("");
   const [cv, setCv] = useState([{ originFileObj: "" }]);
-
   const [loading, setLoading] = useState(false);
 
   const register = () => {
@@ -37,7 +36,7 @@ const Register: NextPage = () => {
           number.value
         )
       ) {
-        if (cv[0].originFileObj) {
+        if (cv[0]?.originFileObj) {
           AuthService.registration(
             name.value,
             surname.value,
@@ -69,7 +68,6 @@ const Register: NextPage = () => {
     }
     setLoading(false);
   };
-
   return (
     <Layout col={1} title="Register">
       <div className="centerBigForm">

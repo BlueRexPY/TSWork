@@ -98,7 +98,6 @@ const MyProfile: NextPage = () => {
           name="change"
           id="login"
           initialValues={{ remember: true }}
-          onFinish={change}
           autoComplete="off"
           role="form"
         >
