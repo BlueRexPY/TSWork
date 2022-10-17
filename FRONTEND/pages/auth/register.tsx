@@ -37,26 +37,30 @@ const Register: NextPage = () => {
           number.value
         )
       ) {
-        AuthService.registration(
-          name.value,
-          surname.value,
-          email.value,
-          password.value,
-          github.value,
-          number.value,
-          cv[0]
-        )
-          .then((res) => {
-            if (res.data.user) {
-              message.success("confirm email");
-              router.push("/auth/login");
-            } else {
+        if (cv[0].originFileObj) {
+          AuthService.registration(
+            name.value,
+            surname.value,
+            email.value,
+            password.value,
+            github.value,
+            number.value,
+            cv[0]
+          )
+            .then((res) => {
+              if (res.data.user) {
+                message.success("confirm email");
+                router.push("/auth/login");
+              } else {
+                message.error("error");
+              }
+            })
+            .catch(() => {
               message.error("error");
-            }
-          })
-          .catch(() => {
-            message.error("error");
-          });
+            });
+        } else {
+          message.error("incorrect cv data");
+        }
       } else {
         message.error("incorrect data");
       }
@@ -74,7 +78,6 @@ const Register: NextPage = () => {
           name="login"
           id="login"
           initialValues={{ remember: true }}
-          onFinish={register}
           autoComplete="off"
           role="form"
         >
@@ -118,17 +121,17 @@ const Register: NextPage = () => {
           />
           <FileUploader maxCount={1} setFile={setCv} />
           <br />
-          <Button type="primary" className="containerItem" onClick={register}>
+          <Button
+            type="primary"
+            className="containerItem"
+            onClick={register}
+            disabled={loading}
+            loading={loading}
+          >
             Register
           </Button>
           <Link href="/auth/login">
-            <Button
-              type="link"
-              className="containerItem"
-              size="small"
-              disabled={loading}
-              loading={loading}
-            >
+            <Button type="link" className="containerItem" size="small">
               or login
             </Button>
           </Link>
