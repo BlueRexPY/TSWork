@@ -15,9 +15,9 @@ Job search market for the IT segment
 <details><summary>Backend</summary>
 
    1. ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
+   1. ![Node](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
    1. ![NestJS](https://img.shields.io/badge/nestjs-%23E0234E.svg?style=for-the-badge&logo=nestjs&logoColor=white)
    1. ![JWT](https://img.shields.io/badge/JWT-233233.svg?style=for-the-badge&logo=JWT&logoColor=white)
-   1. ![Refresh](https://img.shields.io/badge/refresh-233233.svg?style=for-the-badge&logo=refresh&logoColor=white)
    1. ![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white)
    1. ![Google Cloud](https://img.shields.io/badge/GoogleCloud-%234285F4.svg?style=for-the-badge&logo=google-cloud&logoColor=white)
 
