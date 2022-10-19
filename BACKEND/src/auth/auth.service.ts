@@ -1,11 +1,9 @@
 import { CreateUserDto } from './../user/dto/create-user.dto';
-import { UserService } from './../user/user.service';
 import { LoginUserDto } from './../user/dto/login-user.dto';
 import { Auth, AuthDocument } from './schemas/auth.schema';
 import { BadRequestException, Injectable } from "@nestjs/common";
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { tokensType } from './types/tokens-user';
 import { JwtService } from './jwt.service';
 import { FinalUser } from 'src/user/dto/final-user';
 import { User, UserDocument } from 'src/user/schemas/user.schema';
@@ -17,12 +15,11 @@ const bcrypt = require('bcryptjs');
 
 @Injectable()
 export class AuthService {
-    constructor(@InjectModel(User.name) private userModel: Model<UserDocument>, @InjectModel(Auth.name) private authModel: Model<AuthDocument>, private jwtService: JwtService, private fileService: FileService,
-        private emailService: EmailService) { }
+    constructor(@InjectModel(User.name) private userModel: Model<UserDocument>, @InjectModel(Auth.name) private authModel: Model<AuthDocument>, private jwtService: JwtService, private fileService: FileService, private emailService: EmailService) { }
 
-    async refresh(refreshToken: string): Promise<FinalUser> {
-        if (!refreshToken) throw new BadRequestException({ message: "Invalid refresh token: no token" });
-
+    async refresh(refresh: string): Promise<FinalUser> {
+        if (!refresh) throw new BadRequestException({ message: "Invalid refresh token: no token" });
+        const refreshToken = (refresh.split(" ")[1])
         const session = await this.authModel.findOne({ refreshToken })
         if (!session) throw new BadRequestException({ message: "Invalid refresh token: no session" });
 

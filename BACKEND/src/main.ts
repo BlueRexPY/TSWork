@@ -8,11 +8,11 @@ async function bootstrap() {
   app.use(cookieParser())
   const cors = require("cors");
   const corsOptions = {
-    origin: "http://localhost:3000",// http://localhost:5000 https://ts-work.vercel.app
+    origin: "https://ts-work.vercel.app",// http://localhost:5000 https://ts-work.vercel.app
     credentials: true,
     optionSuccessStatus: 200,
   }
-  app.use(cors(corsOptions))
+  app.use(cors(corsOptions),cookieParser())
   await app.listen(process.env.PORT || 5000);
   console.log(`start server`)
 }

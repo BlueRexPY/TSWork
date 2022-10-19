@@ -21,7 +21,7 @@ export class FileService {
             if (!fs.existsSync(filePath)) { fs.mkdirSync(filePath, { recursive: true }) }
             fs.writeFileSync(path.resolve(filePath, fileName), file.buffer)
             gc.bucket("tswork-files").upload(filePath + "/" + fileName, { destination: fileName, })
-            return `https://storage.cloud.google.com/tswork-files/${fileName}`
+            return `https://storage.googleapis.com/tswork-files/${fileName}`//https://storage.cloud.google.com/tswork-files/
         } catch (e) {
             throw new HttpException(e.message, HttpStatus.INTERNAL_SERVER_ERROR)
         }

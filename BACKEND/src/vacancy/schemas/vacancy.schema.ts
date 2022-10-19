@@ -62,6 +62,9 @@ export class Vacancy {
 
   @Prop()
   createdAt: number;
+  
+  @Prop()
+  show: boolean;
 }
 
 export const VacancySchema = SchemaFactory.createForClass(Vacancy);
