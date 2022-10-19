@@ -43,7 +43,7 @@ const VacancyItem: React.FC<Props> = ({ vacancy }: Props) => {
               : `${vacancy.minSalary}-${vacancy.maxSalary}`}
             $
           </h2>
-          <h3 className="VacancyUtils">{vacancy.mainTechnology}</h3>
+          <h3 className="VacancyUtilsMainTechnology">{vacancy.mainTechnology}</h3>
         </div>
       </div>
     </Link>

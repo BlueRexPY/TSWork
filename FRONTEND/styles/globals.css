@@ -302,7 +302,7 @@ body::-webkit-scrollbar-thumb:hover {
 
 .VacancyTitle {
   margin: 0;
-  font-size: 16px;
+  font-size: 12px;
   text-overflow: ellipsis;
   white-space: nowrap;
   font-weight: bold;
@@ -312,13 +312,21 @@ body::-webkit-scrollbar-thumb:hover {
 
 .VacancyTitleLvl {
   margin: 0;
-  font-size: 16px;
+  font-size: 12px;
   text-overflow: ellipsis;
   white-space: nowrap;
   font-weight: bold;
+  width: 100%;
+  max-width: 100%;
 }
 
 .VacancyUtils {
+  align-content: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
+  max-width: 100%;
   margin: 0;
   font-size: 14px;
   color: #979797;
@@ -345,7 +353,11 @@ body::-webkit-scrollbar-thumb:hover {
 .vacancyItemSideLeft {
   margin-left: 15px;
   margin-right: 15px;
-  width: 70%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 90%;
+  max-width: 90%;
 }
 
 .vacancyItemSideRight {
@@ -356,16 +368,24 @@ body::-webkit-scrollbar-thumb:hover {
   align-items: flex-end;
   align-content: flex-end;
   margin-right: 10px;
-  width: 80px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 20%;
 }
 
 .vacancyItemLeftSide {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: flex-start;
   align-content: flex-start;
+  padding-left: 10px;
+  max-width: 80%;
 }
 
 .vacancyInfo {
@@ -413,22 +433,39 @@ body::-webkit-scrollbar-thumb:hover {
   align-items: flex-start;
   align-content: flex-start;
   margin-left: 30px;
+  max-width: 80%;
 }
 
 .headerInfo p {
   font-size: 14px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   margin: 0;
+  width: 100%;
+  max-width: 100%;
 }
 
 .headerInfo h2 {
-  font-size: 26px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 22px;
   font-weight: bold;
   margin: 0;
+  width: 100%;
+  max-width: 100%;
 }
 
 .vacancyInfo main {
   padding: 0px 30px 20px 30px;
 }
+
+.vacancyInfo  h3 {
+  word-wrap: break-word;
+  max-width: 100%;
+}
+
 
 .techSkillsList {
   display: flex;
@@ -445,6 +482,13 @@ body::-webkit-scrollbar-thumb:hover {
   border-radius: 10px;
   margin-right: 7px;
   border: 1px solid #fff;
+}
+
+.VacancyUtilsMainTechnology {
+  max-width: 100%;
+  margin: 0;
+  font-size: 14px;
+  color: #979797;
 }
 
 .vacancyPage {
@@ -673,9 +717,6 @@ body::-webkit-scrollbar-thumb:hover {
   .change {
     transform: scale(1)
   }
-  .headerInfo h2 {
-    font-size: 18px;
-  }
 
   .additionalButtons {
     display: flex;
@@ -733,5 +774,26 @@ body::-webkit-scrollbar-thumb:hover {
     flex-direction: column;
     padding: 70px 10px 10px 10px;
     padding-right: 5px;
+  }
+
+  .headerInfo p {
+    font-size: 12px;
+  }
+  
+  .headerInfo h2 {
+    font-size: 16px;
+  }
+
+  .vacancyItemLeftSide {
+    width: 75%;
+    max-width: 75%;
+  }
+
+  .vacancyItemSideRight {
+    max-width: 30%;
+  }
+  .headerInfo {
+    max-width: 70%;
+    margin-left: 10px;
   }
 }

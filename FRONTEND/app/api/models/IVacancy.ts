@@ -19,4 +19,5 @@ export interface IVacancy {
     view: number;
     responses: string[];
     createdAt: number;
+    show: true;
 }

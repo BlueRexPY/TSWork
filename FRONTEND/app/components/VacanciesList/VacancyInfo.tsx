@@ -6,7 +6,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { IVacancy } from "@/api/models/IVacancy";
 import SkeletonVacancyInfo from "./SkeletonVacancyInfo";
-import { Button, message } from "antd";
+import { Alert, Button, message } from "antd";
 import { useAppDispatch, useAppSelector } from "@/hooks/redux";
 import { useRouter } from "next/router";
 import Image from "next/image";
@@ -129,6 +129,7 @@ const VacancyInfo: React.FC<Props> = ({ id }: Props) => {
           </div>
         </div>
         <main>
+          {!vacancy?.show?<Alert message="VACANCY REMOVED" type="error" />:<></>}
           <div>
             <h3>
               <b>Tech skills:</b>
@@ -176,7 +177,14 @@ const VacancyInfo: React.FC<Props> = ({ id }: Props) => {
             : `${vacancy?.minSalary}-${vacancy?.maxSalary}`}
           $/month
         </p>
+        {!vacancy?.show?
         <Button
+        size="large"
+        type="text"
+        disabled={true}
+      >
+        VACANCY REMOVED
+      </Button>:<Button
           size="large"
           type="text"
           disabled={disabledButton}
@@ -184,7 +192,8 @@ const VacancyInfo: React.FC<Props> = ({ id }: Props) => {
           onClick={() => handleApply()}
         >
           {vacancy?.applyLink === "" ? "One click Apply" : "Apply"}
-        </Button>
+        </Button>}
+        
       </div>
     </div>
   );
