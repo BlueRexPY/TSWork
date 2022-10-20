@@ -82,7 +82,8 @@ body {
   align-items: flex-end;
   align-content: flex-end;
 }
-.navBarItem2 p{
+
+.navBarItem2 p {
   margin-bottom: 0px;
   padding: 3px 5px;
 }
@@ -125,11 +126,12 @@ body {
   width: 80%;
 }
 
-.containerItemBigSide{
+.containerItemBigSide {
   width: 50%;
 }
-.containerItem p{
-  padding:3px 15px;
+
+.containerItem p {
+  padding: 3px 15px;
 }
 
 .fileUploader {
@@ -149,14 +151,15 @@ body {
 
 .fileUploaderPhoto div {
   font-size: 10px;
-  padding: 10px 25px 10px 25px
+  padding: 10px 25px 10px 25px;
 }
 
-.margin50{
+.margin50 {
   margin-top: 50px;
   margin-bottom: 50px;
 }
-.padding20{
+
+.padding20 {
   padding: 20px;
 }
 
@@ -171,7 +174,7 @@ body {
   height: 80vh;
 }
 
-.centerBigForm{
+.centerBigForm {
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
@@ -192,7 +195,7 @@ body {
   width: 100%;
 }
 
-.jobDescriptionForm{
+.jobDescriptionForm {
   min-height: 120px;
 }
 
@@ -200,10 +203,11 @@ body {
   cursor: pointer;
 }
 
-.logoImg{
+.logoImg {
   transition: 0.2s;
 }
-.logoImg:hover{
+
+.logoImg:hover {
   transform: scale(1.1);
 }
 
@@ -297,12 +301,12 @@ body::-webkit-scrollbar-thumb:hover {
 }
 
 .vacancyItem:hover {
-  background-color:#313131;
+  background-color: #313131;
 }
 
 .VacancyTitle {
   margin: 0;
-  font-size: 12px;
+  font-size: 16px;
   text-overflow: ellipsis;
   white-space: nowrap;
   font-weight: bold;
@@ -312,7 +316,7 @@ body::-webkit-scrollbar-thumb:hover {
 
 .VacancyTitleLvl {
   margin: 0;
-  font-size: 12px;
+  font-size: 16px;
   text-overflow: ellipsis;
   white-space: nowrap;
   font-weight: bold;
@@ -461,11 +465,10 @@ body::-webkit-scrollbar-thumb:hover {
   padding: 0px 30px 20px 30px;
 }
 
-.vacancyInfo  h3 {
+.vacancyInfo h3 {
   word-wrap: break-word;
   max-width: 100%;
 }
-
 
 .techSkillsList {
   display: flex;
@@ -547,7 +550,7 @@ body::-webkit-scrollbar-thumb:hover {
 }
 
 .confirm p {
-  margin:0;
+  margin: 0;
   padding: 3px;
   font-size: 16px;
 }
@@ -560,7 +563,7 @@ body::-webkit-scrollbar-thumb:hover {
   display: none;
 }
 
-.h100{
+.h100 {
   height: 95%;
 }
 
@@ -649,7 +652,7 @@ body::-webkit-scrollbar-thumb:hover {
   animation: AnimatedLogo4 1.5s infinite ease;
 }
 
-.VacanciesLegendCrm{
+.VacanciesLegendCrm {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -660,21 +663,23 @@ body::-webkit-scrollbar-thumb:hover {
   padding: 10px;
 }
 
-.VacanciesLegendCrm h3{
+.VacanciesLegendCrm h3 {
   margin: 4px;
 }
 
-.CrmTable{
+.CrmTable {
   width: 80%;
 }
 
 #change {
   padding: 15px 0px 15px 0px;
 }
+
 .change {
-  transform: scale(1.2)
+  transform: scale(1.2);
 }
-.ResponsesInfo{
+
+.ResponsesInfo {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -687,35 +692,36 @@ body::-webkit-scrollbar-thumb:hover {
   padding: 20px;
 }
 
-.ResponsesInfo .ResponsesInfoText{
+.ResponsesInfo .ResponsesInfoText {
   margin-left: 40px;
 }
 
 @media (max-width: 700px) {
-
-  .ResponsesInfo{
+  .ResponsesInfo {
     width: 100%;
     padding: 10px;
   }
 
-  .VacanciesLegendCrm{
+  .VacanciesLegendCrm {
     width: 100%;
   }
 
-  .CrmTable{
+  .CrmTable {
     width: 100%;
   }
 
   .confirm {
     padding: 15px;
   }
-  .confirm p{
+
+  .confirm p {
     padding: 3px;
     font-size: 16px;
-    margin:0;
+    margin: 0;
   }
+
   .change {
-    transform: scale(1)
+    transform: scale(1);
   }
 
   .additionalButtons {
@@ -779,7 +785,7 @@ body::-webkit-scrollbar-thumb:hover {
   .headerInfo p {
     font-size: 12px;
   }
-  
+
   .headerInfo h2 {
     font-size: 16px;
   }
@@ -792,8 +798,17 @@ body::-webkit-scrollbar-thumb:hover {
   .vacancyItemSideRight {
     max-width: 30%;
   }
+
   .headerInfo {
     max-width: 70%;
     margin-left: 10px;
+  }
+
+  .VacancyTitle {
+    font-size: 14px;
+  }
+
+  .VacancyTitleLvl {
+    font-size: 14px;
   }
 }
