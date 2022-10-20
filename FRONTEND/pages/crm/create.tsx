@@ -52,7 +52,7 @@ const Create: NextPage = () => {
       maxSalary>99&&
       mainTechnology&&
       techStack.length>0&&
-      jobDescription.length>3&&jobDescription.length<999&&
+      jobDescription.length>3&&jobDescription.length<2001&&
       TSWCheckBox
     ) {
       const clearTech =  [...techStack].filter(i => i !== mainTechnology)
@@ -213,7 +213,7 @@ const Create: NextPage = () => {
             ))}
           </Select>
           <TextArea
-            placeholder="job description"
+            placeholder="job description (0-2000)"
             autoSize={{ minRows: 4, maxRows: 7 }}
             className="containerItem jobDescriptionForm"
             onChange={(e) => setJobDescription(e.target.value)}
