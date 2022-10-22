@@ -22,3 +22,16 @@ Job search market for the IT segment
    1. ![Google Cloud](https://img.shields.io/badge/GoogleCloud-%234285F4.svg?style=for-the-badge&logo=google-cloud&logoColor=white)
 
 </details>
+
+<details><summary>ToDo</summary>
+
+   1. advanced validation.
+   1. move css to modules.  
+   1. fix mobile skeleton.
+   
+
+  
+
+ 
+
+</details>
