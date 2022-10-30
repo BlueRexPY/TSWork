@@ -32,3 +32,7 @@ Job search market for the IT segment
    1. ~~community standards~~
    
 </details>
+
+
+![TSWORK_P](https://user-images.githubusercontent.com/66295121/198859253-ed2cd110-7bfd-426d-8280-84e3c86d916d.png)
+
