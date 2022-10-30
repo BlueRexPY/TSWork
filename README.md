@@ -25,7 +25,7 @@ Job search market for the IT segment
 
 <details><summary>ToDo</summary>
 
-   1. advanced validation.
+   1. ~~advanced validation.~~
    1. move css to modules.  
    1. ~~fix mobile skeleton~~
    1. e2e tests
