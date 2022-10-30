@@ -29,7 +29,7 @@ const Layout: React.FC<Props> = (props: Props) => {
   const { updateAuth } = authSlice.actions;
   const {
     title = "Home",
-    description = "Convenient job search in IT",
+    description = "💼 Job search market for the IT segment",
     keywords = "IT, Work",
     col = 1,
     myProfile = [""],
@@ -83,6 +83,8 @@ const Layout: React.FC<Props> = (props: Props) => {
           name="twitter:image"
           content="https://cdn.discordapp.com/attachments/736633764930912257/1036392375687331901/1212.png"
         />
+        <meta property="og:image:width" content="1280"></meta>
+        <meta property="og:image:height" content="640"></meta>
       </Head>
       <NavBar full={full} myProfile={myProfile}></NavBar>
       {loading?<div className={`columnLayout1`}><AnimatedLogo /></div>:<div className={`columnLayout${col}`}>{props.children}</div>}
