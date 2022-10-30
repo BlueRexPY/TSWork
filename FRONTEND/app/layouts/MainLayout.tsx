@@ -71,20 +71,22 @@ const Layout: React.FC<Props> = (props: Props) => {
     <div className="layout">
       <Head>
         <title>{`TSWork - ${title}`}</title>
+        <meta property="og:type" content="website"></meta>
+        <meta property="og:site_name" content="TSWork"></meta>
         <meta name="description" content={description} />
         <meta name="robots" content="index, follow" />
         <meta name="keywords" content={`IT, Work, ${keywords}`} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta
-          property="og:image"
+          property="twitter:image"
           content="https://cdn.discordapp.com/attachments/736633764930912257/1036392375687331901/1212.png"
         />
         <meta
-          name="twitter:image"
+          property="og:image"
           content="https://cdn.discordapp.com/attachments/736633764930912257/1036392375687331901/1212.png"
         />
-        <meta property="og:image:width" content="1280"></meta>
-        <meta property="og:image:height" content="640"></meta>
+        <meta property="og:image:width" content="1280px"></meta>
+        <meta property="og:image:height" content="640px"></meta>
       </Head>
       <NavBar full={full} myProfile={myProfile}></NavBar>
       {loading?<div className={`columnLayout1`}><AnimatedLogo /></div>:<div className={`columnLayout${col}`}>{props.children}</div>}
