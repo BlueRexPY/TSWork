@@ -12,6 +12,7 @@ import { isDefaultValid } from "@/utils/valid";
 import { VacanciesService } from "@/api/services/VacanciesService";
 import { useAppDispatch, useAppSelector } from "@/hooks/redux";
 import { vacanciesSlice } from "@/store/reducers/vacanciesSlice";
+import { IValidCreate } from "@/utils/IValidCreate";
 
 const Create: NextPage = () => {
   const { setVacancies } = vacanciesSlice.actions;
@@ -35,28 +36,64 @@ const Create: NextPage = () => {
   const [workLocation, setWorkLocation] = useState("");
   const [companyType, setCompanyType] = useState("");
   const { user } = useAppSelector((state) => state.authReducer);
+  const [error, setError] = useState(false);
+  const [errorValid, setErrorValid] = useState<IValidCreate>({
+    logo: false,
+    companyName: false,
+    companyAddress: false,
+    companyType: false,
+    companySize: false,
+    workLocation: false,
+    experienceLevel: false,
+    positionName: false,
+    employmentType: false,
+    minSalary: false,
+    maxSalary: false,
+    mainTechnology: false,
+    techStack: false,
+    jobDescription: false,
+    TSWCheckBox: false,
+  });
 
-  const createVacancy = () => {
+  const valid = () =>{
+    if(logo[0].originFileObj.length<1){
+      message.error("Please insert an image");
+    }
+    setErrorValid({ 
+      logo: logo[0].originFileObj.length>1,
+      companyName: !isDefaultValid(companyName.value),
+      companyAddress: !isDefaultValid(companyAddress.value),
+      companyType: !companyType,
+      companySize: !companySize,
+      workLocation: !workLocation,
+      experienceLevel: !experienceLevel,
+      positionName: !isDefaultValid(positionName.value),
+      employmentType: !employmentType,
+      minSalary: !(minSalary > 99),
+      maxSalary: !(maxSalary > 99),
+      mainTechnology: !mainTechnology,
+      techStack: !(techStack.length > 0),
+      jobDescription: !(jobDescription.length > 3 && jobDescription.length < 1999),
+      TSWCheckBox: !TSWCheckBox
+     })
+}
+
+  const createVacancy = async() => {
+    setError(false)
     setLoading(true);
-    if (
-      logo[0]?.originFileObj&&
-      isDefaultValid(companyName.value)&&
-      isDefaultValid(companyAddress.value)&&
-      companyType&&
-      companySize&&
-      workLocation&&
-      experienceLevel&&
-      isDefaultValid(positionName.value)&&
-      employmentType&&
-      minSalary>99&&
-      maxSalary>99&&
-      mainTechnology&&
-      techStack.length>0&&
-      jobDescription.length>3&&jobDescription.length<2001&&
-      TSWCheckBox
-    ) {
-      const clearTech =  [...techStack].filter(i => i !== mainTechnology)
-      VacanciesService.postVacancy(
+
+    await valid()
+
+    Object.values(errorValid).forEach(e => {
+      if (e) {
+        console.log(e)
+        setError(true)
+      }
+    })
+
+    if (!error) {
+      const clearTech = [...techStack].filter((i) => i !== mainTechnology);
+      await VacanciesService.postVacancy(
         {
           author: user.email,
           companyName: companyName.value,
@@ -69,19 +106,27 @@ const Create: NextPage = () => {
           minSalary,
           maxSalary,
           mainTechnology,
-          techStack: [mainTechnology,...clearTech],
+          techStack: [mainTechnology, ...clearTech],
           jobDescription,
           applyLink: applyLink.value,
           workLocation,
         },
         logo[0]
       )
-        .then((res) => {if(res){message.success("Success post");VacanciesService.getVacancies().then((res) => {dispatch(setVacancies(res.data))});router.push("/crm/vacancies/")}})
-        .finally(()=>setLoading(false))
-        .catch((e) => message.success("error"));
-    }else {
+        .then((res) => {
+          if (res) {
+            message.success("Success post");
+            VacanciesService.getVacancies().then((res) => {
+              dispatch(setVacancies(res.data));
+            });
+            router.push("/crm/vacancies/");
+          }
+        })
+        .finally(() => setLoading(false))
+        .catch((e) => message.error("error"));
+    } else {
       message.error("Invalid data");
-      setLoading(false)
+      setLoading(false);
     }
   };
 
@@ -100,14 +145,17 @@ const Create: NextPage = () => {
           <Input
             placeholder="company name"
             className="containerItem"
+            status={errorValid.companyName ? "error" : ""}
             {...companyName}
           />
           <Input
             placeholder="company address"
             className="containerItem"
+            status={errorValid.companyAddress ? "error" : ""}
             {...companyAddress}
           />
           <Select
+            status={errorValid.companyType ? "error" : ""}
             className="containerItem"
             showSearch
             placeholder="company type"
@@ -122,6 +170,7 @@ const Create: NextPage = () => {
             <Select.Option key={"Other"}>{"Other"}</Select.Option>
           </Select>
           <Select
+            status={errorValid.companySize ? "error" : ""}
             className="containerItem"
             showSearch
             placeholder="company size"
@@ -133,6 +182,7 @@ const Create: NextPage = () => {
             <Select.Option key={1000}>1000</Select.Option>
           </Select>
           <Select
+            status={errorValid.workLocation ? "error" : ""}
             className="containerItem"
             showSearch
             placeholder="work location"
@@ -145,6 +195,7 @@ const Create: NextPage = () => {
             <Select.Option key={"Fully remote"}>{"Fully remote"}</Select.Option>
           </Select>
           <Select
+            status={errorValid.experienceLevel ? "error" : ""}
             className="containerItem"
             showSearch
             placeholder="experience level"
@@ -155,11 +206,13 @@ const Create: NextPage = () => {
             ))}
           </Select>
           <Input
+            status={errorValid.positionName ? "error" : ""}
             placeholder="position name"
             className="containerItem"
             {...positionName}
           />
           <Select
+            status={errorValid.employmentType ? "error" : ""}
             className="containerItem"
             showSearch
             placeholder="employment type"
@@ -173,24 +226,27 @@ const Create: NextPage = () => {
           </Select>
           <div className="containerItem row">
             <InputNumber
+              status={errorValid.minSalary ? "error" : ""}
               prefix="$"
               placeholder="min"
               min={100}
               max={100000}
               className="containerItemBigSide"
-              onChange={(e)=>setMinSalary(e)}
+              onChange={(e) => setMinSalary(e)}
             />
             <p>{"-"}</p>
             <InputNumber
+              status={errorValid.maxSalary ? "error" : ""}
               prefix="$"
               placeholder="max"
               min={100}
               max={100000}
-              onChange={(e)=>setMaxSalary(e)}
+              onChange={(e) => setMaxSalary(e)}
               className="containerItemBigSide"
             />
           </div>
           <Select
+            status={errorValid.mainTechnology ? "error" : ""}
             className="containerItem"
             showSearch
             placeholder="main technology"
@@ -201,6 +257,7 @@ const Create: NextPage = () => {
             ))}
           </Select>
           <Select
+            status={errorValid.techStack ? "error" : ""}
             className="containerItem"
             showSearch
             mode="multiple"
@@ -213,7 +270,8 @@ const Create: NextPage = () => {
             ))}
           </Select>
           <TextArea
-            placeholder="job description (0-2000)"
+            status={errorValid.jobDescription ? "error" : ""}
+            placeholder="job description"
             autoSize={{ minRows: 4, maxRows: 7 }}
             className="containerItem jobDescriptionForm"
             onChange={(e) => setJobDescription(e.target.value)}

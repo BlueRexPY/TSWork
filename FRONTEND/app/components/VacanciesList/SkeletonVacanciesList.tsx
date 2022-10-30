@@ -6,7 +6,7 @@ const SkeletonVacanciesList: React.FC = () => {
   const { active } = useAppSelector((state) => state.navReducer);
   return (
     <div
-      className={`vacancyList ${!active ? "mobileList" : ""}`}
+      className={`vacancyList ${active ? "mobileList" : ""}`}
       role="skeleton"
     >
       <SkeltonItem />
