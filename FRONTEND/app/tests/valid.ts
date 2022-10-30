@@ -1,5 +1,5 @@
 import { isDefaultValid } from './../utils/valid';
-import { isEmailValid, isGithub, isPasswordValid, registerValid } from '@/utils/valid';
+import { isEmailValid, isGithub, isPasswordValid } from '@/utils/valid';
 import { isNumber } from '../utils/valid';
 
 describe('Valid', () => {
@@ -78,20 +78,6 @@ describe('Valid', () => {
         });
     })
 
-    describe('register', () => {
-        test('name,surname,react@gmail.com,password,https://github.com/BlueRexPY', () => {
-            expect(registerValid("name", "surname", "react@gmail.com", "password", "https://github.com/BlueRexPY", "123456789")).toBe(true)
-        });
-        test('me,surname,react@gmail,paword,https://github.c', () => {
-            expect(registerValid("me", "surname", "react@gmail", "paword", "https://github.c", "123456789")).toBe(false)
-        });
-        test('me,surname,react@gmail.com,paword,https://github.c', () => {
-            expect(registerValid("me", "surname", "react@gmail.com", "paword", "https://github.c", "123456789")).toBe(false)
-        });
-        test('me,surname,react@gmail,paword,https://github.com/BlueRexPY', () => {
-            expect(registerValid("me", "surname", "react@gmail", "paword", "https://github.com/BlueRexPY", "123456789")).toBe(false)
-        });
-    })
     describe('default', () => {
         test('default', () => {
             expect(isDefaultValid("default")).toBe(true)

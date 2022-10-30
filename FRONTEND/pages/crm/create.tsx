@@ -56,11 +56,11 @@ const Create: NextPage = () => {
   });
 
   const valid = () =>{
-    if(logo[0].originFileObj.length<1){
+    if(logo[0]?.originFileObj.length<1){
       message.error("Please insert an image");
     }
     setErrorValid({ 
-      logo: logo[0].originFileObj.length>1,
+      logo: logo[0]?.originFileObj.length>1,
       companyName: !isDefaultValid(companyName.value),
       companyAddress: !isDefaultValid(companyAddress.value),
       companyType: !companyType,

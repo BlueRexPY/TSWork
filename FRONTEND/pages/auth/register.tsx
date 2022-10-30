@@ -3,13 +3,14 @@ import Layout from "@/layouts/MainLayout";
 import { Button, Form, Input, message } from "antd";
 import Link from "next/link";
 import AuthService from "@/api/services/AuthService";
-import { registerValid } from "@/utils/valid";
 import { UseInput } from "@/hooks/useInput";
 import { useRouter } from "next/router";
 import { MaskedInput } from "antd-mask-input";
 import FileUploader from "@/components/utils/FileUploader";
 import { NextPage } from "next";
 import Logo from "@/components/utils/Logo";
+import { IValidRegister } from "@/utils/IValidRegister";
+import { isEmailValid, isGithub, isPasswordValid } from "@/utils/valid";
 
 const Register: NextPage = () => {
   const router = useRouter();
@@ -22,52 +23,78 @@ const Register: NextPage = () => {
   const github = UseInput("");
   const [cv, setCv] = useState([{ originFileObj: "" }]);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
+  const [errorValid, setErrorValid] = useState<IValidRegister>({
+    name: false,
+    surname: false,
+    phone: false,
+    email: false,
+    password: false,
+    confirmPassword: false,
+    github: false,
+    cv: false,
+  });
 
-  const register = () => {
-    setLoading(true);
-    if (password.value === passwordRepeat.value) {
-      if (
-        registerValid(
-          name.value,
-          surname.value,
-          email.value,
-          password.value,
-          github.value,
-          number.value
-        )
-      ) {
-        if (cv[0]?.originFileObj) {
-          AuthService.registration(
-            name.value,
-            surname.value,
-            email.value,
-            password.value,
-            github.value,
-            number.value,
-            cv[0]
-          )
-            .then((res) => {
-              if (res.data.user) {
-                message.success("confirm email");
-                router.push("/auth/login");
-              } else {
-                message.error("error");
-              }
-            })
-            .catch(() => {
-              message.error("error");
-            });
-        } else {
-          message.error("incorrect cv data");
-        }
-      } else {
-        message.error("incorrect data");
-      }
-    } else {
+  const valid = () => {
+    if (password.value !== passwordRepeat.value) {
       message.error("Passwords don't match");
     }
+    if (cv[0]?.originFileObj.length < 1) {
+      message.error("incorrect cv data");
+    }
+
+    setErrorValid({
+      name: name.value.length < 3,
+      surname: surname.value.length < 3,
+      phone: number.value.length !== 16,
+      email: !isEmailValid(email.value),
+      password: !isPasswordValid(password.value),
+      confirmPassword: password.value !== passwordRepeat.value || !isPasswordValid(passwordRepeat.value),
+      github: !isGithub(github.value),
+      cv: cv[0]?.originFileObj.length < 1,
+     })
+  };
+
+  const register = async () => {
+    setLoading(true);
+    setError(false);
+    await valid();
+
+    Object.values(errorValid).forEach((e) => {
+      if (e) {
+        console.log(e);
+        setError(true);
+      }
+    });
+
+    if (!error) {
+      await AuthService.registration(
+        name.value,
+        surname.value,
+        email.value,
+        password.value,
+        github.value,
+        number.value,
+        cv[0]
+      )
+        .then((res) => {
+          if (res.data.user) {
+            message.success("confirm email");
+            router.push("/auth/login");
+          } else {
+            message.error("error");
+          }
+        })
+        .catch(() => {
+          message.error("this email is already taken");
+        });
+    } else {
+      message.error("incorrect data");
+    }
+
     setLoading(false);
   };
+
   return (
     <Layout col={1} title="Register">
       <div className="centerBigForm">
@@ -80,15 +107,17 @@ const Register: NextPage = () => {
           role="form"
         >
           <Logo />
-          <Input placeholder="name 4-32" className="containerItem" {...name} />
+          <Input  status={errorValid.name ? "error" : ""} placeholder="name 4-32" className="containerItem" {...name} />
           <Input
             placeholder="surname 4-32"
             className="containerItem"
             {...surname}
+            status={errorValid.surname ? "error" : ""}
           />
           <MaskedInput
             className="containerItem"
             {...number}
+            status={errorValid.phone ? "error" : ""}
             mask={"+00(00)0000-0000"}
             maskOptions={{
               dispatch: function (appended, dynamicMasked) {
@@ -97,8 +126,9 @@ const Register: NextPage = () => {
               },
             }}
           />
-          <Input placeholder="email" className="containerItem" {...email} />
+          <Input placeholder="email" className="containerItem" status={errorValid.email ? "error" : ""} {...email} />
           <Input.Password
+            status={errorValid.password ? "error" : ""}
             placeholder="password 8-32"
             className="containerItem"
             maxLength={32}
@@ -106,6 +136,7 @@ const Register: NextPage = () => {
             {...password}
           />
           <Input.Password
+            status={errorValid.confirmPassword ? "error" : ""}
             placeholder="confirm password"
             className="containerItem"
             maxLength={32}
@@ -113,6 +144,7 @@ const Register: NextPage = () => {
             {...passwordRepeat}
           />
           <Input
+            status={errorValid.github ? "error" : ""}
             placeholder="github link"
             className="containerItem"
             {...github}

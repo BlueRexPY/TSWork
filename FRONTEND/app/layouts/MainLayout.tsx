@@ -77,11 +77,11 @@ const Layout: React.FC<Props> = (props: Props) => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta
           property="og:image"
-          content="https://cdn.discordapp.com/attachments/736633764930912257/1027366515126833183/Logo.png"
+          content="https://cdn.discordapp.com/attachments/736633764930912257/1036392375687331901/1212.png"
         />
         <meta
           name="twitter:image"
-          content="https://cdn.discordapp.com/attachments/736633764930912257/1027366515126833183/Logo.png"
+          content="https://cdn.discordapp.com/attachments/736633764930912257/1036392375687331901/1212.png"
         />
       </Head>
       <NavBar full={full} myProfile={myProfile}></NavBar>
