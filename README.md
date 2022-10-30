@@ -1,4 +1,3 @@
-//![Banner](https://cdn.discordapp.com/attachments/736633764930912257/1032042064164159539/TSWORK.png)
 ![TSWORK_P](https://user-images.githubusercontent.com/66295121/198859253-ed2cd110-7bfd-426d-8280-84e3c86d916d.png)
 # TSWork
 
