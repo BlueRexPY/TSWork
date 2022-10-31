@@ -86,7 +86,6 @@ const Create: NextPage = () => {
 
     Object.values(errorValid).forEach(e => {
       if (e) {
-        console.log(e)
         setError(true)
       }
     })
