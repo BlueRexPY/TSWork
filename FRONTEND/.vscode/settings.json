@@ -1,4 +1,14 @@
 {
+  {
+  "cSpell.words": [
+    "antd",
+    "tswork",
+    "consts",
+    "myprofile",
+    "reduxjs",
+    "Symfony",
+    "Feyn"
+  ],
   "workbench.colorCustomizations": {
     "activityBar.activeBackground": "#e7a30337",
     "activityBar.activeBorder": "#febe29",
