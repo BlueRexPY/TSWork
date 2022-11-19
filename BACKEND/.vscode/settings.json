@@ -1,4 +1,12 @@
 {
+  "cSpell.words": [
+    "tswork",
+    "nestjs",
+    "Consolas",
+    "Lucida",
+    "Bitstream",
+    "Menlo",
+  ],
   "workbench.colorCustomizations": {
     "activityBar.activeBackground": "#833cd435",
     "activityBar.activeBorder": "#843CD4",
