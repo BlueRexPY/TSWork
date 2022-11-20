@@ -1,5 +1,4 @@
 {
-  {
   "cSpell.words": [
     "antd",
     "tswork",
@@ -7,7 +6,12 @@
     "myprofile",
     "reduxjs",
     "Symfony",
-    "Feyn"
+    "Feyn",
+    "Ruslan",
+    "craco",
+    "headlessui",
+    "heroicons",
+    "imask",
   ],
   "workbench.colorCustomizations": {
     "activityBar.activeBackground": "#e7a30337",
@@ -30,3 +34,4 @@
   },
   "peacock.color": "#843CD4"
 }
+
