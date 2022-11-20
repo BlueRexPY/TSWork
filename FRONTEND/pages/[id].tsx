@@ -52,6 +52,7 @@ const VacancySelected: NextPage<vacancy> = (SearchVacancy: vacancy) => {
       dispatch(setActive(true));
       setSelected(true);
     } else {
+      dispatch(setActive(false));
       setSelected(false);
     }
   }, [SearchVacancy.id]);

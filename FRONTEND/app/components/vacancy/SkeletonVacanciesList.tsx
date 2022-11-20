@@ -2,11 +2,17 @@ import { useAppSelector } from "@/hooks/redux";
 import React from "react";
 import SkeltonItem from "./SkeltonItem";
 
-const SkeletonVacanciesList: React.FC = () => {
+
+type Props = {
+  display?:boolean
+};
+
+
+const SkeletonVacanciesList: React.FC<Props> = ({display = false}) => {
   const { active } = useAppSelector((state) => state.navReducer);
   return (
     <div
-      className={`vacancyList ${active ? "mobileList" : ""}`}
+      className={`vacancyList ${display?"":active ? "mobileList" : ""}`}
       role="skeleton"
     >
       <SkeltonItem />

@@ -5,13 +5,14 @@ import VacancyItem from "./VacancyItem";
 
 type Props = {
   vacancies: IVacancy[];
+  display?:boolean
 };
 
-const VacanciesList: React.FC<Props> = ({ vacancies }: Props) => {
+const VacanciesList: React.FC<Props> = ({ vacancies,display = false }: Props) => {
   const { active } = useAppSelector((state) => state.navReducer);
   return (
     <div
-      className={`vacancyList ${active ? "mobileList" : ""}`}
+      className={`vacancyList ${display?"":active ? "mobileList" : ""}`}
       role="vacancyList"
     >
       {vacancies.length !== 0 ? (
