@@ -44,7 +44,16 @@ const Response: NextPage<vacancy> = (vacancyId: vacancy) => {
       okType: "danger",
       cancelText: "No",
       onOk() {
-        VacanciesService.delete(vacancy ? vacancy?._id : "").then(()=>{VacanciesService.getVacancies().then((res) => {dispatch(setVacancies(res.data))});message.success("vacancy removed")}).then(()=>{router.push("/")});
+        VacanciesService.delete(vacancy ? vacancy?._id : "")
+          .then(() => {
+            VacanciesService.getVacancies().then((res) => {
+              dispatch(setVacancies(res.data));
+            });
+            message.success("vacancy removed");
+          })
+          .then(() => {
+            router.push("/");
+          });
       },
     });
   };
@@ -115,9 +124,9 @@ const Response: NextPage<vacancy> = (vacancyId: vacancy) => {
               <h4>{`View/Responses: ${vacancy ? vacancy.view : ""} / ${
                 vacancy ? vacancy.responses.length : ""
               }`}</h4>
-               <Button onClick={showDeleteConfirm} type="default" size="small">
+              <Button onClick={showDeleteConfirm} type="default" size="small">
                 Delete
-              </Button> 
+              </Button>
             </div>
           </div>
           <ResponsesCrmTable responses={responses}></ResponsesCrmTable>

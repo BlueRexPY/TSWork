@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Head from "next/head";
 import { ReactChild, ReactNode, useEffect } from "react";
-import NavBar from "@/components/NavBar/NavBar";
+import NavBar from "@/components/nav/NavBar";
 import { useAppDispatch, useAppSelector } from "@/hooks/redux";
 import AuthService from "@/api/services/AuthService";
 import { authSlice } from "@/store/reducers/authSlice";
@@ -50,7 +50,11 @@ const Layout: React.FC<Props> = (props: Props) => {
             resolve(true);
           }
         })
-        .catch((e) => {console.log("error " + e);Cookies.remove("refreshToken");router.push("/auth/login");});
+        .catch((e) => {
+          console.log("error " + e);
+          Cookies.remove("refreshToken");
+          router.push("/auth/login");
+        });
     } else {
       resolve(true);
     }
@@ -71,25 +75,18 @@ const Layout: React.FC<Props> = (props: Props) => {
     <div className="layout">
       <Head>
         <title>{`TSWork - ${title}`}</title>
-        <meta property="og:type" content="website"></meta>
-        <meta property="og:site_name" content="TSWork"></meta>
         <meta name="description" content={description} />
         <meta name="robots" content="index, follow" />
         <meta name="keywords" content={`IT, Work, ${keywords}`} />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta
-          property="twitter:image"
-          content="https://cdn.discordapp.com/attachments/736633764930912257/1036392375687331901/1212.png"
-        />
-        <meta
-          property="og:image"
-          content="https://cdn.discordapp.com/attachments/736633764930912257/1036392375687331901/1212.png"
-        />
-        <meta property="og:image:width" content="1280px"></meta>
-        <meta property="og:image:height" content="640px"></meta>
       </Head>
       <NavBar full={full} myProfile={myProfile}></NavBar>
-      {loading?<div className={`columnLayout1`}><AnimatedLogo /></div>:<div className={`columnLayout${col}`}>{props.children}</div>}
+      {loading ? (
+        <div className={`columnLayout1`}>
+          <AnimatedLogo />
+        </div>
+      ) : (
+        <div className={`columnLayout${col}`}>{props.children}</div>
+      )}
     </div>
   );
 };

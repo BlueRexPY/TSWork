@@ -40,11 +40,11 @@ const Vacancies: NextPage = () => {
   return (
     <Layout col={1} full={true} title="CRM" needAuth={true}>
       {loading ? (
-        <AnimatedLogo/>
+        <AnimatedLogo />
       ) : (
         <>
-          <VacanciesLegendCrm/>
-          <VacanciesCrmTable vacancies={vacancies}/>
+          <VacanciesLegendCrm />
+          <VacanciesCrmTable vacancies={vacancies} />
         </>
       )}
     </Layout>

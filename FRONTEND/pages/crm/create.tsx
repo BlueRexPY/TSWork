@@ -55,12 +55,12 @@ const Create: NextPage = () => {
     TSWCheckBox: false,
   });
 
-  const valid = () =>{
-    if(logo[0]?.originFileObj.length<1){
+  const valid = () => {
+    if (logo[0]?.originFileObj.length < 1) {
       message.error("Please insert an image");
     }
-    setErrorValid({ 
-      logo: logo[0]?.originFileObj.length>1,
+    setErrorValid({
+      logo: logo[0]?.originFileObj.length > 1,
       companyName: !isDefaultValid(companyName.value),
       companyAddress: !isDefaultValid(companyAddress.value),
       companyType: !companyType,
@@ -73,22 +73,25 @@ const Create: NextPage = () => {
       maxSalary: !(maxSalary > 99),
       mainTechnology: !mainTechnology,
       techStack: !(techStack.length > 0),
-      jobDescription: !(jobDescription.length > 3 && jobDescription.length < 1999),
-      TSWCheckBox: !TSWCheckBox
-     })
-}
+      jobDescription: !(
+        jobDescription.length > 3 && jobDescription.length < 1999
+      ),
+      TSWCheckBox: !TSWCheckBox,
+    });
+  };
 
-  const createVacancy = async() => {
-    setError(false)
+  const createVacancy = async () => {
+    setError(false);
     setLoading(true);
 
-    await valid()
+    await valid();
 
-    Object.values(errorValid).forEach(e => {
+    Object.values(errorValid).forEach((e) => {
       if (e) {
-        setError(true)
+        console.log(e);
+        setError(true);
       }
-    })
+    });
 
     if (!error) {
       const clearTech = [...techStack].filter((i) => i !== mainTechnology);

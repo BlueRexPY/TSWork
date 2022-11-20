@@ -11,6 +11,7 @@ import { NextPage } from "next";
 import Logo from "@/components/utils/Logo";
 import { IValidRegister } from "@/utils/IValidRegister";
 import { isEmailValid, isGithub, isPasswordValid } from "@/utils/valid";
+import styles from "../../styles/Auth.module.css"
 
 const Register: NextPage = () => {
   const router = useRouter();
@@ -49,10 +50,12 @@ const Register: NextPage = () => {
       phone: number.value.length !== 16,
       email: !isEmailValid(email.value),
       password: !isPasswordValid(password.value),
-      confirmPassword: password.value !== passwordRepeat.value || !isPasswordValid(passwordRepeat.value),
+      confirmPassword:
+        password.value !== passwordRepeat.value ||
+        !isPasswordValid(passwordRepeat.value),
       github: !isGithub(github.value),
       cv: cv[0]?.originFileObj.length < 1,
-     })
+    });
   };
 
   const register = async () => {
@@ -97,9 +100,9 @@ const Register: NextPage = () => {
 
   return (
     <Layout col={1} title="Register">
-      <div className="centerBigForm">
+      <div className={styles.wrapper}>
         <Form
-          className="container"
+          className={styles.container}
           name="login"
           id="login"
           initialValues={{ remember: true }}
@@ -107,15 +110,20 @@ const Register: NextPage = () => {
           role="form"
         >
           <Logo />
-          <Input  status={errorValid.name ? "error" : ""} placeholder="name 4-32" className="containerItem" {...name} />
+          <Input
+            status={errorValid.name ? "error" : ""}
+            placeholder="name 4-32"
+            className={styles.item}
+            {...name}
+          />
           <Input
             placeholder="surname 4-32"
-            className="containerItem"
+            className={styles.item}
             {...surname}
             status={errorValid.surname ? "error" : ""}
           />
           <MaskedInput
-            className="containerItem"
+            className={styles.item}
             {...number}
             status={errorValid.phone ? "error" : ""}
             mask={"+00(00)0000-0000"}
@@ -126,11 +134,16 @@ const Register: NextPage = () => {
               },
             }}
           />
-          <Input placeholder="email" className="containerItem" status={errorValid.email ? "error" : ""} {...email} />
+          <Input
+            placeholder="email"
+            className={styles.item}
+            status={errorValid.email ? "error" : ""}
+            {...email}
+          />
           <Input.Password
             status={errorValid.password ? "error" : ""}
             placeholder="password 8-32"
-            className="containerItem"
+            className={styles.item}
             maxLength={32}
             minLength={8}
             {...password}
@@ -138,7 +151,7 @@ const Register: NextPage = () => {
           <Input.Password
             status={errorValid.confirmPassword ? "error" : ""}
             placeholder="confirm password"
-            className="containerItem"
+            className={styles.item}
             maxLength={32}
             minLength={8}
             {...passwordRepeat}
@@ -146,14 +159,14 @@ const Register: NextPage = () => {
           <Input
             status={errorValid.github ? "error" : ""}
             placeholder="github link"
-            className="containerItem"
+            className={styles.item}
             {...github}
           />
           <FileUploader maxCount={1} setFile={setCv} />
           <br />
           <Button
             type="primary"
-            className="containerItem"
+            className={styles.item}
             onClick={register}
             disabled={loading}
             loading={loading}
@@ -161,7 +174,7 @@ const Register: NextPage = () => {
             Register
           </Button>
           <Link href="/auth/login">
-            <Button type="link" className="containerItem" size="small">
+            <Button type="link" className={styles.item} size="small">
               or login
             </Button>
           </Link>

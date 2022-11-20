@@ -12,8 +12,8 @@ import { isNumber } from "@/utils/valid";
 import { authSlice } from "@/store/reducers/authSlice";
 import { UseInput } from "@/hooks/useInput";
 import Layout from "@/layouts/MainLayout";
-import SkeletonVacanciesList from "@/components/VacanciesList/SkeletonVacanciesList";
-import VacanciesList from "@/components/VacanciesList/VacanciesList";
+import SkeletonVacanciesList from "@/components/vacancie/SkeletonVacanciesList";
+import VacanciesList from "@/components/vacancie/VacanciesList";
 import FileUploader from "@/components/utils/FileUploader";
 
 const MyProfile: NextPage = () => {
@@ -42,13 +42,12 @@ const MyProfile: NextPage = () => {
   };
 
   useEffect(() => {
-    setLoading(true)
-    if(auth){
+    setLoading(true);
+    if (auth) {
       AuthService.getByEmail(user.email).then((res) => {
         dispatch(updateAuth(res.data));
-        fetch(res.data.responses)
-        .then(()=>setLoading(false));
-      })
+        fetch(res.data.responses).then(() => setLoading(false));
+      });
     }
   }, [auth]);
 
@@ -140,7 +139,11 @@ const MyProfile: NextPage = () => {
         <h3 className="centerLine">
           my response{loading ? `` : ` - ${vacancies.length}`}
         </h3>
-        {loading ? <SkeletonVacanciesList />: <VacanciesList vacancies={vacancies} />}
+        {loading ? (
+          <SkeletonVacanciesList />
+        ) : (
+          <VacanciesList vacancies={vacancies} />
+        )}
       </div>
     </Layout>
   );

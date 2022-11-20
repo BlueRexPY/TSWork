@@ -1,9 +1,10 @@
 import React, { useState } from "react";
+import styles from "../../styles/Auth.module.css"
 import Layout from "@/layouts/MainLayout";
 import { UseInput } from "@/hooks/useInput";
 import { Button, Form, Input, message } from "antd";
 import { isEmailValid, isPasswordValid } from "@/utils/valid";
-import { useAppDispatch } from "../../app/hooks/redux";
+import { useAppDispatch } from "@/hooks/redux";
 import Link from "next/link";
 import { authSlice } from "@/store/reducers/authSlice";
 import AuthService from "@/api/services/AuthService";
@@ -16,7 +17,6 @@ const Login: NextPage = () => {
   const { loginAuth } = authSlice.actions;
   const dispatch = useAppDispatch();
   const [loading, setLoading] = useState(false);
-
   const email = UseInput("");
   const password = UseInput("");
 
@@ -46,9 +46,9 @@ const Login: NextPage = () => {
 
   return (
     <Layout col={1} title="Login">
-      <div className="center">
+      <div className={styles.wrapper}>
         <Form
-          className="container"
+          className={styles.container}
           name="login"
           id="login"
           initialValues={{ remember: true }}
@@ -56,22 +56,22 @@ const Login: NextPage = () => {
           role="form"
         >
           <Logo />
-          <Input placeholder="email" className="containerItem" {...email} />
+          <Input placeholder="email" className={styles.item} {...email} />
           <Input.Password
             placeholder="password"
-            className="containerItem"
+            className={styles.item}
             maxLength={32}
             minLength={8}
             {...password}
           />
-          <Button type="primary" className="containerItem" onClick={login}>
+          <Button type="primary"  className={styles.item} onClick={login}>
             Login
           </Button>
 
           <Link href="/auth/register">
             <Button
               type="link"
-              className="containerItem"
+              className={styles.input}
               size="small"
               disabled={loading}
               loading={loading}

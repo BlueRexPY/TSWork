@@ -1,8 +1,8 @@
 import { IVacancy } from "@/api/models/IVacancy";
 import { VacanciesService } from "@/api/services/VacanciesService";
-import SkeletonVacanciesList from "@/components/VacanciesList/SkeletonVacanciesList";
-import VacanciesList from "@/components/VacanciesList/VacanciesList";
-import VacancyInfo from "@/components/VacanciesList/VacancyInfo";
+import SkeletonVacanciesList from "@/components/vacancie/SkeletonVacanciesList";
+import VacanciesList from "@/components/vacancie/VacanciesList";
+import VacancyInfo from "@/components/vacancie/VacancyInfo";
 import { useAppDispatch, useAppSelector } from "@/hooks/redux";
 import { vacanciesSlice } from "@/store/reducers/vacanciesSlice";
 import { GetServerSideProps, NextPage } from "next";
@@ -69,7 +69,11 @@ const VacancySelected: NextPage<vacancy> = (SearchVacancy: vacancy) => {
 
   return (
     <Layout col={2} full={true} title={skill === "" ? "Search" : skill}>
-      {loading ? <SkeletonVacanciesList />:<VacanciesList vacancies={filterVacancies} />}
+      {loading ? (
+        <SkeletonVacanciesList />
+      ) : (
+        <VacanciesList vacancies={filterVacancies} />
+      )}
       {selected ? <VacancyInfo id={SearchVacancy.id} /> : <ToGetStart />}
     </Layout>
   );
