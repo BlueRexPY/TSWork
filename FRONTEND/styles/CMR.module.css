@@ -1,0 +1,84 @@
+.responsesInfo {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: flex-start;
+  align-content: center;
+  width: 80%;
+  padding: 10px;
+}
+
+.responsesInfo .responsesInfoText {
+  margin-left: 40px;
+}
+
+@media (max-width: 700px) {
+  .responsesInfo {
+    width: 100%;
+    padding: 10px;
+  }
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: center;
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+
+.container {
+  min-height: 150px;
+  min-width: 200px;
+  width: 270px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: center;
+  background: #212121;
+  border-radius: 10px;
+  padding: 20px;
+  transform: scale(1.2);
+}
+
+.container .item {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  width: 80%;
+}
+
+.item p {
+  padding: 3px 15px;
+}
+
+.half {
+  width: 50%;
+}
+.description {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  width: 80%;
+  min-height: 120px;
+}
+
+.salary {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  width: 80%;
+}
+.salary p{
+    margin: 5px;
+}

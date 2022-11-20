@@ -88,15 +88,8 @@ body {
   padding: 3px 5px;
 }
 
-.notFound {
-  width: 100vw;
-  height: 90vh;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  justify-content: center;
-  align-items: center;
-  align-content: center;
+#login {
+  padding: 15px 0px 15px 0px;
 }
 
 .container {
@@ -116,42 +109,14 @@ body {
   transform: scale(1.2);
 }
 
-#login {
-  padding: 15px 0px 15px 0px;
-}
-
 .container .containerItem {
   margin-top: 5px;
   margin-bottom: 5px;
   width: 80%;
 }
 
-.containerItemBigSide {
-  width: 50%;
-}
-
 .containerItem p {
   padding: 3px 15px;
-}
-
-.fileUploader {
-  width: 100%;
-  font-size: 12px;
-}
-
-.fileUploader div {
-  font-size: 10px;
-  padding: 0px 25px 0px 25px;
-}
-
-.fileUploaderPhoto {
-  width: 40%;
-  font-size: 12px;
-}
-
-.fileUploaderPhoto div {
-  font-size: 10px;
-  padding: 10px 25px 10px 25px;
 }
 
 .margin50 {
@@ -174,17 +139,6 @@ body {
   height: 80vh;
 }
 
-.centerBigForm {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  justify-content: flex-start;
-  align-items: center;
-  align-content: center;
-  padding-top: 80px;
-  padding-bottom: 80px;
-}
-
 .centerLine {
   display: flex;
   flex-direction: column;
@@ -193,10 +147,6 @@ body {
   align-items: center;
   align-content: center;
   width: 100%;
-}
-
-.jobDescriptionForm {
-  min-height: 120px;
 }
 
 .link:hover {
@@ -209,19 +159,6 @@ body {
 
 .logoImg:hover {
   transform: scale(1.1);
-}
-
-.indexToGetStart {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  justify-content: center;
-  align-items: center;
-  align-content: center;
-  text-align: center;
-  width: 50%;
-  height: 100%;
-  margin: 5px;
 }
 
 .vacancyList {
@@ -371,7 +308,6 @@ body::-webkit-scrollbar-thumb:hover {
   justify-content: flex-end;
   align-items: flex-end;
   align-content: flex-end;
-  margin-right: 10px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -567,90 +503,6 @@ body::-webkit-scrollbar-thumb:hover {
   height: 95%;
 }
 
-@keyframes AnimatedLogo1 {
-  0% {
-    transform: translate(-200px, -100px);
-    opacity: 0;
-  }
-
-  20% {
-    transform: translate(0px, 0px);
-    opacity: 1;
-  }
-}
-
-@keyframes AnimatedLogo2 {
-  20% {
-    transform: translate(200px, -100px);
-    opacity: 0;
-  }
-
-  40% {
-    transform: translate(0px, 0px);
-    opacity: 1;
-  }
-}
-
-@keyframes AnimatedLogo3 {
-  40% {
-    transform: translateY(-200px);
-    opacity: 0;
-  }
-
-  60% {
-    transform: translateY(0px);
-    opacity: 1;
-  }
-}
-
-@keyframes AnimatedLogo4 {
-  60% {
-    transform: translateY(-200px);
-    opacity: 0;
-  }
-
-  70% {
-    opacity: 1;
-    transform: translateY(0px);
-  }
-}
-
-@keyframes AnimatedLogo {
-  20% {
-    transform: scale(0.8);
-  }
-
-  70% {
-    transform: scale(0.8);
-  }
-
-  100% {
-    transform: scale(1);
-  }
-}
-
-.AnimatedLogo {
-  transform: scale(1);
-  animation: AnimatedLogo 1.5s infinite ease;
-  width: 300px;
-  position: absolute;
-}
-
-.AnimatedLogo1 {
-  animation: AnimatedLogo1 1.5s infinite ease;
-}
-
-.AnimatedLogo2 {
-  animation: AnimatedLogo2 1.5s infinite ease;
-}
-
-.AnimatedLogo3 {
-  animation: AnimatedLogo3 1.5s infinite ease;
-}
-
-.AnimatedLogo4 {
-  animation: AnimatedLogo4 1.5s infinite ease;
-}
 
 .VacanciesLegendCrm {
   display: flex;
@@ -679,26 +531,7 @@ body::-webkit-scrollbar-thumb:hover {
   transform: scale(1.2);
 }
 
-.ResponsesInfo {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: center;
-  align-items: flex-start;
-  align-content: center;
-  width: 80%;
-  padding: 10px;
-}
-
-.ResponsesInfo .ResponsesInfoText {
-  margin-left: 40px;
-}
-
 @media (max-width: 700px) {
-  .ResponsesInfo {
-    width: 100%;
-    padding: 10px;
-  }
 
   .VacanciesLegendCrm {
     width: 100%;
@@ -758,6 +591,7 @@ body::-webkit-scrollbar-thumb:hover {
 
   .vacancyPage {
     width: 100%;
+    margin: 0;
   }
 
   .mobileList {
@@ -770,14 +604,9 @@ body::-webkit-scrollbar-thumb:hover {
     width: 100%;
   }
 
-  .indexToGetStart {
-    display: none;
-  }
-
   .columnLayout2 {
     flex-direction: column;
-    padding: 70px 10px 10px 10px;
-    padding-right: 5px;
+    padding: 70px 5px 5px 5px;
   }
 
   .headerInfo p {

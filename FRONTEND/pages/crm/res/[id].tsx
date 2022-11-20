@@ -12,6 +12,7 @@ import { Button, message, Modal, Popover, Progress } from "antd";
 import { ExclamationCircleOutlined } from "@ant-design/icons";
 import { useRouter } from "next/router";
 import { vacanciesSlice } from "@/store/reducers/vacanciesSlice";
+import styles from '../../../styles/CMR.module.css'
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   const id = params?.id;
@@ -86,7 +87,7 @@ const Response: NextPage<vacancy> = (vacancyId: vacancy) => {
         <AnimatedLogo />
       ) : (
         <>
-          <div className="ResponsesInfo">
+          <div className={styles.responsesInfo}>
             <Popover
               content={
                 <div>
@@ -109,7 +110,7 @@ const Response: NextPage<vacancy> = (vacancyId: vacancy) => {
                 )}
               />
             </Popover>
-            <div className="ResponsesInfoText">
+            <div className={styles.responsesInfoText}>
               <h4>{`Position: ${vacancy ? vacancy.positionName : ""}`}</h4>
               <h4>{`Experience:  ${
                 vacancy ? vacancy.experienceLevel : ""

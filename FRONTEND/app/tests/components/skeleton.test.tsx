@@ -3,9 +3,9 @@
  */
 
 import { render, screen } from "@testing-library/react";
-import SkeltonItem from "@/components/vacancie/SkeltonItem";
-import SkeletonVacanciesList from "@/components/vacancie/SkeletonVacanciesList";
-import SkeletonVacancyInfo from "@/components/vacancie/SkeletonVacancyInfo";
+import SkeltonItem from "@/components/vacancy/SkeltonItem";
+import SkeletonVacanciesList from "@/components/vacancy/SkeletonVacanciesList";
+import SkeletonVacancyInfo from "@/components/vacancy/SkeletonVacancyInfo";
 import { renderWithState } from "@/tests/helpers/renderWithState";
 
 describe("Skelton Items", () => {

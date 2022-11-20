@@ -1,0 +1,155 @@
+@keyframes AnimatedLogo1 {
+  0% {
+    transform: translate(-200px, -100px);
+    opacity: 0;
+  }
+
+  20% {
+    transform: translate(0px, 0px);
+    opacity: 1;
+  }
+}
+
+@keyframes AnimatedLogo2 {
+  20% {
+    transform: translate(200px, -100px);
+    opacity: 0;
+  }
+
+  40% {
+    transform: translate(0px, 0px);
+    opacity: 1;
+  }
+}
+
+@keyframes AnimatedLogo3 {
+  40% {
+    transform: translateY(-200px);
+    opacity: 0;
+  }
+
+  60% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
+
+@keyframes AnimatedLogo4 {
+  60% {
+    transform: translateY(-200px);
+    opacity: 0;
+  }
+
+  70% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+
+@keyframes AnimatedLogo {
+  20% {
+    transform: scale(0.8);
+  }
+
+  70% {
+    transform: scale(0.8);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+.AnimatedLogo {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  height: 80vh;
+  transform: scale(1);
+  animation: AnimatedLogo 1.5s infinite ease;
+  width: 300px;
+  position: absolute;
+}
+
+.AnimatedLogo1 {
+  animation: AnimatedLogo1 1.5s infinite ease;
+}
+
+.AnimatedLogo2 {
+  animation: AnimatedLogo2 1.5s infinite ease;
+}
+
+.AnimatedLogo3 {
+  animation: AnimatedLogo3 1.5s infinite ease;
+}
+
+.AnimatedLogo4 {
+  animation: AnimatedLogo4 1.5s infinite ease;
+}
+
+.fileUploader {
+  width: 100%;
+  font-size: 12px;
+}
+
+.fileUploader div {
+  font-size: 10px;
+  padding: 0px 25px 0px 25px;
+}
+
+.fileUploaderPhoto {
+  width: 40%;
+  font-size: 12px;
+}
+
+.fileUploaderPhoto div {
+  font-size: 10px;
+  padding: 10px 25px 10px 25px;
+}
+
+.center {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  text-align: center;
+  width: 50%;
+  height: 100%;
+  margin: 5px;
+}
+
+.notFound {
+  width: 100vw;
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+
+.toGetStart {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  text-align: center;
+  width: 50%;
+  height: 100%;
+  margin: 5px;
+}
+
+@media (max-width: 700px) {
+  .toGetStart {
+    display: none;
+  }
+}

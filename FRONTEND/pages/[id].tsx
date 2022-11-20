@@ -1,8 +1,8 @@
 import { IVacancy } from "@/api/models/IVacancy";
 import { VacanciesService } from "@/api/services/VacanciesService";
-import SkeletonVacanciesList from "@/components/vacancie/SkeletonVacanciesList";
-import VacanciesList from "@/components/vacancie/VacanciesList";
-import VacancyInfo from "@/components/vacancie/VacancyInfo";
+import SkeletonVacanciesList from "@/components/vacancy/SkeletonVacanciesList";
+import VacanciesList from "@/components/vacancy/VacanciesList";
+import VacancyInfo from "@/components/vacancy/VacancyInfo";
 import { useAppDispatch, useAppSelector } from "@/hooks/redux";
 import { vacanciesSlice } from "@/store/reducers/vacanciesSlice";
 import { GetServerSideProps, NextPage } from "next";

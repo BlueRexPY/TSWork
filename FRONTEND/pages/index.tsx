@@ -8,7 +8,7 @@ const Home: NextPage = () => {
   const router = useRouter();
   useEffect(() => {
     router.push("/search");
-  }, []);
+  });
   return (
     <Layout col={1} full={true}>
       <AnimatedLogo />

@@ -12,9 +12,10 @@ import { isNumber } from "@/utils/valid";
 import { authSlice } from "@/store/reducers/authSlice";
 import { UseInput } from "@/hooks/useInput";
 import Layout from "@/layouts/MainLayout";
-import SkeletonVacanciesList from "@/components/vacancie/SkeletonVacanciesList";
-import VacanciesList from "@/components/vacancie/VacanciesList";
+import SkeletonVacanciesList from "@/components/vacancy/SkeletonVacanciesList";
+import VacanciesList from "@/components/vacancy/VacanciesList";
 import FileUploader from "@/components/utils/FileUploader";
+import { navSlice } from "@/store/reducers/navSlice";
 
 const MyProfile: NextPage = () => {
   const { auth, user } = useAppSelector((state) => state.authReducer);
@@ -30,6 +31,7 @@ const MyProfile: NextPage = () => {
   const number = UseInput("");
   const github = UseInput("");
   const [cv, setCv] = useState([{ originFileObj: "" }]);
+  const { setActive } = navSlice.actions;
 
   const fetch = async (responses: string[]) => {
     const newArr = await Promise.all(
@@ -44,6 +46,7 @@ const MyProfile: NextPage = () => {
   useEffect(() => {
     setLoading(true);
     if (auth) {
+      setActive(true)
       AuthService.getByEmail(user.email).then((res) => {
         dispatch(updateAuth(res.data));
         fetch(res.data.responses).then(() => setLoading(false));

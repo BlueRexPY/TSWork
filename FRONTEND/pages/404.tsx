@@ -5,11 +5,12 @@ import Img from "@/assets/img/404.png";
 import { Button } from "antd";
 import Link from "next/link";
 import { NextPage } from "next";
+import  styles from '../styles/Utils.module.css'
 
 const NotFound: NextPage = () => {
   return (
     <Layout title={"Page not found"}>
-      <div className="notFound" role="wrapper">
+      <div className={styles.notFound} role="wrapper">
         <Image
           src={Img}
           width={300}

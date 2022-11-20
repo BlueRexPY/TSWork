@@ -1,10 +1,11 @@
 import Image from "next/image";
 import React from "react";
 import searchImg from "@/assets/img/search.png";
+import styles from '../../../styles/Utils.module.css'
 
 const ToGetStart: React.FC = () => {
   return (
-    <div className="indexToGetStart" role="toGetStart">
+    <div className={styles.toGetStart} role="toGetStart">
       <Image
         src={searchImg}
         width={300}

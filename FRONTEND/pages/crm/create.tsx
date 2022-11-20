@@ -4,7 +4,7 @@ import Layout from "@/layouts/MainLayout";
 import { Button, Form, Input, InputNumber, message, Select } from "antd";
 import { useRouter } from "next/router";
 import { UseInput } from "@/hooks/useInput";
-import FileUploaderPhoto from "@/components/crm/FileUploaderPhoto";
+import FileUploaderPhoto from "@/components/utils/FileUploaderPhoto";
 import { LVL_LIST, TECH_LIST } from "@/utils/consts";
 import Checkbox from "antd/lib/checkbox/Checkbox";
 import TextArea from "antd/lib/input/TextArea";
@@ -13,6 +13,7 @@ import { VacanciesService } from "@/api/services/VacanciesService";
 import { useAppDispatch, useAppSelector } from "@/hooks/redux";
 import { vacanciesSlice } from "@/store/reducers/vacanciesSlice";
 import { IValidCreate } from "@/utils/IValidCreate";
+import styles from '../../styles/CMR.module.css'
 
 const Create: NextPage = () => {
   const { setVacancies } = vacanciesSlice.actions;
@@ -134,9 +135,9 @@ const Create: NextPage = () => {
 
   return (
     <Layout col={1} title="Create Vacancy" needAuth={true}>
-      <div className="centerBigForm">
+      <div className={styles.wrapper}>
         <Form
-          className="container"
+          className={styles.container}
           id="login"
           initialValues={{ remember: true }}
           autoComplete="off"
@@ -146,19 +147,19 @@ const Create: NextPage = () => {
           <br />
           <Input
             placeholder="company name"
-            className="containerItem"
+            className={styles.item}
             status={errorValid.companyName ? "error" : ""}
             {...companyName}
           />
           <Input
             placeholder="company address"
-            className="containerItem"
+            className={styles.item}
             status={errorValid.companyAddress ? "error" : ""}
             {...companyAddress}
           />
           <Select
             status={errorValid.companyType ? "error" : ""}
-            className="containerItem"
+            className={styles.item}
             showSearch
             placeholder="company type"
             onChange={(e) => setCompanyType(e)}
@@ -173,7 +174,7 @@ const Create: NextPage = () => {
           </Select>
           <Select
             status={errorValid.companySize ? "error" : ""}
-            className="containerItem"
+            className={styles.item}
             showSearch
             placeholder="company size"
             onChange={(e) => setCompanySize(e)}
@@ -185,7 +186,7 @@ const Create: NextPage = () => {
           </Select>
           <Select
             status={errorValid.workLocation ? "error" : ""}
-            className="containerItem"
+            className={styles.item}
             showSearch
             placeholder="work location"
             onChange={(e) => setWorkLocation(e)}
@@ -198,7 +199,7 @@ const Create: NextPage = () => {
           </Select>
           <Select
             status={errorValid.experienceLevel ? "error" : ""}
-            className="containerItem"
+            className={styles.item}
             showSearch
             placeholder="experience level"
             onChange={(e) => setExperienceLevel(e)}
@@ -210,12 +211,12 @@ const Create: NextPage = () => {
           <Input
             status={errorValid.positionName ? "error" : ""}
             placeholder="position name"
-            className="containerItem"
+            className={styles.item}
             {...positionName}
           />
           <Select
             status={errorValid.employmentType ? "error" : ""}
-            className="containerItem"
+            className={styles.item}
             showSearch
             placeholder="employment type"
             onChange={(e) => setEmploymentType(e)}
@@ -226,14 +227,14 @@ const Create: NextPage = () => {
               {"Mandate contact"}
             </Select.Option>
           </Select>
-          <div className="containerItem row">
+          <div className={styles.salary}>
             <InputNumber
               status={errorValid.minSalary ? "error" : ""}
               prefix="$"
               placeholder="min"
               min={100}
               max={100000}
-              className="containerItemBigSide"
+              className={styles.half}
               onChange={(e) => setMinSalary(e)}
             />
             <p>{"-"}</p>
@@ -244,12 +245,12 @@ const Create: NextPage = () => {
               min={100}
               max={100000}
               onChange={(e) => setMaxSalary(e)}
-              className="containerItemBigSide"
+              className={styles.half}
             />
           </div>
           <Select
             status={errorValid.mainTechnology ? "error" : ""}
-            className="containerItem"
+            className={styles.item}
             showSearch
             placeholder="main technology"
             onChange={(e) => setMainTechnology(e)}
@@ -260,7 +261,7 @@ const Create: NextPage = () => {
           </Select>
           <Select
             status={errorValid.techStack ? "error" : ""}
-            className="containerItem"
+            className={styles.item}
             showSearch
             mode="multiple"
             maxTagCount={5}
@@ -275,24 +276,24 @@ const Create: NextPage = () => {
             status={errorValid.jobDescription ? "error" : ""}
             placeholder="job description"
             autoSize={{ minRows: 4, maxRows: 7 }}
-            className="containerItem jobDescriptionForm"
+            className={styles.description}
             onChange={(e) => setJobDescription(e.target.value)}
             value={jobDescription}
           />
           <Input
             placeholder="apply link (optional)"
-            className="containerItem"
+            className={styles.item}
             {...applyLink}
           />
           <Checkbox
             onChange={() => setTSWCheckBox(!TSWCheckBox)}
-            className="containerItem"
+            className={styles.item}
           >
             tswork take 5% of salary
           </Checkbox>
           <Button
             type="primary"
-            className="containerItem"
+            className={styles.item}
             onClick={createVacancy}
             loading={loading}
           >
