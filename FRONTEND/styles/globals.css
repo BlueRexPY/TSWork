@@ -224,7 +224,7 @@ body::-webkit-scrollbar-thumb:hover {
   width: 100%;
   min-height: 90px;
   margin-top: 10px;
-  padding: 10px;
+  padding: 10px 15px 10px 10px;
   border-radius: 10px;
   display: flex;
   flex-direction: row;
