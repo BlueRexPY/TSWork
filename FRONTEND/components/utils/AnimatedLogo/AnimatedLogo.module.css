@@ -1,0 +1,55 @@
+.item1 {
+  animation: AnimatedLogo1 1s infinite ease;
+}
+
+.item2 {
+  animation: AnimatedLogo2 1s infinite ease;
+}
+
+.item3 {
+  animation: AnimatedLogo3 1s infinite ease;
+}
+
+.item4 {
+  animation: AnimatedLogo4 1s infinite ease;
+}
+
+@keyframes AnimatedLogo1 {
+  0% {
+    opacity: 0;
+  }
+
+  20% {
+    opacity: 1;
+  }
+}
+
+@keyframes AnimatedLogo2 {
+  20% {
+    opacity: 0;
+  }
+
+  40% {
+    opacity: 1;
+  }
+}
+
+@keyframes AnimatedLogo3 {
+  40% {
+    opacity: 0;
+  }
+
+  60% {
+    opacity: 1;
+  }
+}
+
+@keyframes AnimatedLogo4 {
+  60% {
+    opacity: 0;
+  }
+
+  80% {
+    opacity: 1;
+  }
+}
