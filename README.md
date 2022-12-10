@@ -11,6 +11,7 @@ Convenient open source job board for finding IT jobs around the world!
    1. ![ReduxToolKit](https://img.shields.io/badge/ReduxToolKit-%23593d88.svg?style=for-the-badge&logo=redux&logoColor=white)
    1. ![Jest](https://img.shields.io/badge/-jest-%23C21325?style=for-the-badge&logo=jest&logoColor=white)
    1. ![Testing-Library](https://img.shields.io/badge/-TestingLibrary-%23E33332?style=for-the-badge&logo=testing-library&logoColor=white)
+   1. ![Vercel](https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white)
  
 </details>
 <details><summary>Backend</summary>
@@ -21,6 +22,7 @@ Convenient open source job board for finding IT jobs around the world!
    1. ![JWT](https://img.shields.io/badge/JWT-233233.svg?style=for-the-badge&logo=JWT&logoColor=white)
    1. ![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white)
    1. ![Google Cloud](https://img.shields.io/badge/GoogleCloud-%234285F4.svg?style=for-the-badge&logo=google-cloud&logoColor=white)
+   1. ![Netlify](https://img.shields.io/badge/netlify-%23000000.svg?style=for-the-badge&logo=netlify&logoColor=#00C7B7)
 
 </details>
 
