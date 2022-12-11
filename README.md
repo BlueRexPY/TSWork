@@ -21,8 +21,8 @@ Convenient open source job board for finding IT jobs around the world!
    1. ![JWT](https://img.shields.io/badge/JWT-233233.svg?style=for-the-badge&logo=JWT&logoColor=white)
    1. ![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white)
    1. ![Google Cloud](https://img.shields.io/badge/GoogleCloud-%234285F4.svg?style=for-the-badge&logo=google-cloud&logoColor=white)
-   1. ![Netlify](https://img.shields.io/badge/netlify-%23000000.svg?style=for-the-badge&logo=netlify&logoColor=#00C7B7)
-
+   1. ![Railway](https://img.shields.io/badge/Railway-233233.svg?style=for-the-badge&logo=Railway&logoColor=white)
+   
 </details>
 
 <details><summary>ToDo</summary>
