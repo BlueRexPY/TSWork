@@ -93,7 +93,7 @@ body {
 }
 
 .container {
-  min-height: 150px;
+  min-height: 50px;
   min-width: 200px;
   width: 270px;
   height: auto;
@@ -180,7 +180,7 @@ body {
 }
 
 .vacancyList::-webkit-scrollbar-track {
-  background: none;
+  background: transparent !important;
 }
 
 .vacancyList::-webkit-scrollbar-thumb {
@@ -198,7 +198,7 @@ body::-webkit-scrollbar {
 }
 
 body::-webkit-scrollbar-track {
-  background: none;
+  background: transparent !important;
 }
 
 body::-webkit-scrollbar-thumb {
@@ -224,7 +224,7 @@ body::-webkit-scrollbar-thumb:hover {
   width: 100%;
   min-height: 90px;
   margin-top: 10px;
-  padding: 10px 15px 10px 10px;
+  padding: 10px;
   border-radius: 10px;
   display: flex;
   flex-direction: row;
@@ -451,7 +451,7 @@ body::-webkit-scrollbar-thumb:hover {
 }
 
 .vacancyPage::-webkit-scrollbar-track {
-  background: none;
+  background: transparent !important;
 }
 
 .vacancyPage::-webkit-scrollbar-thumb {
@@ -563,7 +563,7 @@ body::-webkit-scrollbar-thumb:hover {
     align-items: flex-start;
     align-content: flex-start;
     position: absolute;
-    width: 90%;
+    width: calc(100% - 5px);
     height: 40px;
     padding: 10px 0px 40px 15px;
     z-index: 100;

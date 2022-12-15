@@ -10,7 +10,8 @@
 }
 
 .container {
-  min-height: 150px;
+  min-height: 50px;
+  gap: 10px;
   min-width: 200px;
   width: 270px;
   height: auto;

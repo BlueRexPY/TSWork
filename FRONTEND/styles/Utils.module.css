@@ -153,3 +153,18 @@
     display: none;
   }
 }
+
+.themeSwitchContainer{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: center;
+  gap: 10px;
+  border-radius: 10px;
+}
+
+.themeSwitchContainer p{
+  margin: 0px;;
+}

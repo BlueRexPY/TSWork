@@ -23,6 +23,7 @@
     "autoprefixer": "^10.4.7",
     "axios": "^0.27.2",
     "cors": "^2.8.5",
+    "darkreader": "^4.9.58",
     "imask": "^6.4.2",
     "js-cookie": "^3.0.1",
     "less": "^4.1.3",

@@ -15,7 +15,7 @@ import Layout from "@/layouts/MainLayout";
 import SkeletonVacanciesList from "@/components/vacancy/SkeletonVacanciesList";
 import VacanciesList from "@/components/vacancy/VacanciesList";
 import FileUploader from "@/components/utils/FileUploader";
-import { navSlice } from "@/store/reducers/navSlice";
+import ThemeSwitcher from "@/components/utils/ThemeSwitcher";
 
 const MyProfile: NextPage = () => {
   const { auth, user } = useAppSelector((state) => state.authReducer);
@@ -49,7 +49,7 @@ const MyProfile: NextPage = () => {
         dispatch(updateAuth(res.data));
         fetch(res.data.responses).then(() => setLoading(false));
       });
-    }else{
+    } else {
       setLoading(false)
     }
   }, [auth]);
@@ -94,56 +94,60 @@ const MyProfile: NextPage = () => {
 
   return (
     <Layout col={2} title="My Profile" myProfile={user.roles} needAuth={true}>
-      <div className="center margin50">
-        <Form
-          className="container change"
-          name="change"
-          id="login"
-          initialValues={{ remember: true }}
-          autoComplete="off"
-          role="form"
-        >
-          <Input placeholder={user.name} className="containerItem" {...name} />
-          <Input
-            placeholder={user.surname}
-            className="containerItem"
-            {...surname}
-          />
-          <Input
-            placeholder={user.github}
-            className="containerItem"
-            {...github}
-          />
-          <MaskedInput
-            className="containerItem"
-            {...number}
-            mask={"+00(00)0000-0000"}
-            maskOptions={{
-              dispatch: function (appended, dynamicMasked) {
-                const isCellPhone = dynamicMasked.unmaskedValue[2] === "9";
-                return dynamicMasked.compiledMasks[isCellPhone ? 0 : 1];
-              },
-            }}
-          />
-          <FileUploader maxCount={1} setFile={setCv} />
-          <br />
-          <Button
-            type="primary"
-            className="containerItem"
-            onClick={change}
-            disabled={loadingButton}
-            loading={loadingButton}
+      <div className="center">
+          <Form
+            className="container change"
+            name="change"
+            id="login"
+            initialValues={{ remember: true }}
+            autoComplete="off"
+            role="form"
           >
-            Update
-          </Button>
-        </Form>
+            <Input placeholder={user.name} className="containerItem" {...name} />
+            <Input
+              placeholder={user.surname}
+              className="containerItem"
+              {...surname}
+            />
+            <Input
+              placeholder={user.github}
+              className="containerItem"
+              {...github}
+            />
+            <MaskedInput
+              className="containerItem"
+              {...number}
+              mask={"+00(00)0000-0000"}
+              maskOptions={{
+                dispatch: function (appended, dynamicMasked) {
+                  const isCellPhone = dynamicMasked.unmaskedValue[2] === "9";
+                  return dynamicMasked.compiledMasks[isCellPhone ? 0 : 1];
+                },
+              }}
+            />
+            <FileUploader maxCount={1} setFile={setCv} />
+            <br />
+            <Button
+              type="primary"
+              className="containerItem"
+              onClick={change}
+              disabled={loadingButton}
+              loading={loadingButton}
+            >
+              Update
+            </Button>
+          </Form>
+        <div className="container" style={{margin: "50px"}}>
+          <ThemeSwitcher />
+        </div>
       </div>
+
       <div className="h100">
         <h3 className="centerLine">
           my response{loading ? `` : ` - ${vacancies.length}`}
         </h3>
         {loading ? (
-          <SkeletonVacanciesList display={true}/>
+          <SkeletonVacanciesList display={true} />
         ) : (
           <VacanciesList display={true} vacancies={vacancies} />
         )}
