@@ -35,7 +35,7 @@ Convenient open source job board for finding IT jobs around the world!
    1. e2e tests.
    1. add an activity graph.
    1. markdown support
-   1. formik
+   1. formik/react-form-hook
    1. multi-language support
    1. migration to next 13
    
