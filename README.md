@@ -27,17 +27,18 @@ Convenient open source job board for finding IT jobs around the world!
 
 <details><summary>ToDo</summary>
 
-   1. ~~community standards.~~
-   1. ~~fix mobile skeleton.~~
-   1. ~~advanced validation.~~
-   1. ~~add light mode.~~
-   1. move css to modules.
-   1. e2e tests.
-   1. add an activity graph.
-   1. markdown support
-   1. formik/react-form-hook
-   1. multi-language support
-   1. migration to next 13
+   1. ~~Community standards.~~
+   1. ~~Fix mobile skeleton.~~
+   1. ~~Advanced validation.~~
+   1. ~~Add light mode.~~
+   1. Move css to modules.
+   1. E2E tests.
+   1. Add an activity graph.
+   1. Markdown support
+   1. Formik/react-form-hook
+   1. Multi-language support
+   1. Migration to next 13
+   1. Migration backend on a new server
    
 </details>
 
